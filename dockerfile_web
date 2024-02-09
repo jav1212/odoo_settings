@@ -1,0 +1,16 @@
+# Use an official Odoo  16.0 image as a parent image
+FROM odoo:16.0
+
+# Set environment variables (these could also be passed at runtime)
+ENV HOST=db \
+    USER=odoo \
+    PASSWORD=myodoo
+
+# Copy configuration files into the container
+COPY ./config_odoo /etc/odoo
+
+# Expose the Odoo web service port
+EXPOSE  8069
+
+# Define the command to run Odoo
+CMD ["odoo", "-c", "/etc/odoo/odoo.conf"]

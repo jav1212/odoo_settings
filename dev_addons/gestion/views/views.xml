@@ -1,0 +1,10 @@
+<odoo>
+  <data>
+    <!-- Top menu item -->
+    <menuitem id="gestion.menu_root" name="Gestion"/>
+
+    <!-- menu categories -->
+    <menuitem id="gestion.menu_1" name="Menú" parent= "gestion.menu_root" />
+
+  </data>
+</odoo>

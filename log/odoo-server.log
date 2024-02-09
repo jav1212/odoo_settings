@@ -1,0 +1,816 @@
+2024-02-09 13:36:26,631 1 WARNING ? odoo.modules.module: Missing `license` key in manifest for 'gestion', defaulting to LGPL-3 
+2024-02-09 13:36:26,664 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:36:26] "POST /web/action/load HTTP/1.1" 200 - 27 0.015 0.409
+2024-02-09 13:36:26,751 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:36:26] "POST /web/dataset/call_kw/res.users/get_views HTTP/1.1" 200 - 55 0.028 0.048
+2024-02-09 13:36:26,794 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:36:26] "POST /web/dataset/call_kw/res.users/has_group HTTP/1.1" 200 - 2 0.005 0.011
+2024-02-09 13:36:26,808 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:36:26] "POST /web/dataset/call_kw/res.users/web_search_read HTTP/1.1" 200 - 14 0.011 0.020
+2024-02-09 13:36:30,764 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:36:30] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 4 0.008 0.008
+2024-02-09 13:36:30,794 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:36:30] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 40 0.026 0.021
+2024-02-09 13:36:42,049 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:36:42] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 3 0.005 0.013
+2024-02-09 13:36:42,090 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:36:42] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 37 0.032 0.024
+2024-02-09 13:36:47,634 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:36:47] "GET / HTTP/1.1" 303 - 2 0.002 0.006
+2024-02-09 13:36:49,004 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:36:49] "GET /web HTTP/1.1" 200 - 75 0.053 1.306
+2024-02-09 13:36:49,586 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:36:49] "POST /web/action/load HTTP/1.1" 200 - 11 0.012 0.017
+2024-02-09 13:36:49,586 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:36:49] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 304 - 13 0.014 0.015
+2024-02-09 13:36:49,671 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:36:49] "POST /web/dataset/call_kw/ir.module.module/get_views HTTP/1.1" 200 - 36 0.020 0.050
+2024-02-09 13:36:49,715 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:36:49] "POST /web/dataset/call_kw/ir.module.module/web_search_read HTTP/1.1" 200 - 3 0.003 0.011
+2024-02-09 13:36:49,744 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:36:49] "POST /web/dataset/call_kw/ir.module.module/search_panel_select_range HTTP/1.1" 200 - 37 0.029 0.019
+2024-02-09 13:37:11,468 1 INFO Testing odoo.addons.base.models.ir_module: ALLOW access to module.button_immediate_install on ['Ventas'] to user Haldrim377@gmail.com #2 via 172.24.0.1 
+2024-02-09 13:37:11,469 1 INFO Testing odoo.addons.base.models.ir_module: User #2 triggered module installation 
+2024-02-09 13:37:11,470 1 INFO Testing odoo.addons.base.models.ir_module: ALLOW access to module.button_install on ['Ventas'] to user Haldrim377@gmail.com #2 via 172.24.0.1 
+2024-02-09 13:37:12,336 1 INFO Testing odoo.modules.loading: loading 1 modules... 
+2024-02-09 13:37:12,346 1 INFO Testing odoo.modules.loading: 1 modules loaded in 0.01s, 0 queries (+0 extra) 
+2024-02-09 13:37:12,369 1 INFO Testing odoo.modules.loading: updating modules list 
+2024-02-09 13:37:12,372 1 INFO Testing odoo.addons.base.models.ir_module: ALLOW access to module.update_list on [] to user __system__ #1 via 172.24.0.1 
+2024-02-09 13:37:13,093 1 INFO Testing odoo.modules.loading: loading 8 modules... 
+2024-02-09 13:37:13,102 1 INFO Testing odoo.modules.loading: 8 modules loaded in 0.01s, 0 queries (+0 extra) 
+2024-02-09 13:37:13,110 1 INFO Testing odoo.modules.loading: loading 50 modules... 
+2024-02-09 13:37:13,111 1 INFO Testing odoo.modules.loading: Loading module uom (2/50) 
+2024-02-09 13:37:13,152 1 INFO Testing odoo.modules.registry: module uom: creating or updating database tables 
+2024-02-09 13:37:13,275 1 INFO Testing odoo.modules.loading: loading uom/data/uom_data.xml 
+2024-02-09 13:37:13,356 1 INFO Testing odoo.modules.loading: loading uom/security/uom_security.xml 
+2024-02-09 13:37:13,378 1 INFO Testing odoo.modules.loading: loading uom/security/ir.model.access.csv 
+2024-02-09 13:37:13,393 1 INFO Testing odoo.modules.loading: loading uom/views/uom_uom_views.xml 
+2024-02-09 13:37:13,440 1 INFO Testing odoo.addons.base.models.ir_module: module uom: loading base translation file es for language es_VE 
+2024-02-09 13:37:13,449 1 INFO Testing odoo.addons.base.models.ir_module: module uom: no translation for language es_VE 
+2024-02-09 13:37:13,473 1 INFO Testing odoo.modules.loading: Module uom loaded in 0.36s, 271 queries (+271 other) 
+2024-02-09 13:37:13,473 1 INFO Testing odoo.modules.loading: Loading module base_setup (6/50) 
+2024-02-09 13:37:13,499 1 INFO Testing odoo.modules.registry: module base_setup: creating or updating database tables 
+2024-02-09 13:37:13,553 1 INFO Testing odoo.modules.loading: loading base_setup/data/base_setup_data.xml 
+2024-02-09 13:37:13,562 1 INFO Testing odoo.modules.loading: loading base_setup/views/res_config_settings_views.xml 
+2024-02-09 13:37:13,623 1 INFO Testing odoo.modules.loading: loading base_setup/views/res_partner_views.xml 
+2024-02-09 13:37:13,644 1 INFO Testing odoo.addons.base.models.ir_module: module base_setup: loading base translation file es for language es_VE 
+2024-02-09 13:37:13,659 1 INFO Testing odoo.addons.base.models.ir_module: module base_setup: loading translation file es_VE for language es_VE 
+2024-02-09 13:37:13,707 1 INFO Testing odoo.modules.loading: Module base_setup loaded in 0.23s, 161 queries (+161 other) 
+2024-02-09 13:37:13,709 1 INFO Testing odoo.modules.loading: Loading module http_routing (8/50) 
+2024-02-09 13:37:13,771 1 INFO Testing odoo.modules.registry: module http_routing: creating or updating database tables 
+2024-02-09 13:37:13,800 1 INFO Testing odoo.modules.loading: loading http_routing/views/http_routing_template.xml 
+2024-02-09 13:37:13,881 1 INFO Testing odoo.modules.loading: loading http_routing/views/res_lang_views.xml 
+2024-02-09 13:37:13,931 1 INFO Testing odoo.addons.base.models.ir_module: module http_routing: loading base translation file es for language es_VE 
+2024-02-09 13:37:13,939 1 INFO Testing odoo.addons.base.models.ir_module: module http_routing: no translation for language es_VE 
+2024-02-09 13:37:13,977 1 INFO Testing odoo.modules.loading: Module http_routing loaded in 0.27s, 81 queries (+81 other) 
+2024-02-09 13:37:13,978 1 INFO Testing odoo.modules.loading: Loading module resource (9/50) 
+2024-02-09 13:37:14,036 1 INFO Testing odoo.modules.registry: module resource: creating or updating database tables 
+2024-02-09 13:37:14,288 1 INFO Testing odoo.modules.loading: loading resource/data/resource_data.xml 
+2024-02-09 13:37:14,356 1 INFO Testing odoo.modules.loading: loading resource/security/ir.model.access.csv 
+2024-02-09 13:37:14,379 1 INFO Testing odoo.modules.loading: loading resource/security/resource_security.xml 
+2024-02-09 13:37:14,433 1 INFO Testing odoo.modules.loading: loading resource/views/resource_views.xml 
+2024-02-09 13:37:14,624 1 INFO Testing odoo.addons.base.models.ir_module: module resource: loading base translation file es for language es_VE 
+2024-02-09 13:37:14,637 1 INFO Testing odoo.addons.base.models.ir_module: module resource: loading translation file es_VE for language es_VE 
+2024-02-09 13:37:14,701 1 INFO Testing odoo.modules.loading: Module resource loaded in 0.72s, 431 queries (+431 other) 
+2024-02-09 13:37:14,702 1 INFO Testing odoo.modules.loading: Loading module utm (10/50) 
+2024-02-09 13:37:14,754 1 INFO Testing odoo.modules.registry: module utm: creating or updating database tables 
+2024-02-09 13:37:14,993 1 INFO Testing odoo.modules.loading: loading utm/data/utm_medium_data.xml 
+2024-02-09 13:37:15,036 1 INFO Testing odoo.modules.loading: loading utm/data/utm_source_data.xml 
+2024-02-09 13:37:15,069 1 INFO Testing odoo.modules.loading: loading utm/data/utm_stage_data.xml 
+2024-02-09 13:37:15,078 1 INFO Testing odoo.modules.loading: loading utm/data/utm_tag_data.xml 
+2024-02-09 13:37:15,084 1 INFO Testing odoo.modules.loading: loading utm/views/utm_campaign_views.xml 
+2024-02-09 13:37:15,127 1 INFO Testing odoo.modules.loading: loading utm/views/utm_medium_views.xml 
+2024-02-09 13:37:15,155 1 INFO Testing odoo.modules.loading: loading utm/views/utm_source_views.xml 
+2024-02-09 13:37:15,177 1 INFO Testing odoo.modules.loading: loading utm/views/utm_stage_views.xml 
+2024-02-09 13:37:15,198 1 INFO Testing odoo.modules.loading: loading utm/views/utm_tag_views.xml 
+2024-02-09 13:37:15,210 1 INFO Testing odoo.modules.loading: loading utm/views/utm_menus.xml 
+2024-02-09 13:37:15,259 1 INFO Testing odoo.modules.loading: loading utm/security/ir.model.access.csv 
+2024-02-09 13:37:15,283 1 INFO Testing odoo.modules.loading: Module utm: loading demo 
+2024-02-09 13:37:15,284 1 INFO Testing odoo.modules.loading: loading utm/data/utm_campaign_demo.xml 
+2024-02-09 13:37:15,304 1 INFO Testing odoo.modules.loading: loading utm/data/utm_stage_demo.xml 
+2024-02-09 13:37:15,321 1 INFO Testing odoo.addons.base.models.ir_module: module utm: loading base translation file es for language es_VE 
+2024-02-09 13:37:15,336 1 INFO Testing odoo.addons.base.models.ir_module: module utm: loading translation file es_VE for language es_VE 
+2024-02-09 13:37:15,384 1 INFO Testing odoo.modules.loading: Module utm loaded in 0.68s, 447 queries (+447 other) 
+2024-02-09 13:37:15,385 1 INFO Testing odoo.modules.loading: Loading module iap (13/50) 
+2024-02-09 13:37:15,422 1 INFO Testing odoo.modules.registry: module iap: creating or updating database tables 
+2024-02-09 13:37:15,498 1 INFO Testing odoo.modules.loading: loading iap/security/ir.model.access.csv 
+2024-02-09 13:37:15,512 1 INFO Testing odoo.modules.loading: loading iap/security/ir_rule.xml 
+2024-02-09 13:37:15,522 1 INFO Testing odoo.modules.loading: loading iap/views/iap_views.xml 
+2024-02-09 13:37:15,570 1 INFO Testing odoo.modules.loading: loading iap/views/res_config_settings.xml 
+2024-02-09 13:37:15,612 1 INFO Testing odoo.addons.base.models.ir_module: module iap: loading base translation file es for language es_VE 
+2024-02-09 13:37:15,620 1 INFO Testing odoo.addons.base.models.ir_module: module iap: loading translation file es_VE for language es_VE 
+2024-02-09 13:37:15,670 1 INFO Testing odoo.modules.loading: Module iap loaded in 0.28s, 151 queries (+151 other) 
+2024-02-09 13:37:15,671 1 INFO Testing odoo.modules.loading: Loading module mail (14/50) 
+2024-02-09 13:37:15,836 1 INFO Testing odoo.modules.registry: module mail: creating or updating database tables 
+2024-02-09 13:37:16,303 1 INFO Testing odoo.models: Prepare computation of ir.actions.server.partner_ids 
+2024-02-09 13:37:16,304 1 INFO Testing odoo.models: Prepare computation of ir.actions.server.template_id 
+2024-02-09 13:37:16,305 1 INFO Testing odoo.models: Prepare computation of ir.actions.server.activity_type_id 
+2024-02-09 13:37:16,306 1 INFO Testing odoo.models: Prepare computation of ir.actions.server.activity_date_deadline_range 
+2024-02-09 13:37:16,308 1 INFO Testing odoo.models: Prepare computation of ir.actions.server.activity_user_id 
+2024-02-09 13:37:16,309 1 INFO Testing odoo.models: Prepare computation of ir.actions.server.mail_post_method 
+2024-02-09 13:37:16,310 1 INFO Testing odoo.models: Prepare computation of ir.actions.server.activity_summary 
+2024-02-09 13:37:16,311 1 INFO Testing odoo.models: Prepare computation of ir.actions.server.activity_date_deadline_range_type 
+2024-02-09 13:37:16,312 1 INFO Testing odoo.models: Prepare computation of ir.actions.server.activity_user_type 
+2024-02-09 13:37:16,312 1 INFO Testing odoo.models: Prepare computation of ir.actions.server.activity_user_field_name 
+2024-02-09 13:37:16,313 1 INFO Testing odoo.models: Prepare computation of ir.actions.server.activity_note 
+2024-02-09 13:37:16,313 1 INFO Testing odoo.models: Prepare computation of ir.actions.server.mail_post_autofollow 
+2024-02-09 13:37:16,395 1 INFO Testing odoo.models: Prepare computation of res.partner.email_normalized 
+2024-02-09 13:37:16,407 1 INFO Testing odoo.models: Prepare computation of res.users.notification_type 
+2024-02-09 13:37:18,285 1 INFO Testing odoo.modules.loading: loading mail/data/mail_groups.xml 
+2024-02-09 13:37:18,471 1 INFO Testing odoo.modules.loading: loading mail/wizard/mail_blacklist_remove_views.xml 
+2024-02-09 13:37:18,482 1 INFO Testing odoo.modules.loading: loading mail/wizard/mail_compose_message_views.xml 
+2024-02-09 13:37:18,504 1 INFO Testing odoo.modules.loading: loading mail/wizard/mail_resend_message_views.xml 
+2024-02-09 13:37:18,533 1 INFO Testing odoo.modules.loading: loading mail/wizard/mail_template_preview_views.xml 
+2024-02-09 13:37:18,549 1 INFO Testing odoo.modules.loading: loading mail/wizard/mail_wizard_invite_views.xml 
+2024-02-09 13:37:18,559 1 INFO Testing odoo.modules.loading: loading mail/wizard/mail_template_reset_views.xml 
+2024-02-09 13:37:18,573 1 INFO Testing odoo.modules.loading: loading mail/views/fetchmail_views.xml 
+2024-02-09 13:37:18,600 1 INFO Testing odoo.modules.loading: loading mail/views/mail_message_subtype_views.xml 
+2024-02-09 13:37:18,622 1 INFO Testing odoo.modules.loading: loading mail/views/mail_tracking_views.xml 
+2024-02-09 13:37:18,643 1 INFO Testing odoo.modules.loading: loading mail/views/mail_notification_views.xml 
+2024-02-09 13:37:18,665 1 INFO Testing odoo.modules.loading: loading mail/views/mail_message_views.xml 
+2024-02-09 13:37:18,702 1 INFO Testing odoo.modules.loading: loading mail/views/mail_message_schedule_views.xml 
+2024-02-09 13:37:18,730 1 INFO Testing odoo.modules.loading: loading mail/views/mail_mail_views.xml 
+2024-02-09 13:37:18,788 1 INFO Testing odoo.modules.loading: loading mail/views/mail_followers_views.xml 
+2024-02-09 13:37:18,876 1 INFO Testing odoo.modules.loading: loading mail/views/mail_ice_server_views.xml 
+2024-02-09 13:37:18,918 1 INFO Testing odoo.modules.loading: loading mail/views/mail_channel_member_views.xml 
+2024-02-09 13:37:18,952 1 INFO Testing odoo.modules.loading: loading mail/views/mail_channel_rtc_session_views.xml 
+2024-02-09 13:37:18,993 1 INFO Testing odoo.modules.loading: loading mail/views/mail_link_preview_views.xml 
+2024-02-09 13:37:19,019 1 INFO Testing odoo.modules.loading: loading mail/views/mail_channel_views.xml 
+2024-02-09 13:37:19,067 1 INFO Testing odoo.modules.loading: loading mail/views/mail_shortcode_views.xml 
+2024-02-09 13:37:19,082 1 INFO Testing odoo.modules.loading: loading mail/views/mail_activity_views.xml 
+2024-02-09 13:37:19,177 1 INFO Testing odoo.modules.loading: loading mail/views/res_config_settings_views.xml 
+2024-02-09 13:37:19,217 1 INFO Testing odoo.modules.loading: loading mail/data/res_partner_data.xml 
+2024-02-09 13:37:19,250 1 INFO Testing odoo.modules.loading: loading mail/data/mail_message_subtype_data.xml 
+2024-02-09 13:37:19,266 1 INFO Testing odoo.modules.loading: loading mail/data/mail_templates_chatter.xml 
+2024-02-09 13:37:19,288 1 INFO Testing odoo.modules.loading: loading mail/data/mail_templates_email_layouts.xml 
+2024-02-09 13:37:19,323 1 INFO Testing odoo.modules.loading: loading mail/data/mail_templates_mailgateway.xml 
+2024-02-09 13:37:19,346 1 INFO Testing odoo.modules.loading: loading mail/data/mail_channel_data.xml 
+2024-02-09 13:37:19,379 1 INFO Testing odoo.modules.loading: loading mail/data/mail_activity_data.xml 
+2024-02-09 13:37:19,427 1 INFO Testing odoo.modules.loading: loading mail/data/ir_cron_data.xml 
+2024-02-09 13:37:19,471 1 INFO Testing odoo.modules.loading: loading mail/security/mail_security.xml 
+2024-02-09 13:37:19,771 1 INFO Testing odoo.modules.loading: loading mail/security/ir.model.access.csv 
+2024-02-09 13:37:19,857 1 INFO Testing odoo.modules.loading: loading mail/views/discuss_public_templates.xml 
+2024-02-09 13:37:19,872 1 INFO Testing odoo.modules.loading: loading mail/views/mail_alias_views.xml 
+2024-02-09 13:37:19,902 1 INFO Testing odoo.modules.loading: loading mail/views/mail_gateway_allowed_views.xml 
+2024-02-09 13:37:19,921 1 INFO Testing odoo.modules.loading: loading mail/views/mail_guest_views.xml 
+2024-02-09 13:37:19,935 1 INFO Testing odoo.modules.loading: loading mail/views/mail_message_reaction_views.xml 
+2024-02-09 13:37:19,950 1 INFO Testing odoo.modules.loading: loading mail/views/res_users_views.xml 
+2024-02-09 13:37:19,996 1 INFO Testing odoo.modules.loading: loading mail/views/res_users_settings_views.xml 
+2024-02-09 13:37:20,022 1 INFO Testing odoo.modules.loading: loading mail/views/mail_template_views.xml 
+2024-02-09 13:37:20,079 1 INFO Testing odoo.modules.loading: loading mail/views/ir_actions_server_views.xml 
+2024-02-09 13:37:20,099 1 INFO Testing odoo.modules.loading: loading mail/views/ir_model_views.xml 
+2024-02-09 13:37:20,166 1 INFO Testing odoo.modules.loading: loading mail/views/res_partner_views.xml 
+2024-02-09 13:37:20,271 1 INFO Testing odoo.modules.loading: loading mail/views/mail_blacklist_views.xml 
+2024-02-09 13:37:20,297 1 INFO Testing odoo.modules.loading: loading mail/views/mail_menus.xml 
+2024-02-09 13:37:20,594 1 INFO Testing odoo.modules.loading: Module mail: loading demo 
+2024-02-09 13:37:20,596 1 INFO Testing odoo.modules.loading: loading mail/data/mail_channel_demo.xml 
+2024-02-09 13:37:20,676 1 INFO Testing odoo.addons.base.models.ir_module: module mail: loading base translation file es for language es_VE 
+2024-02-09 13:37:21,205 1 INFO Testing odoo.addons.base.models.ir_module: module mail: loading translation file es_VE for language es_VE 
+2024-02-09 13:37:21,604 1 INFO Testing odoo.modules.loading: Module mail loaded in 5.93s, 3606 queries (+3606 other) 
+2024-02-09 13:37:21,605 1 INFO Testing odoo.modules.loading: Loading module spreadsheet (15/50) 
+2024-02-09 13:37:21,650 1 INFO Testing odoo.modules.registry: module spreadsheet: creating or updating database tables 
+2024-02-09 13:37:21,690 1 INFO Testing odoo.addons.base.models.ir_module: module spreadsheet: loading base translation file es for language es_VE 
+2024-02-09 13:37:21,759 1 INFO Testing odoo.addons.base.models.ir_module: module spreadsheet: no translation for language es_VE 
+2024-02-09 13:37:21,779 1 INFO Testing odoo.modules.loading: Module spreadsheet loaded in 0.17s, 44 queries (+44 other) 
+2024-02-09 13:37:21,780 1 INFO Testing odoo.modules.loading: Loading module analytic (17/50) 
+2024-02-09 13:37:21,834 1 INFO Testing odoo.modules.registry: module analytic: creating or updating database tables 
+2024-02-09 13:37:22,110 1 INFO Testing odoo.modules.loading: loading analytic/security/analytic_security.xml 
+2024-02-09 13:37:22,195 1 INFO Testing odoo.modules.loading: loading analytic/security/ir.model.access.csv 
+2024-02-09 13:37:22,215 1 INFO Testing odoo.modules.loading: loading analytic/views/analytic_line_views.xml 
+2024-02-09 13:37:22,301 1 INFO Testing odoo.modules.loading: loading analytic/views/analytic_account_views.xml 
+2024-02-09 13:37:22,368 1 INFO Testing odoo.modules.loading: loading analytic/views/analytic_plan_views.xml 
+2024-02-09 13:37:22,401 1 INFO Testing odoo.modules.loading: loading analytic/views/analytic_distribution_model_views.xml 
+2024-02-09 13:37:22,422 1 INFO Testing odoo.modules.loading: loading analytic/data/analytic_data.xml 
+2024-02-09 13:37:22,431 1 INFO Testing odoo.modules.loading: Module analytic: loading demo 
+2024-02-09 13:37:22,432 1 INFO Testing odoo.modules.loading: loading analytic/data/analytic_account_demo.xml 
+2024-02-09 13:37:23,378 1 INFO Testing odoo.addons.base.models.ir_module: module analytic: loading base translation file es for language es_VE 
+2024-02-09 13:37:23,392 1 INFO Testing odoo.addons.base.models.ir_module: module analytic: loading translation file es_VE for language es_VE 
+2024-02-09 13:37:23,446 1 INFO Testing odoo.modules.loading: Module analytic loaded in 1.67s, 538 queries (+538 other) 
+2024-02-09 13:37:23,447 1 INFO Testing odoo.modules.loading: Loading module auth_signup (18/50) 
+2024-02-09 13:37:23,501 1 INFO Testing odoo.modules.registry: module auth_signup: creating or updating database tables 
+2024-02-09 13:37:23,588 1 INFO Testing odoo.modules.loading: loading auth_signup/data/ir_config_parameter_data.xml 
+2024-02-09 13:37:23,601 1 INFO Testing odoo.modules.loading: loading auth_signup/data/ir_cron_data.xml 
+2024-02-09 13:37:23,615 1 INFO Testing odoo.modules.loading: loading auth_signup/data/mail_template_data.xml 
+2024-02-09 13:37:23,638 1 INFO Testing odoo.modules.loading: loading auth_signup/views/res_config_settings_views.xml 
+2024-02-09 13:37:23,659 1 INFO Testing odoo.modules.loading: loading auth_signup/views/res_users_views.xml 
+2024-02-09 13:37:23,695 1 INFO Testing odoo.modules.loading: loading auth_signup/views/auth_signup_login_templates.xml 
+2024-02-09 13:37:23,728 1 INFO Testing odoo.modules.loading: loading auth_signup/views/webclient_templates.xml 
+2024-02-09 13:37:23,741 1 INFO Testing odoo.addons.base.models.ir_module: module auth_signup: loading base translation file es for language es_VE 
+2024-02-09 13:37:23,760 1 INFO Testing odoo.addons.base.models.ir_module: module auth_signup: loading translation file es_VE for language es_VE 
+2024-02-09 13:37:23,815 1 INFO Testing odoo.modules.loading: Module auth_signup loaded in 0.37s, 203 queries (+203 other) 
+2024-02-09 13:37:23,815 1 INFO Testing odoo.modules.loading: Loading module auth_totp_mail (19/50) 
+2024-02-09 13:37:23,890 1 INFO Testing odoo.modules.registry: module auth_totp_mail: creating or updating database tables 
+2024-02-09 13:37:23,940 1 INFO Testing odoo.modules.loading: loading auth_totp_mail/data/ir_action_data.xml 
+2024-02-09 13:37:23,976 1 INFO Testing odoo.modules.loading: loading auth_totp_mail/data/mail_template_data.xml 
+2024-02-09 13:37:23,986 1 INFO Testing odoo.modules.loading: loading auth_totp_mail/views/res_users_views.xml 
+2024-02-09 13:37:24,062 1 INFO Testing odoo.addons.base.models.ir_module: module auth_totp_mail: loading base translation file es for language es_VE 
+2024-02-09 13:37:24,067 1 INFO Testing odoo.addons.base.models.ir_module: module auth_totp_mail: no translation for language es_VE 
+2024-02-09 13:37:24,090 1 INFO Testing odoo.modules.loading: Module auth_totp_mail loaded in 0.28s, 100 queries (+100 other) 
+2024-02-09 13:37:24,092 1 INFO Testing odoo.modules.loading: Loading module base_install_request (20/50) 
+2024-02-09 13:37:24,148 1 INFO Testing odoo.modules.registry: module base_install_request: creating or updating database tables 
+2024-02-09 13:37:24,246 1 INFO Testing odoo.modules.loading: loading base_install_request/security/ir.model.access.csv 
+2024-02-09 13:37:24,264 1 INFO Testing odoo.modules.loading: loading base_install_request/wizard/base_module_install_request_views.xml 
+2024-02-09 13:37:24,282 1 INFO Testing odoo.modules.loading: loading base_install_request/data/mail_template_data.xml 
+2024-02-09 13:37:24,289 1 INFO Testing odoo.modules.loading: loading base_install_request/data/mail_templates_module_install.xml 
+2024-02-09 13:37:24,301 1 INFO Testing odoo.modules.loading: loading base_install_request/views/ir_module_module_views.xml 
+2024-02-09 13:37:24,326 1 INFO Testing odoo.addons.base.models.ir_module: module base_install_request: loading base translation file es for language es_VE 
+2024-02-09 13:37:24,333 1 INFO Testing odoo.addons.base.models.ir_module: module base_install_request: no translation for language es_VE 
+2024-02-09 13:37:24,357 1 INFO Testing odoo.modules.loading: Module base_install_request loaded in 0.26s, 147 queries (+147 other) 
+2024-02-09 13:37:24,357 1 INFO Testing odoo.modules.loading: Loading module google_gmail (21/50) 
+2024-02-09 13:37:24,410 1 INFO Testing odoo.modules.registry: module google_gmail: creating or updating database tables 
+2024-02-09 13:37:24,473 1 INFO Testing odoo.modules.loading: loading google_gmail/views/fetchmail_server_views.xml 
+2024-02-09 13:37:24,494 1 INFO Testing odoo.modules.loading: loading google_gmail/views/ir_mail_server_views.xml 
+2024-02-09 13:37:24,512 1 INFO Testing odoo.modules.loading: loading google_gmail/views/res_config_settings_views.xml 
+2024-02-09 13:37:24,549 1 INFO Testing odoo.addons.base.models.ir_module: module google_gmail: loading base translation file es for language es_VE 
+2024-02-09 13:37:24,556 1 INFO Testing odoo.addons.base.models.ir_module: module google_gmail: no translation for language es_VE 
+2024-02-09 13:37:24,580 1 INFO Testing odoo.modules.loading: Module google_gmail loaded in 0.22s, 129 queries (+129 other) 
+2024-02-09 13:37:24,581 1 INFO Testing odoo.modules.loading: Loading module iap_mail (22/50) 
+2024-02-09 13:37:24,627 1 INFO Testing odoo.modules.registry: module iap_mail: creating or updating database tables 
+2024-02-09 13:37:24,648 1 INFO Testing odoo.modules.loading: loading iap_mail/data/mail_templates.xml 
+2024-02-09 13:37:24,676 1 INFO Testing odoo.addons.base.models.ir_module: module iap_mail: loading base translation file es for language es_VE 
+2024-02-09 13:37:24,682 1 INFO Testing odoo.addons.base.models.ir_module: module iap_mail: no translation for language es_VE 
+2024-02-09 13:37:24,699 1 INFO Testing odoo.modules.loading: Module iap_mail loaded in 0.12s, 39 queries (+39 other) 
+2024-02-09 13:37:24,700 1 INFO Testing odoo.modules.loading: Loading module mail_bot (23/50) 
+2024-02-09 13:37:24,749 1 INFO Testing odoo.modules.registry: module mail_bot: creating or updating database tables 
+2024-02-09 13:37:24,852 1 INFO Testing odoo.modules.loading: loading mail_bot/views/res_users_views.xml 
+2024-02-09 13:37:24,883 1 INFO Testing odoo.modules.loading: loading mail_bot/data/mailbot_data.xml 
+2024-02-09 13:37:24,902 1 INFO Testing odoo.modules.loading: Module mail_bot: loading demo 
+2024-02-09 13:37:24,904 1 INFO Testing odoo.modules.loading: loading mail_bot/data/mailbot_demo.xml 
+2024-02-09 13:37:24,922 1 INFO Testing odoo.addons.base.models.ir_module: module mail_bot: loading base translation file es for language es_VE 
+2024-02-09 13:37:24,934 1 INFO Testing odoo.addons.base.models.ir_module: module mail_bot: no translation for language es_VE 
+2024-02-09 13:37:24,960 1 INFO Testing odoo.modules.loading: Module mail_bot loaded in 0.26s, 148 queries (+148 other) 
+2024-02-09 13:37:24,961 1 INFO Testing odoo.modules.loading: Loading module phone_validation (24/50) 
+2024-02-09 13:37:25,068 1 INFO Testing odoo.modules.registry: module phone_validation: creating or updating database tables 
+2024-02-09 13:37:25,201 1 INFO Testing odoo.modules.loading: loading phone_validation/security/ir.model.access.csv 
+2024-02-09 13:37:25,212 1 INFO Testing odoo.modules.loading: loading phone_validation/views/phone_blacklist_views.xml 
+2024-02-09 13:37:25,254 1 INFO Testing odoo.modules.loading: loading phone_validation/wizard/phone_blacklist_remove_view.xml 
+2024-02-09 13:37:25,270 1 INFO Testing odoo.addons.base.models.ir_module: module phone_validation: loading base translation file es for language es_VE 
+2024-02-09 13:37:25,280 1 INFO Testing odoo.addons.base.models.ir_module: module phone_validation: no translation for language es_VE 
+2024-02-09 13:37:25,303 1 INFO Testing odoo.modules.loading: Module phone_validation loaded in 0.34s, 173 queries (+173 other) 
+2024-02-09 13:37:25,304 1 INFO Testing odoo.modules.loading: Loading module privacy_lookup (25/50) 
+2024-02-09 13:37:25,359 1 INFO Testing odoo.modules.registry: module privacy_lookup: creating or updating database tables 
+2024-02-09 13:37:25,585 1 INFO Testing odoo.modules.loading: loading privacy_lookup/wizard/privacy_lookup_wizard_views.xml 
+2024-02-09 13:37:25,638 1 INFO Testing odoo.modules.loading: loading privacy_lookup/views/privacy_log_views.xml 
+2024-02-09 13:37:25,676 1 INFO Testing odoo.modules.loading: loading privacy_lookup/security/ir.model.access.csv 
+2024-02-09 13:37:25,697 1 INFO Testing odoo.modules.loading: loading privacy_lookup/data/ir_actions_server_data.xml 
+2024-02-09 13:37:25,716 1 INFO Testing odoo.addons.base.models.ir_module: module privacy_lookup: loading base translation file es for language es_VE 
+2024-02-09 13:37:25,723 1 INFO Testing odoo.addons.base.models.ir_module: module privacy_lookup: no translation for language es_VE 
+2024-02-09 13:37:25,757 1 INFO Testing odoo.modules.loading: Module privacy_lookup loaded in 0.45s, 233 queries (+233 other) 
+2024-02-09 13:37:25,758 1 INFO Testing odoo.modules.loading: Loading module product (26/50) 
+2024-02-09 13:37:25,911 1 INFO Testing odoo.modules.registry: module product: creating or updating database tables 
+2024-02-09 13:37:26,826 1 INFO Testing odoo.modules.loading: loading product/data/product_data.xml 
+2024-02-09 13:37:26,863 1 INFO Testing odoo.modules.loading: loading product/security/product_security.xml 
+2024-02-09 13:37:27,011 1 INFO Testing odoo.modules.loading: loading product/security/ir.model.access.csv 
+2024-02-09 13:37:27,052 1 INFO Testing odoo.modules.loading: loading product/wizard/product_label_layout_views.xml 
+2024-02-09 13:37:27,069 1 INFO Testing odoo.modules.loading: loading product/views/product_views.xml 
+2024-02-09 13:37:27,195 1 INFO Testing odoo.modules.loading: loading product/views/res_config_settings_views.xml 
+2024-02-09 13:37:27,234 1 INFO Testing odoo.modules.loading: loading product/views/product_attribute_views.xml 
+2024-02-09 13:37:27,284 1 INFO Testing odoo.modules.loading: loading product/views/product_category_views.xml 
+2024-02-09 13:37:27,305 1 INFO Testing odoo.modules.loading: loading product/views/product_packaging_views.xml 
+2024-02-09 13:37:27,351 1 INFO Testing odoo.modules.loading: loading product/views/product_pricelist_item_views.xml 
+2024-02-09 13:37:27,391 1 INFO Testing odoo.modules.loading: loading product/views/product_pricelist_views.xml 
+2024-02-09 13:37:27,438 1 INFO Testing odoo.modules.loading: loading product/views/product_supplierinfo_views.xml 
+2024-02-09 13:37:27,476 1 INFO Testing odoo.modules.loading: loading product/views/product_template_views.xml 
+2024-02-09 13:37:27,533 1 INFO Testing odoo.modules.loading: loading product/views/product_tag_views.xml 
+2024-02-09 13:37:27,553 1 INFO Testing odoo.modules.loading: loading product/views/res_country_group_views.xml 
+2024-02-09 13:37:27,567 1 INFO Testing odoo.modules.loading: loading product/views/res_partner_views.xml 
+2024-02-09 13:37:27,586 1 INFO Testing odoo.modules.loading: loading product/report/product_reports.xml 
+2024-02-09 13:37:27,612 1 INFO Testing odoo.modules.loading: loading product/report/product_product_templates.xml 
+2024-02-09 13:37:27,653 1 INFO Testing odoo.modules.loading: loading product/report/product_template_templates.xml 
+2024-02-09 13:37:27,669 1 INFO Testing odoo.modules.loading: loading product/report/product_packaging.xml 
+2024-02-09 13:37:27,680 1 INFO Testing odoo.modules.loading: loading product/report/product_pricelist_report_templates.xml 
+2024-02-09 13:37:27,697 1 INFO Testing odoo.modules.loading: Module product: loading demo 
+2024-02-09 13:37:27,699 1 INFO Testing odoo.modules.loading: loading product/data/product_demo.xml 
+2024-02-09 13:37:28,309 1 INFO Testing odoo.models.unlink: User #1 deleted mail.message records with IDs: [46] 
+2024-02-09 13:37:28,324 1 INFO Testing odoo.models.unlink: User #1 deleted ir.property records with IDs: [9] 
+2024-02-09 13:37:28,325 1 INFO Testing odoo.models.unlink: User #1 deleted product.product records with IDs: [9] 
+2024-02-09 13:37:28,404 1 INFO Testing odoo.models.unlink: User #1 deleted mail.message records with IDs: [48, 47] 
+2024-02-09 13:37:28,417 1 INFO Testing odoo.models.unlink: User #1 deleted product.product records with IDs: [11, 10] 
+2024-02-09 13:37:29,162 1 INFO Testing odoo.models.unlink: User #1 deleted mail.message records with IDs: [66] 
+2024-02-09 13:37:29,179 1 INFO Testing odoo.models.unlink: User #1 deleted ir.property records with IDs: [19] 
+2024-02-09 13:37:29,180 1 INFO Testing odoo.models.unlink: User #1 deleted product.product records with IDs: [22] 
+2024-02-09 13:37:29,683 1 INFO Testing odoo.addons.base.models.ir_module: module product: loading base translation file es for language es_VE 
+2024-02-09 13:37:29,733 1 INFO Testing odoo.addons.base.models.ir_module: module product: loading translation file es_VE for language es_VE 
+2024-02-09 13:37:30,194 1 INFO Testing odoo.modules.loading: Module product loaded in 4.44s, 2963 queries (+2963 other) 
+2024-02-09 13:37:30,196 1 INFO Testing odoo.modules.loading: Loading module sales_team (27/50) 
+2024-02-09 13:37:30,254 1 INFO Testing odoo.modules.registry: module sales_team: creating or updating database tables 
+2024-02-09 13:37:30,323 1 INFO Testing odoo.models: Prepare computation of res.users.sale_team_id 
+2024-02-09 13:37:30,488 1 INFO Testing odoo.modules.loading: loading sales_team/security/sales_team_security.xml 
+2024-02-09 13:37:30,798 1 INFO Testing odoo.modules.loading: loading sales_team/security/ir.model.access.csv 
+2024-02-09 13:37:30,815 1 INFO Testing odoo.modules.loading: loading sales_team/data/crm_team_data.xml 
+2024-02-09 13:37:30,899 1 INFO Testing odoo.modules.loading: loading sales_team/views/crm_tag_views.xml 
+2024-02-09 13:37:30,924 1 INFO Testing odoo.modules.loading: loading sales_team/views/crm_team_views.xml 
+2024-02-09 13:37:30,986 1 INFO Testing odoo.modules.loading: loading sales_team/views/crm_team_member_views.xml 
+2024-02-09 13:37:31,112 1 INFO Testing odoo.modules.loading: loading sales_team/views/mail_activity_views.xml 
+2024-02-09 13:37:31,126 1 INFO Testing odoo.modules.loading: loading sales_team/views/res_partner_views.xml 
+2024-02-09 13:37:31,163 1 INFO Testing odoo.modules.loading: Module sales_team: loading demo 
+2024-02-09 13:37:31,165 1 INFO Testing odoo.modules.loading: loading sales_team/data/crm_team_demo.xml 
+2024-02-09 13:37:31,319 1 INFO Testing odoo.modules.loading: loading sales_team/data/crm_tag_demo.xml 
+2024-02-09 13:37:31,351 1 INFO Testing odoo.addons.base.models.ir_module: module sales_team: loading base translation file es for language es_VE 
+2024-02-09 13:37:31,417 1 INFO Testing odoo.addons.base.models.ir_module: module sales_team: loading translation file es_VE for language es_VE 
+2024-02-09 13:37:31,474 1 INFO Testing odoo.modules.loading: Module sales_team loaded in 1.28s, 722 queries (+722 other) 
+2024-02-09 13:37:31,475 1 INFO Testing odoo.modules.loading: Loading module spreadsheet_dashboard (28/50) 
+2024-02-09 13:37:31,561 1 INFO Testing odoo.modules.registry: module spreadsheet_dashboard: creating or updating database tables 
+2024-02-09 13:37:31,670 1 INFO Testing odoo.modules.loading: loading spreadsheet_dashboard/security/security.xml 
+2024-02-09 13:37:31,686 1 INFO Testing odoo.modules.loading: loading spreadsheet_dashboard/security/ir.model.access.csv 
+2024-02-09 13:37:31,704 1 INFO Testing odoo.modules.loading: loading spreadsheet_dashboard/views/spreadsheet_dashboard_views.xml 
+2024-02-09 13:37:31,768 1 INFO Testing odoo.modules.loading: loading spreadsheet_dashboard/views/menu_views.xml 
+2024-02-09 13:37:31,822 1 INFO Testing odoo.modules.loading: loading spreadsheet_dashboard/data/dashboard.xml 
+2024-02-09 13:37:31,861 1 INFO Testing odoo.addons.base.models.ir_module: module spreadsheet_dashboard: loading base translation file es for language es_VE 
+2024-02-09 13:37:31,870 1 INFO Testing odoo.addons.base.models.ir_module: module spreadsheet_dashboard: no translation for language es_VE 
+2024-02-09 13:37:31,897 1 INFO Testing odoo.modules.loading: Module spreadsheet_dashboard loaded in 0.42s, 193 queries (+193 other) 
+2024-02-09 13:37:31,897 1 INFO Testing odoo.modules.loading: Loading module web_unsplash (29/50) 
+2024-02-09 13:37:31,955 1 INFO Testing odoo.modules.registry: module web_unsplash: creating or updating database tables 
+2024-02-09 13:37:32,021 1 INFO Testing odoo.modules.loading: loading web_unsplash/views/res_config_settings_view.xml 
+2024-02-09 13:37:32,072 1 INFO Testing odoo.addons.base.models.ir_module: module web_unsplash: loading base translation file es for language es_VE 
+2024-02-09 13:37:32,079 1 INFO Testing odoo.addons.base.models.ir_module: module web_unsplash: no translation for language es_VE 
+2024-02-09 13:37:32,095 1 INFO Testing odoo.modules.loading: Module web_unsplash loaded in 0.20s, 100 queries (+100 other) 
+2024-02-09 13:37:32,096 1 INFO Testing odoo.modules.loading: Loading module partner_autocomplete (30/50) 
+2024-02-09 13:37:32,184 1 INFO Testing odoo.modules.registry: module partner_autocomplete: creating or updating database tables 
+2024-02-09 13:37:32,319 1 INFO Testing odoo.modules.loading: loading partner_autocomplete/security/ir.model.access.csv 
+2024-02-09 13:37:32,336 1 INFO Testing odoo.modules.loading: loading partner_autocomplete/views/res_partner_views.xml 
+2024-02-09 13:37:32,367 1 INFO Testing odoo.modules.loading: loading partner_autocomplete/views/res_company_views.xml 
+2024-02-09 13:37:32,384 1 INFO Testing odoo.modules.loading: loading partner_autocomplete/views/res_config_settings_views.xml 
+2024-02-09 13:37:32,405 1 INFO Testing odoo.modules.loading: loading partner_autocomplete/data/cron.xml 
+2024-02-09 13:37:32,425 1 INFO Testing odoo.addons.base.models.ir_module: module partner_autocomplete: loading base translation file es for language es_VE 
+2024-02-09 13:37:32,432 1 INFO Testing odoo.addons.base.models.ir_module: module partner_autocomplete: loading translation file es_VE for language es_VE 
+2024-02-09 13:37:32,455 1 INFO Testing odoo.modules.loading: Module partner_autocomplete loaded in 0.36s, 180 queries (+180 other) 
+2024-02-09 13:37:32,456 1 INFO Testing odoo.modules.loading: Loading module portal (31/50) 
+2024-02-09 13:37:32,530 1 INFO Testing odoo.modules.registry: module portal: creating or updating database tables 
+2024-02-09 13:37:32,811 1 INFO Testing odoo.modules.loading: loading portal/security/ir.model.access.csv 
+2024-02-09 13:37:32,824 1 INFO Testing odoo.modules.loading: loading portal/data/mail_template_data.xml 
+2024-02-09 13:37:32,835 1 INFO Testing odoo.modules.loading: loading portal/data/mail_templates.xml 
+2024-02-09 13:37:32,846 1 INFO Testing odoo.modules.loading: loading portal/views/portal_templates.xml 
+2024-02-09 13:37:33,019 1 INFO Testing odoo.modules.loading: loading portal/views/res_config_settings_views.xml 
+2024-02-09 13:37:33,044 1 INFO Testing odoo.modules.loading: loading portal/wizard/portal_share_views.xml 
+2024-02-09 13:37:33,058 1 INFO Testing odoo.modules.loading: loading portal/wizard/portal_wizard_views.xml 
+2024-02-09 13:37:33,082 1 INFO Testing odoo.addons.base.models.ir_module: module portal: loading base translation file es for language es_VE 
+2024-02-09 13:37:33,103 1 INFO Testing odoo.addons.base.models.ir_module: module portal: no translation for language es_VE 
+2024-02-09 13:37:33,149 1 INFO Testing odoo.modules.loading: Module portal loaded in 0.69s, 481 queries (+481 other) 
+2024-02-09 13:37:33,150 1 INFO Testing odoo.modules.loading: Loading module sms (32/50) 
+2024-02-09 13:37:33,217 1 INFO Testing odoo.modules.registry: module sms: creating or updating database tables 
+2024-02-09 13:37:33,227 1 INFO Testing odoo.models: Prepare computation of ir.actions.server.sms_template_id 
+2024-02-09 13:37:33,228 1 INFO Testing odoo.models: Prepare computation of ir.actions.server.sms_method 
+2024-02-09 13:37:33,267 1 INFO Testing odoo.models: Prepare computation of res.partner.phone_sanitized 
+2024-02-09 13:37:34,587 1 INFO Testing odoo.modules.loading: loading sms/data/ir_cron_data.xml 
+2024-02-09 13:37:34,605 1 INFO Testing odoo.modules.loading: loading sms/wizard/sms_composer_views.xml 
+2024-02-09 13:37:34,651 1 INFO Testing odoo.modules.loading: loading sms/wizard/sms_template_preview_views.xml 
+2024-02-09 13:37:34,669 1 INFO Testing odoo.modules.loading: loading sms/wizard/sms_resend_views.xml 
+2024-02-09 13:37:34,691 1 INFO Testing odoo.modules.loading: loading sms/wizard/sms_template_reset_views.xml 
+2024-02-09 13:37:34,704 1 INFO Testing odoo.modules.loading: loading sms/views/ir_actions_server_views.xml 
+2024-02-09 13:37:34,718 1 INFO Testing odoo.modules.loading: loading sms/views/mail_notification_views.xml 
+2024-02-09 13:37:34,735 1 INFO Testing odoo.modules.loading: loading sms/views/res_config_settings_views.xml 
+2024-02-09 13:37:34,755 1 INFO Testing odoo.modules.loading: loading sms/views/res_partner_views.xml 
+2024-02-09 13:37:34,797 1 INFO Testing odoo.modules.loading: loading sms/views/sms_sms_views.xml 
+2024-02-09 13:37:34,833 1 INFO Testing odoo.modules.loading: loading sms/views/sms_template_views.xml 
+2024-02-09 13:37:34,863 1 INFO Testing odoo.modules.loading: loading sms/security/ir.model.access.csv 
+2024-02-09 13:37:34,889 1 INFO Testing odoo.modules.loading: loading sms/security/sms_security.xml 
+2024-02-09 13:37:34,903 1 INFO Testing odoo.modules.loading: Module sms: loading demo 
+2024-02-09 13:37:34,904 1 INFO Testing odoo.modules.loading: loading sms/data/sms_demo.xml 
+2024-02-09 13:37:34,912 1 INFO Testing odoo.modules.loading: loading sms/data/mail_demo.xml 
+2024-02-09 13:37:34,967 1 INFO Testing odoo.addons.base.models.ir_module: module sms: loading base translation file es for language es_VE 
+2024-02-09 13:37:34,983 1 INFO Testing odoo.addons.base.models.ir_module: module sms: no translation for language es_VE 
+2024-02-09 13:37:35,030 1 INFO Testing odoo.modules.loading: Module sms loaded in 1.88s, 715 queries (+715 other) 
+2024-02-09 13:37:35,031 1 INFO Testing odoo.modules.loading: Loading module snailmail (33/50) 
+2024-02-09 13:37:35,122 1 INFO Testing odoo.modules.registry: module snailmail: creating or updating database tables 
+2024-02-09 13:37:35,924 1 INFO Testing odoo.modules.loading: loading snailmail/data/snailmail_data.xml 
+2024-02-09 13:37:35,945 1 INFO Testing odoo.modules.loading: loading snailmail/views/report_assets.xml 
+2024-02-09 13:37:35,963 1 INFO Testing odoo.modules.loading: loading snailmail/views/snailmail_views.xml 
+2024-02-09 13:37:35,988 1 INFO Testing odoo.modules.loading: loading snailmail/wizard/snailmail_confirm_views.xml 
+2024-02-09 13:37:35,997 1 INFO Testing odoo.modules.loading: loading snailmail/wizard/snailmail_letter_format_error_views.xml 
+2024-02-09 13:37:36,008 1 INFO Testing odoo.modules.loading: loading snailmail/wizard/snailmail_letter_missing_required_fields_views.xml 
+2024-02-09 13:37:36,020 1 INFO Testing odoo.modules.loading: loading snailmail/security/ir.model.access.csv 
+2024-02-09 13:37:36,041 1 INFO Testing odoo.addons.base.models.ir_module: module snailmail: loading base translation file es for language es_VE 
+2024-02-09 13:37:36,053 1 INFO Testing odoo.addons.base.models.ir_module: module snailmail: no translation for language es_VE 
+2024-02-09 13:37:36,080 1 INFO Testing odoo.modules.loading: Module snailmail loaded in 1.05s, 422 queries (+422 other) 
+2024-02-09 13:37:36,081 1 INFO Testing odoo.modules.loading: Loading module auth_totp_portal (34/50) 
+2024-02-09 13:37:36,195 1 INFO Testing odoo.modules.registry: module auth_totp_portal: creating or updating database tables 
+2024-02-09 13:37:36,229 1 INFO Testing odoo.modules.loading: loading auth_totp_portal/security/security.xml 
+2024-02-09 13:37:36,254 1 INFO Testing odoo.modules.loading: loading auth_totp_portal/views/templates.xml 
+2024-02-09 13:37:36,271 1 INFO Testing odoo.addons.base.models.ir_module: module auth_totp_portal: loading base translation file es for language es_VE 
+2024-02-09 13:37:36,277 1 INFO Testing odoo.addons.base.models.ir_module: module auth_totp_portal: no translation for language es_VE 
+2024-02-09 13:37:36,290 1 INFO Testing odoo.modules.loading: Module auth_totp_portal loaded in 0.21s, 72 queries (+72 other) 
+2024-02-09 13:37:36,290 1 INFO Testing odoo.modules.loading: Loading module digest (35/50) 
+2024-02-09 13:37:36,349 1 INFO Testing odoo.modules.registry: module digest: creating or updating database tables 
+2024-02-09 13:37:36,503 1 INFO Testing odoo.modules.loading: loading digest/security/ir.model.access.csv 
+2024-02-09 13:37:36,517 1 INFO Testing odoo.modules.loading: loading digest/data/digest_data.xml 
+2024-02-09 13:37:36,541 1 INFO Testing odoo.modules.loading: loading digest/data/digest_tips_data.xml 
+2024-02-09 13:37:36,563 1 INFO Testing odoo.modules.loading: loading digest/data/ir_cron_data.xml 
+2024-02-09 13:37:36,575 1 INFO Testing odoo.modules.loading: loading digest/data/res_config_settings_data.xml 
+2024-02-09 13:37:36,583 1 INFO Testing odoo.modules.loading: loading digest/views/digest_views.xml 
+2024-02-09 13:37:36,639 1 INFO Testing odoo.modules.loading: loading digest/views/digest_templates.xml 
+2024-02-09 13:37:36,647 1 INFO Testing odoo.modules.loading: loading digest/views/res_config_settings_views.xml 
+2024-02-09 13:37:36,672 1 INFO Testing odoo.addons.base.models.ir_module: module digest: loading base translation file es for language es_VE 
+2024-02-09 13:37:36,681 1 INFO Testing odoo.addons.base.models.ir_module: module digest: no translation for language es_VE 
+2024-02-09 13:37:36,718 1 INFO Testing odoo.modules.loading: Module digest loaded in 0.43s, 310 queries (+310 other) 
+2024-02-09 13:37:36,719 1 INFO Testing odoo.modules.loading: Loading module payment (36/50) 
+2024-02-09 13:37:36,789 1 INFO Testing odoo.modules.registry: module payment: creating or updating database tables 
+2024-02-09 13:37:37,140 1 INFO Testing odoo.modules.loading: loading payment/data/payment_icon_data.xml 
+2024-02-09 13:37:37,514 1 INFO Testing odoo.modules.loading: loading payment/data/payment_provider_data.xml 
+2024-02-09 13:37:38,135 1 INFO Testing odoo.modules.loading: loading payment/data/payment_cron.xml 
+2024-02-09 13:37:38,147 1 INFO Testing odoo.modules.loading: loading payment/views/payment_portal_templates.xml 
+2024-02-09 13:37:38,186 1 INFO Testing odoo.modules.loading: loading payment/views/payment_templates.xml 
+2024-02-09 13:37:38,267 1 INFO Testing odoo.modules.loading: loading payment/views/payment_provider_views.xml 
+2024-02-09 13:37:38,325 1 INFO Testing odoo.modules.loading: loading payment/views/payment_icon_views.xml 
+2024-02-09 13:37:38,345 1 INFO Testing odoo.modules.loading: loading payment/views/payment_transaction_views.xml 
+2024-02-09 13:37:38,385 1 INFO Testing odoo.modules.loading: loading payment/views/payment_token_views.xml 
+2024-02-09 13:37:38,418 1 INFO Testing odoo.modules.loading: loading payment/views/res_partner_views.xml 
+2024-02-09 13:37:38,446 1 INFO Testing odoo.modules.loading: loading payment/security/ir.model.access.csv 
+2024-02-09 13:37:38,627 1 INFO Testing odoo.modules.loading: loading payment/security/payment_security.xml 
+2024-02-09 13:37:38,694 1 INFO Testing odoo.modules.loading: loading payment/wizards/payment_link_wizard_views.xml 
+2024-02-09 13:37:38,717 1 INFO Testing odoo.modules.loading: loading payment/wizards/payment_onboarding_views.xml 
+2024-02-09 13:37:38,733 1 INFO Testing odoo.modules.loading: Module payment: loading demo 
+2024-02-09 13:37:38,734 1 INFO Testing odoo.modules.loading: loading payment/data/payment_demo.xml 
+2024-02-09 13:37:38,773 1 INFO Testing odoo.addons.base.models.ir_module: module payment: loading base translation file es for language es_VE 
+2024-02-09 13:37:38,846 1 INFO Testing odoo.addons.base.models.ir_module: module payment: loading translation file es_VE for language es_VE 
+2024-02-09 13:37:38,970 1 INFO Testing odoo.modules.loading: Module payment loaded in 2.25s, 867 queries (+867 other) 
+2024-02-09 13:37:38,970 1 INFO Testing odoo.modules.loading: Loading module account (37/50) 
+2024-02-09 13:37:39,206 1 INFO Testing odoo.modules.registry: module account: creating or updating database tables 
+2024-02-09 13:37:40,064 1 INFO Testing odoo.models: Prepare computation of res.company.account_fiscal_country_id 
+2024-02-09 13:37:40,064 1 INFO Testing odoo.models: Prepare computation of res.company.early_pay_discount_computation 
+2024-02-09 13:37:40,065 1 INFO Testing odoo.models: Prepare computation of res.company.invoice_terms_html 
+2024-02-09 13:37:44,658 1 INFO Testing odoo.modules.loading: loading account/security/account_security.xml 
+2024-02-09 13:37:45,548 1 INFO Testing odoo.modules.loading: loading account/security/ir.model.access.csv 
+2024-02-09 13:37:46,066 1 INFO Testing odoo.modules.loading: loading account/data/account_data.xml 
+2024-02-09 13:37:46,392 1 INFO Testing odoo.modules.loading: loading account/data/digest_data.xml 
+2024-02-09 13:37:46,404 1 INFO Testing odoo.modules.loading: loading account/views/account_report.xml 
+2024-02-09 13:37:46,432 1 INFO Testing odoo.modules.loading: loading account/data/mail_template_data.xml 
+2024-02-09 13:37:46,448 1 INFO Testing odoo.modules.loading: loading account/views/account_payment_view.xml 
+2024-02-09 13:37:46,544 1 INFO Testing odoo.modules.loading: loading account/wizard/account_automatic_entry_wizard_views.xml 
+2024-02-09 13:37:46,557 1 INFO Testing odoo.modules.loading: loading account/wizard/account_unreconcile_view.xml 
+2024-02-09 13:37:46,569 1 INFO Testing odoo.modules.loading: loading account/wizard/account_move_reversal_view.xml 
+2024-02-09 13:37:46,584 1 INFO Testing odoo.modules.loading: loading account/wizard/account_resequence_views.xml 
+2024-02-09 13:37:46,598 1 INFO Testing odoo.modules.loading: loading account/wizard/account_payment_register_views.xml 
+2024-02-09 13:37:46,612 1 INFO Testing odoo.modules.loading: loading account/views/account_move_views.xml 
+2024-02-09 13:37:47,108 1 INFO Testing odoo.modules.loading: loading account/wizard/setup_wizards_view.xml 
+2024-02-09 13:37:47,133 1 INFO Testing odoo.modules.loading: loading account/views/account_account_views.xml 
+2024-02-09 13:37:47,179 1 INFO Testing odoo.modules.loading: loading account/views/account_group_views.xml 
+2024-02-09 13:37:47,197 1 INFO Testing odoo.modules.loading: loading account/views/account_journal_views.xml 
+2024-02-09 13:37:47,264 1 INFO Testing odoo.modules.loading: loading account/views/account_account_tag_views.xml 
+2024-02-09 13:37:47,284 1 INFO Testing odoo.modules.loading: loading account/views/account_bank_statement_views.xml 
+2024-02-09 13:37:47,328 1 INFO Testing odoo.modules.loading: loading account/views/account_reconcile_model_views.xml 
+2024-02-09 13:37:47,379 1 INFO Testing odoo.modules.loading: loading account/views/account_tax_views.xml 
+2024-02-09 13:37:47,488 1 INFO Testing odoo.modules.loading: loading account/views/account_full_reconcile_views.xml 
+2024-02-09 13:37:47,498 1 INFO Testing odoo.modules.loading: loading account/views/account_payment_term_views.xml 
+2024-02-09 13:37:47,528 1 INFO Testing odoo.modules.loading: loading account/views/account_chart_template_views.xml 
+2024-02-09 13:37:47,570 1 INFO Testing odoo.modules.loading: loading account/views/res_partner_bank_views.xml 
+2024-02-09 13:37:47,585 1 INFO Testing odoo.modules.loading: loading account/views/report_statement.xml 
+2024-02-09 13:37:47,594 1 INFO Testing odoo.modules.loading: loading account/views/terms_template.xml 
+2024-02-09 13:37:47,614 1 INFO Testing odoo.modules.loading: loading account/wizard/account_validate_move_view.xml 
+2024-02-09 13:37:47,632 1 INFO Testing odoo.modules.loading: loading account/views/res_company_views.xml 
+2024-02-09 13:37:47,653 1 INFO Testing odoo.modules.loading: loading account/views/product_view.xml 
+2024-02-09 13:37:47,689 1 INFO Testing odoo.modules.loading: loading account/views/account_analytic_plan_views.xml 
+2024-02-09 13:37:47,702 1 INFO Testing odoo.modules.loading: loading account/views/account_analytic_account_views.xml 
+2024-02-09 13:37:47,716 1 INFO Testing odoo.modules.loading: loading account/views/account_analytic_distribution_model_views.xml 
+2024-02-09 13:37:47,738 1 INFO Testing odoo.modules.loading: loading account/views/account_analytic_line_views.xml 
+2024-02-09 13:37:47,788 1 INFO Testing odoo.modules.loading: loading account/views/report_invoice.xml 
+2024-02-09 13:37:47,825 1 INFO Testing odoo.modules.loading: loading account/report/account_invoice_report_view.xml 
+2024-02-09 13:37:47,893 1 INFO Testing odoo.modules.loading: loading account/views/account_cash_rounding_view.xml 
+2024-02-09 13:37:47,917 1 INFO Testing odoo.modules.loading: loading account/views/ir_module_views.xml 
+2024-02-09 13:37:47,927 1 INFO Testing odoo.modules.loading: loading account/views/res_config_settings_views.xml 
+2024-02-09 13:37:47,987 1 INFO Testing odoo.modules.loading: loading account/views/partner_view.xml 
+2024-02-09 13:37:48,073 1 INFO Testing odoo.modules.loading: loading account/views/account_journal_dashboard_view.xml 
+2024-02-09 13:37:48,097 1 INFO Testing odoo.modules.loading: loading account/views/account_portal_templates.xml 
+2024-02-09 13:37:48,147 1 INFO Testing odoo.modules.loading: loading account/views/report_payment_receipt_templates.xml 
+2024-02-09 13:37:48,161 1 INFO Testing odoo.modules.loading: loading account/views/account_onboarding_templates.xml 
+2024-02-09 13:37:48,230 1 INFO Testing odoo.modules.loading: loading account/data/service_cron.xml 
+2024-02-09 13:37:48,241 1 INFO Testing odoo.modules.loading: loading account/views/account_incoterms_view.xml 
+2024-02-09 13:37:48,268 1 INFO Testing odoo.modules.loading: loading account/data/account_incoterms_data.xml 
+2024-02-09 13:37:48,298 1 INFO Testing odoo.modules.loading: loading account/views/digest_views.xml 
+2024-02-09 13:37:48,310 1 INFO Testing odoo.modules.loading: loading account/wizard/account_invoice_send_views.xml 
+2024-02-09 13:37:48,328 1 INFO Testing odoo.modules.loading: loading account/report/account_hash_integrity_templates.xml 
+2024-02-09 13:37:48,337 1 INFO Testing odoo.modules.loading: loading account/views/res_currency.xml 
+2024-02-09 13:37:48,348 1 INFO Testing odoo.modules.loading: loading account/views/account_menuitem.xml 
+2024-02-09 13:37:48,605 1 INFO Testing odoo.modules.loading: loading account/wizard/account_tour_upload_bill.xml 
+2024-02-09 13:37:48,620 1 INFO Testing odoo.modules.loading: loading account/wizard/accrued_orders.xml 
+2024-02-09 13:37:48,631 1 INFO Testing odoo.modules.loading: loading account/views/bill_preview_template.xml 
+2024-02-09 13:37:48,648 1 INFO Testing odoo.modules.loading: loading account/data/account_reports_data.xml 
+2024-02-09 13:37:48,680 1 INFO Testing odoo.modules.loading: Module account: loading demo 
+2024-02-09 13:37:48,682 1 INFO Testing odoo.modules.loading: loading account/demo/account_demo.xml 
+2024-02-09 13:37:49,126 1 INFO Testing odoo.addons.base.models.ir_module: module account: loading base translation file es for language es_VE 
+2024-02-09 13:37:49,629 1 INFO Testing odoo.addons.base.models.ir_module: module account: loading translation file es_VE for language es_VE 
+2024-02-09 13:37:50,488 1 INFO Testing odoo.addons.base.models.ir_module: ALLOW access to module.button_install on ['VAT Number Validation', 'Venezuela - Accounting'] to user __system__ #1 via 172.24.0.1 
+2024-02-09 13:37:50,665 1 INFO Testing odoo.modules.loading: Module account loaded in 11.69s, 6396 queries (+6396 other) 
+2024-02-09 13:37:50,666 1 INFO Testing odoo.modules.loading: Loading module account_edi (38/50) 
+2024-02-09 13:37:50,816 1 INFO Testing odoo.modules.registry: module account_edi: creating or updating database tables 
+2024-02-09 13:37:51,313 1 INFO Testing odoo.modules.loading: loading account_edi/security/ir.model.access.csv 
+2024-02-09 13:37:51,367 1 INFO Testing odoo.modules.loading: loading account_edi/views/account_edi_document_views.xml 
+2024-02-09 13:37:51,399 1 INFO Testing odoo.modules.loading: loading account_edi/views/account_move_views.xml 
+2024-02-09 13:37:51,771 1 INFO Testing odoo.modules.loading: loading account_edi/views/account_payment_views.xml 
+2024-02-09 13:37:51,813 1 INFO Testing odoo.modules.loading: loading account_edi/views/account_journal_views.xml 
+2024-02-09 13:37:51,832 1 INFO Testing odoo.modules.loading: loading account_edi/data/cron.xml 
+2024-02-09 13:37:51,852 1 INFO Testing odoo.addons.base.models.ir_module: module account_edi: loading base translation file es for language es_VE 
+2024-02-09 13:37:51,863 1 INFO Testing odoo.addons.base.models.ir_module: module account_edi: no translation for language es_VE 
+2024-02-09 13:37:51,900 1 INFO Testing odoo.modules.loading: Module account_edi loaded in 1.23s, 319 queries (+319 other) 
+2024-02-09 13:37:51,901 1 INFO Testing odoo.modules.loading: Loading module account_payment (39/50) 
+2024-02-09 13:37:52,027 1 INFO Testing odoo.modules.registry: module account_payment: creating or updating database tables 
+2024-02-09 13:37:52,236 1 INFO Testing odoo.modules.loading: loading account_payment/security/ir.model.access.csv 
+2024-02-09 13:37:52,251 1 INFO Testing odoo.modules.loading: loading account_payment/security/ir_rules.xml 
+2024-02-09 13:37:52,275 1 INFO Testing odoo.modules.loading: loading account_payment/views/account_payment_menus.xml 
+2024-02-09 13:37:52,327 1 INFO Testing odoo.modules.loading: loading account_payment/views/account_portal_templates.xml 
+2024-02-09 13:37:52,402 1 INFO Testing odoo.modules.loading: loading account_payment/views/payment_templates.xml 
+2024-02-09 13:37:52,427 1 INFO Testing odoo.modules.loading: loading account_payment/views/account_move_views.xml 
+2024-02-09 13:37:52,463 1 INFO Testing odoo.modules.loading: loading account_payment/views/account_journal_views.xml 
+2024-02-09 13:37:52,488 1 INFO Testing odoo.modules.loading: loading account_payment/views/account_payment_views.xml 
+2024-02-09 13:37:52,505 1 INFO Testing odoo.modules.loading: loading account_payment/views/payment_provider_views.xml 
+2024-02-09 13:37:52,520 1 INFO Testing odoo.modules.loading: loading account_payment/views/payment_transaction_views.xml 
+2024-02-09 13:37:52,535 1 INFO Testing odoo.modules.loading: loading account_payment/wizards/account_payment_register_views.xml 
+2024-02-09 13:37:52,551 1 INFO Testing odoo.modules.loading: loading account_payment/wizards/payment_link_wizard_views.xml 
+2024-02-09 13:37:52,565 1 INFO Testing odoo.modules.loading: loading account_payment/wizards/payment_refund_wizard_views.xml 
+2024-02-09 13:37:52,586 1 INFO Testing odoo.addons.base.models.ir_module: module account_payment: loading base translation file es for language es_VE 
+2024-02-09 13:37:52,601 1 INFO Testing odoo.addons.base.models.ir_module: module account_payment: loading translation file es_VE for language es_VE 
+2024-02-09 13:37:52,648 1 INFO Testing odoo.modules.loading: Module account_payment loaded in 0.75s, 424 queries (+424 other) 
+2024-02-09 13:37:52,649 1 INFO Testing odoo.modules.loading: Loading module account_sequence (40/50) 
+2024-02-09 13:37:52,758 1 INFO Testing odoo.modules.registry: module account_sequence: creating or updating database tables 
+2024-02-09 13:37:52,904 1 INFO Testing odoo.addons.base.models.ir_module: module account_sequence: loading base translation file es for language es_VE 
+2024-02-09 13:37:52,909 1 INFO Testing odoo.addons.base.models.ir_module: module account_sequence: no translation for language es_VE 
+2024-02-09 13:37:52,943 1 INFO Testing odoo.modules.loading: Module account_sequence loaded in 0.29s, 60 queries (+60 other) 
+2024-02-09 13:37:52,944 1 INFO Testing odoo.modules.loading: Loading module snailmail_account (41/50) 
+2024-02-09 13:37:53,074 1 INFO Testing odoo.modules.registry: module snailmail_account: creating or updating database tables 
+2024-02-09 13:37:53,231 1 INFO Testing odoo.modules.loading: loading snailmail_account/views/res_config_settings_views.xml 
+2024-02-09 13:37:53,264 1 INFO Testing odoo.modules.loading: loading snailmail_account/wizard/account_invoice_send_views.xml 
+2024-02-09 13:37:53,284 1 INFO Testing odoo.modules.loading: loading snailmail_account/security/ir.model.access.csv 
+2024-02-09 13:37:53,301 1 INFO Testing odoo.addons.base.models.ir_module: module snailmail_account: loading base translation file es for language es_VE 
+2024-02-09 13:37:53,305 1 INFO Testing odoo.addons.base.models.ir_module: module snailmail_account: no translation for language es_VE 
+2024-02-09 13:37:53,327 1 INFO Testing odoo.modules.loading: Module snailmail_account loaded in 0.38s, 117 queries (+117 other) 
+2024-02-09 13:37:53,328 1 INFO Testing odoo.modules.loading: Loading module spreadsheet_account (42/50) 
+2024-02-09 13:37:53,435 1 INFO Testing odoo.modules.registry: module spreadsheet_account: creating or updating database tables 
+2024-02-09 13:37:53,490 1 INFO Testing odoo.addons.base.models.ir_module: module spreadsheet_account: loading base translation file es for language es_VE 
+2024-02-09 13:37:53,498 1 INFO Testing odoo.addons.base.models.ir_module: module spreadsheet_account: no translation for language es_VE 
+2024-02-09 13:37:53,531 1 INFO Testing odoo.modules.loading: Module spreadsheet_account loaded in 0.20s, 51 queries (+51 other) 
+2024-02-09 13:37:53,531 1 INFO Testing odoo.modules.loading: Loading module spreadsheet_dashboard_account (43/50) 
+2024-02-09 13:37:53,655 1 INFO Testing odoo.modules.loading: loading spreadsheet_dashboard_account/data/dashboards.xml 
+2024-02-09 13:37:53,728 1 INFO Testing odoo.addons.base.models.ir_module: module spreadsheet_dashboard_account: loading base translation file es for language es_VE 
+2024-02-09 13:37:53,735 1 INFO Testing odoo.addons.base.models.ir_module: module spreadsheet_dashboard_account: no translation for language es_VE 
+2024-02-09 13:37:53,745 1 INFO Testing odoo.modules.loading: Module spreadsheet_dashboard_account loaded in 0.21s, 27 queries (+27 other) 
+2024-02-09 13:37:53,746 1 INFO Testing odoo.modules.loading: Loading module account_edi_ubl_cii (44/50) 
+2024-02-09 13:37:53,915 1 INFO Testing odoo.modules.registry: module account_edi_ubl_cii: creating or updating database tables 
+2024-02-09 13:37:53,997 1 INFO Testing odoo.modules.loading: loading account_edi_ubl_cii/data/account_edi_data.xml 
+2024-02-09 13:37:54,021 1 INFO Testing odoo.modules.loading: loading account_edi_ubl_cii/data/cii_22_templates.xml 
+2024-02-09 13:37:54,060 1 INFO Testing odoo.modules.loading: loading account_edi_ubl_cii/data/ubl_20_templates.xml 
+2024-02-09 13:37:54,171 1 INFO Testing odoo.modules.loading: loading account_edi_ubl_cii/data/ubl_21_templates.xml 
+2024-02-09 13:37:54,214 1 INFO Testing odoo.addons.base.models.ir_module: module account_edi_ubl_cii: loading base translation file es for language es_VE 
+2024-02-09 13:37:54,228 1 INFO Testing odoo.addons.base.models.ir_module: module account_edi_ubl_cii: no translation for language es_VE 
+2024-02-09 13:37:54,264 1 INFO Testing odoo.modules.loading: Module account_edi_ubl_cii loaded in 0.52s, 190 queries (+190 other) 
+2024-02-09 13:37:54,265 1 INFO Testing odoo.modules.loading: Loading module account_payment_invoice_online_payment_patch (45/50) 
+2024-02-09 13:37:54,447 1 INFO Testing odoo.modules.registry: module account_payment_invoice_online_payment_patch: creating or updating database tables 
+2024-02-09 13:37:54,547 1 INFO Testing odoo.modules.loading: loading account_payment_invoice_online_payment_patch/data/ir_config_parameter.xml 
+2024-02-09 13:37:54,554 1 INFO Testing odoo.modules.loading: loading account_payment_invoice_online_payment_patch/views/account_portal_templates.xml 
+2024-02-09 13:37:54,584 1 INFO Testing odoo.modules.loading: loading account_payment_invoice_online_payment_patch/wizards/res_config_settings_views.xml 
+2024-02-09 13:37:54,685 1 INFO Testing odoo.addons.base.models.ir_module: module account_payment_invoice_online_payment_patch: loading base translation file es for language es_VE 
+2024-02-09 13:37:54,691 1 INFO Testing odoo.addons.base.models.ir_module: module account_payment_invoice_online_payment_patch: no translation for language es_VE 
+2024-02-09 13:37:54,712 1 INFO Testing odoo.modules.loading: Module account_payment_invoice_online_payment_patch loaded in 0.45s, 135 queries (+135 other) 
+2024-02-09 13:37:54,713 1 INFO Testing odoo.modules.loading: Loading module sale (46/50) 
+2024-02-09 13:37:54,871 1 INFO Testing odoo.modules.registry: module sale: creating or updating database tables 
+2024-02-09 13:37:54,979 1 INFO Testing odoo.models: Prepare computation of product.template.service_type 
+2024-02-09 13:37:54,979 1 INFO Testing odoo.models: Prepare computation of product.template.expense_policy 
+2024-02-09 13:37:54,980 1 INFO Testing odoo.models: Prepare computation of product.template.invoice_policy 
+2024-02-09 13:37:55,756 1 INFO Testing odoo.modules.loading: loading sale/security/ir.model.access.csv 
+2024-02-09 13:37:55,838 1 INFO Testing odoo.modules.loading: loading sale/security/res_groups.xml 
+2024-02-09 13:37:55,913 1 INFO Testing odoo.modules.loading: loading sale/security/ir_rules.xml 
+2024-02-09 13:37:56,093 1 INFO Testing odoo.modules.loading: loading sale/report/account_invoice_report_views.xml 
+2024-02-09 13:37:56,122 1 INFO Testing odoo.modules.loading: loading sale/report/ir_actions_report_templates.xml 
+2024-02-09 13:37:56,143 1 INFO Testing odoo.modules.loading: loading sale/report/ir_actions_report.xml 
+2024-02-09 13:37:56,156 1 INFO Testing odoo.modules.loading: loading sale/report/sale_report_views.xml 
+2024-02-09 13:37:56,204 1 INFO Testing odoo.modules.loading: loading sale/data/ir_sequence_data.xml 
+2024-02-09 13:37:56,214 1 INFO Testing odoo.modules.loading: loading sale/data/mail_activity_type_data.xml 
+2024-02-09 13:37:56,225 1 INFO Testing odoo.modules.loading: loading sale/data/mail_message_subtype_data.xml 
+2024-02-09 13:37:56,251 1 INFO Testing odoo.modules.loading: loading sale/data/mail_template_data.xml 
+2024-02-09 13:37:56,269 1 INFO Testing odoo.modules.loading: loading sale/data/sale_data.xml 
+2024-02-09 13:37:56,293 1 INFO Testing odoo.modules.loading: loading sale/wizard/account_accrued_orders_wizard_views.xml 
+2024-02-09 13:37:56,302 1 INFO Testing odoo.modules.loading: loading sale/wizard/payment_link_wizard_views.xml 
+2024-02-09 13:37:56,308 1 INFO Testing odoo.modules.loading: loading sale/wizard/sale_make_invoice_advance_views.xml 
+2024-02-09 13:37:56,322 1 INFO Testing odoo.modules.loading: loading sale/wizard/sale_order_cancel_views.xml 
+2024-02-09 13:37:56,334 1 INFO Testing odoo.modules.loading: loading sale/views/sale_order_views.xml 
+2024-02-09 13:37:56,553 1 INFO Testing odoo.modules.loading: loading sale/views/account_views.xml 
+2024-02-09 13:37:56,617 1 INFO Testing odoo.modules.loading: loading sale/views/crm_team_views.xml 
+2024-02-09 13:37:56,668 1 INFO Testing odoo.modules.loading: loading sale/views/mail_activity_views.xml 
+2024-02-09 13:37:56,674 1 INFO Testing odoo.modules.loading: loading sale/views/payment_templates.xml 
+2024-02-09 13:37:56,697 1 INFO Testing odoo.modules.loading: loading sale/views/payment_views.xml 
+2024-02-09 13:37:56,723 1 INFO Testing odoo.modules.loading: loading sale/views/product_packaging_views.xml 
+2024-02-09 13:37:56,746 1 INFO Testing odoo.modules.loading: loading sale/views/product_views.xml 
+2024-02-09 13:37:56,802 1 INFO Testing odoo.modules.loading: loading sale/views/res_config_settings_views.xml 
+2024-02-09 13:37:56,855 1 INFO Testing odoo.modules.loading: loading sale/views/res_partner_views.xml 
+2024-02-09 13:37:56,937 1 INFO Testing odoo.modules.loading: loading sale/views/variant_templates.xml 
+2024-02-09 13:37:56,955 1 INFO Testing odoo.modules.loading: loading sale/views/sale_onboarding_views.xml 
+2024-02-09 13:37:56,987 1 INFO Testing odoo.modules.loading: loading sale/views/sale_order_line_views.xml 
+2024-02-09 13:37:57,017 1 INFO Testing odoo.modules.loading: loading sale/views/sale_portal_templates.xml 
+2024-02-09 13:37:57,088 1 INFO Testing odoo.modules.loading: loading sale/views/utm_campaign_views.xml 
+2024-02-09 13:37:57,109 1 INFO Testing odoo.modules.loading: loading sale/views/sale_menus.xml 
+2024-02-09 13:37:57,262 1 INFO Testing odoo.modules.loading: Module sale: loading demo 
+2024-02-09 13:37:57,263 1 INFO Testing odoo.modules.loading: loading sale/data/product_demo.xml 
+2024-02-09 13:37:57,599 1 INFO Testing odoo.models.unlink: User #1 deleted mail.message records with IDs: [52] 
+2024-02-09 13:37:57,615 1 INFO Testing odoo.models.unlink: User #1 deleted product.product records with IDs: [15] 
+2024-02-09 13:37:57,699 1 INFO Testing odoo.modules.loading: loading sale/data/sale_demo.xml 
+2024-02-09 13:38:00,293 1 INFO Testing odoo.tests: skip sending email in test mode 
+2024-02-09 13:38:00,295 1 INFO Testing odoo.addons.mail.models.mail_mail: Mail with ID 1 and Message-Id '<343693749949568.1707485880.204041957855225-openerp-message-notify@8a2439ca9b31>' successfully sent 
+2024-02-09 13:38:00,321 1 INFO Testing odoo.models.unlink: User #1 deleted mail.mail records with IDs: [1] 
+2024-02-09 13:38:00,321 1 INFO Testing odoo.addons.mail.models.mail_mail: Sent batch 1 emails via mail server ID #False 
+2024-02-09 13:38:00,386 1 INFO Testing odoo.tests: skip sending email in test mode 
+2024-02-09 13:38:00,387 1 INFO Testing odoo.addons.mail.models.mail_mail: Mail with ID 2 and Message-Id '<765749225320520.1707485880.352918386459351-openerp-message-notify@8a2439ca9b31>' successfully sent 
+2024-02-09 13:38:00,401 1 INFO Testing odoo.models.unlink: User #1 deleted mail.mail records with IDs: [2] 
+2024-02-09 13:38:00,402 1 INFO Testing odoo.addons.mail.models.mail_mail: Sent batch 1 emails via mail server ID #False 
+2024-02-09 13:38:00,465 1 INFO Testing odoo.tests: skip sending email in test mode 
+2024-02-09 13:38:00,466 1 INFO Testing odoo.addons.mail.models.mail_mail: Mail with ID 3 and Message-Id '<738288843880736.1707485880.430564403533936-openerp-message-notify@8a2439ca9b31>' successfully sent 
+2024-02-09 13:38:00,481 1 INFO Testing odoo.models.unlink: User #1 deleted mail.mail records with IDs: [3] 
+2024-02-09 13:38:00,482 1 INFO Testing odoo.addons.mail.models.mail_mail: Sent batch 1 emails via mail server ID #False 
+2024-02-09 13:38:00,541 1 INFO Testing odoo.tests: skip sending email in test mode 
+2024-02-09 13:38:00,542 1 INFO Testing odoo.addons.mail.models.mail_mail: Mail with ID 4 and Message-Id '<230411678133315.1707485880.506603240966797-openerp-message-notify@8a2439ca9b31>' successfully sent 
+2024-02-09 13:38:00,551 1 INFO Testing odoo.models.unlink: User #1 deleted mail.mail records with IDs: [4] 
+2024-02-09 13:38:00,552 1 INFO Testing odoo.addons.mail.models.mail_mail: Sent batch 1 emails via mail server ID #False 
+2024-02-09 13:38:00,613 1 INFO Testing odoo.tests: skip sending email in test mode 
+2024-02-09 13:38:00,614 1 INFO Testing odoo.addons.mail.models.mail_mail: Mail with ID 5 and Message-Id '<665357689961532.1707485880.581434726715088-openerp-message-notify@8a2439ca9b31>' successfully sent 
+2024-02-09 13:38:00,625 1 INFO Testing odoo.models.unlink: User #1 deleted mail.mail records with IDs: [5] 
+2024-02-09 13:38:00,626 1 INFO Testing odoo.addons.mail.models.mail_mail: Sent batch 1 emails via mail server ID #False 
+2024-02-09 13:38:00,768 1 INFO Testing odoo.tests: skip sending email in test mode 
+2024-02-09 13:38:00,781 1 INFO Testing odoo.addons.mail.models.mail_mail: Mail with ID 6 and Message-Id '<188712456668166.1707485880.670594930648804-openerp-message-notify@8a2439ca9b31>' successfully sent 
+2024-02-09 13:38:00,816 1 INFO Testing odoo.models.unlink: User #1 deleted mail.mail records with IDs: [6] 
+2024-02-09 13:38:00,817 1 INFO Testing odoo.addons.mail.models.mail_mail: Sent batch 1 emails via mail server ID #False 
+2024-02-09 13:38:00,900 1 INFO Testing odoo.tests: skip sending email in test mode 
+2024-02-09 13:38:00,902 1 INFO Testing odoo.addons.mail.models.mail_mail: Mail with ID 7 and Message-Id '<354594617639694.1707485880.855649948120117-openerp-message-notify@8a2439ca9b31>' successfully sent 
+2024-02-09 13:38:00,914 1 INFO Testing odoo.models.unlink: User #1 deleted mail.mail records with IDs: [7] 
+2024-02-09 13:38:00,915 1 INFO Testing odoo.addons.mail.models.mail_mail: Sent batch 1 emails via mail server ID #False 
+2024-02-09 13:38:00,983 1 INFO Testing odoo.tests: skip sending email in test mode 
+2024-02-09 13:38:00,984 1 INFO Testing odoo.addons.mail.models.mail_mail: Mail with ID 8 and Message-Id '<362648126278465.1707485880.941251516342163-openerp-message-notify@8a2439ca9b31>' successfully sent 
+2024-02-09 13:38:01,000 1 INFO Testing odoo.models.unlink: User #1 deleted mail.mail records with IDs: [8] 
+2024-02-09 13:38:01,001 1 INFO Testing odoo.addons.mail.models.mail_mail: Sent batch 1 emails via mail server ID #False 
+2024-02-09 13:38:01,018 1 INFO Testing odoo.addons.base.models.ir_module: module sale: loading base translation file es for language es_VE 
+2024-02-09 13:38:01,156 1 INFO Testing odoo.addons.base.models.ir_module: module sale: loading translation file es_VE for language es_VE 
+2024-02-09 13:38:01,585 1 INFO Testing odoo.modules.loading: Module sale loaded in 6.87s, 4080 queries (+4083 other) 
+2024-02-09 13:38:01,586 1 INFO Testing odoo.modules.loading: Loading module sale_management (47/50) 
+2024-02-09 13:38:01,851 1 INFO Testing odoo.modules.registry: module sale_management: creating or updating database tables 
+2024-02-09 13:38:02,189 1 INFO Testing odoo.modules.loading: loading sale_management/data/digest_data.xml 
+2024-02-09 13:38:02,214 1 INFO Testing odoo.modules.loading: loading sale_management/security/ir.model.access.csv 
+2024-02-09 13:38:02,241 1 INFO Testing odoo.modules.loading: loading sale_management/security/sale_management_security.xml 
+2024-02-09 13:38:02,302 1 INFO Testing odoo.modules.loading: loading sale_management/report/sale_report_templates.xml 
+2024-02-09 13:38:02,323 1 INFO Testing odoo.modules.loading: loading sale_management/views/sale_order_template_views.xml 
+2024-02-09 13:38:02,377 1 INFO Testing odoo.modules.loading: loading sale_management/views/digest_views.xml 
+2024-02-09 13:38:02,399 1 INFO Testing odoo.modules.loading: loading sale_management/views/res_config_settings_views.xml 
+2024-02-09 13:38:02,509 1 INFO Testing odoo.modules.loading: loading sale_management/views/sale_order_views.xml 
+2024-02-09 13:38:02,546 1 INFO Testing odoo.modules.loading: loading sale_management/views/sale_portal_templates.xml 
+2024-02-09 13:38:02,565 1 INFO Testing odoo.modules.loading: loading sale_management/views/sale_management_menus.xml 
+2024-02-09 13:38:02,582 1 INFO Testing odoo.modules.loading: Module sale_management: loading demo 
+2024-02-09 13:38:02,584 1 INFO Testing odoo.modules.loading: loading sale_management/data/sale_order_template_demo.xml 
+2024-02-09 13:38:02,668 1 INFO Testing odoo.addons.base.models.ir_module: module sale_management: loading base translation file es for language es_VE 
+2024-02-09 13:38:02,679 1 INFO Testing odoo.addons.base.models.ir_module: module sale_management: no translation for language es_VE 
+2024-02-09 13:38:02,737 1 INFO Testing odoo.modules.loading: Module sale_management loaded in 1.15s, 524 queries (+524 other) 
+2024-02-09 13:38:02,738 1 INFO Testing odoo.modules.loading: Loading module sale_product_configurator (48/50) 
+2024-02-09 13:38:02,856 1 INFO Testing odoo.modules.registry: module sale_product_configurator: creating or updating database tables 
+2024-02-09 13:38:02,966 1 INFO Testing odoo.modules.loading: loading sale_product_configurator/views/product_template_views.xml 
+2024-02-09 13:38:02,986 1 INFO Testing odoo.modules.loading: loading sale_product_configurator/views/sale_order_views.xml 
+2024-02-09 13:38:03,013 1 INFO Testing odoo.modules.loading: loading sale_product_configurator/views/templates.xml 
+2024-02-09 13:38:03,049 1 INFO Testing odoo.modules.loading: Module sale_product_configurator: loading demo 
+2024-02-09 13:38:03,051 1 INFO Testing odoo.modules.loading: loading sale_product_configurator/data/sale_demo.xml 
+2024-02-09 13:38:03,187 1 INFO Testing odoo.addons.base.models.ir_module: module sale_product_configurator: loading base translation file es for language es_VE 
+2024-02-09 13:38:03,271 1 INFO Testing odoo.addons.base.models.ir_module: module sale_product_configurator: no translation for language es_VE 
+2024-02-09 13:38:03,300 1 INFO Testing odoo.modules.loading: Module sale_product_configurator loaded in 0.56s, 227 queries (+227 other) 
+2024-02-09 13:38:03,301 1 INFO Testing odoo.modules.loading: Loading module sale_sms (49/50) 
+2024-02-09 13:38:03,448 1 INFO Testing odoo.modules.loading: loading sale_sms/security/ir.model.access.csv 
+2024-02-09 13:38:03,494 1 INFO Testing odoo.modules.loading: loading sale_sms/security/security.xml 
+2024-02-09 13:38:03,515 1 INFO Testing odoo.addons.base.models.ir_module: module sale_sms: no translation for language es_VE 
+2024-02-09 13:38:03,521 1 INFO Testing odoo.modules.loading: Module sale_sms loaded in 0.22s, 35 queries (+35 other) 
+2024-02-09 13:38:03,522 1 INFO Testing odoo.modules.loading: Loading module spreadsheet_dashboard_sale (50/50) 
+2024-02-09 13:38:03,648 1 INFO Testing odoo.modules.loading: loading spreadsheet_dashboard_sale/data/dashboards.xml 
+2024-02-09 13:38:03,715 1 INFO Testing odoo.addons.base.models.ir_module: module spreadsheet_dashboard_sale: loading base translation file es for language es_VE 
+2024-02-09 13:38:03,726 1 INFO Testing odoo.addons.base.models.ir_module: module spreadsheet_dashboard_sale: no translation for language es_VE 
+2024-02-09 13:38:03,736 1 INFO Testing odoo.modules.loading: Module spreadsheet_dashboard_sale loaded in 0.21s, 31 queries (+31 other) 
+2024-02-09 13:38:03,737 1 INFO Testing odoo.modules.loading: 50 modules loaded in 50.63s, 26543 queries (+26546 extra) 
+2024-02-09 13:38:03,739 1 INFO Testing odoo.modules.loading: loading 52 modules... 
+2024-02-09 13:38:03,740 1 INFO Testing odoo.modules.loading: Loading module base_vat (41/52) 
+2024-02-09 13:38:03,862 1 INFO Testing odoo.modules.registry: module base_vat: creating or updating database tables 
+2024-02-09 13:38:04,052 1 INFO Testing odoo.modules.loading: loading base_vat/views/res_config_settings_views.xml 
+2024-02-09 13:38:04,186 1 INFO Testing odoo.modules.loading: loading base_vat/views/res_partner_views.xml 
+2024-02-09 13:38:04,228 1 INFO Testing odoo.addons.base.models.ir_module: module base_vat: loading base translation file es for language es_VE 
+2024-02-09 13:38:04,234 1 INFO Testing odoo.addons.base.models.ir_module: module base_vat: loading translation file es_VE for language es_VE 
+2024-02-09 13:38:04,269 1 INFO Testing odoo.modules.loading: Module base_vat loaded in 0.53s, 118 queries (+118 other) 
+2024-02-09 13:38:04,270 1 INFO Testing odoo.modules.loading: Loading module l10n_ve (42/52) 
+2024-02-09 13:38:04,435 1 INFO Testing odoo.modules.loading: loading l10n_ve/data/l10n_ve_chart_data.xml 
+2024-02-09 13:38:05,000 1 INFO Testing odoo.modules.loading: loading l10n_ve/data/account.account.template.csv 
+2024-02-09 13:38:05,464 1 INFO Testing odoo.modules.loading: loading l10n_ve/data/l10n_ve_chart_post_data.xml 
+2024-02-09 13:38:05,470 1 INFO Testing odoo.modules.loading: loading l10n_ve/data/account_tax_group_data.xml 
+2024-02-09 13:38:05,485 1 INFO Testing odoo.modules.loading: loading l10n_ve/data/account_tax_data.xml 
+2024-02-09 13:38:05,543 1 INFO Testing odoo.modules.loading: loading l10n_ve/data/account_chart_template_data.xml 
+2024-02-09 13:38:08,407 1 INFO Testing odoo.modules.loading: Module l10n_ve: loading demo 
+2024-02-09 13:38:08,408 1 INFO Testing odoo.modules.loading: loading l10n_ve/demo/demo_company.xml 
+2024-02-09 13:38:12,104 1 INFO Testing odoo.tests: skip sending email in test mode 
+2024-02-09 13:38:12,105 1 INFO Testing odoo.addons.mail.models.mail_mail: Mail with ID 13 and Message-Id '<880895353447488.1707485892.007819175720215-openerp-message-notify@8a2439ca9b31>' successfully sent 
+2024-02-09 13:38:12,144 1 INFO Testing odoo.models.unlink: User #1 deleted mail.mail records with IDs: [13] 
+2024-02-09 13:38:12,145 1 INFO Testing odoo.addons.mail.models.mail_mail: Sent batch 1 emails via mail server ID #False 
+2024-02-09 13:38:12,225 1 INFO Testing odoo.tests: skip sending email in test mode 
+2024-02-09 13:38:12,226 1 INFO Testing odoo.addons.mail.models.mail_mail: Mail with ID 14 and Message-Id '<159996421178114.1707485892.155982494354248-openerp-message-notify@8a2439ca9b31>' successfully sent 
+2024-02-09 13:38:12,235 1 INFO Testing odoo.models.unlink: User #1 deleted mail.mail records with IDs: [14] 
+2024-02-09 13:38:12,236 1 INFO Testing odoo.addons.mail.models.mail_mail: Sent batch 1 emails via mail server ID #False 
+2024-02-09 13:38:12,317 1 INFO Testing odoo.tests: skip sending email in test mode 
+2024-02-09 13:38:12,318 1 INFO Testing odoo.addons.mail.models.mail_mail: Mail with ID 15 and Message-Id '<071633454314982.1707485892.248944282531738-openerp-message-notify@8a2439ca9b31>' successfully sent 
+2024-02-09 13:38:12,331 1 INFO Testing odoo.models.unlink: User #1 deleted mail.mail records with IDs: [15] 
+2024-02-09 13:38:12,332 1 INFO Testing odoo.addons.mail.models.mail_mail: Sent batch 1 emails via mail server ID #False 
+2024-02-09 13:38:12,391 1 INFO Testing odoo.tests: skip sending email in test mode 
+2024-02-09 13:38:12,393 1 INFO Testing odoo.addons.mail.models.mail_mail: Mail with ID 16 and Message-Id '<779075430150353.1707485892.343934059143066-openerp-message-notify@8a2439ca9b31>' successfully sent 
+2024-02-09 13:38:12,404 1 INFO Testing odoo.models.unlink: User #1 deleted mail.mail records with IDs: [16] 
+2024-02-09 13:38:12,405 1 INFO Testing odoo.addons.mail.models.mail_mail: Sent batch 1 emails via mail server ID #False 
+2024-02-09 13:38:12,419 1 INFO Testing odoo.addons.base.models.ir_module: module l10n_ve: no translation for language es_VE 
+2024-02-09 13:38:12,446 1 INFO Testing odoo.modules.loading: Module l10n_ve loaded in 8.18s, 3459 queries (+3461 other) 
+2024-02-09 13:38:12,447 1 INFO Testing odoo.modules.loading: 52 modules loaded in 8.71s, 3577 queries (+3579 extra) 
+2024-02-09 13:38:13,222 1 INFO Testing odoo.modules.loading: Modules loaded. 
+2024-02-09 13:38:13,258 1 INFO Testing odoo.modules.registry: Registry loaded in 60.930s 
+2024-02-09 13:38:13,260 1 INFO Testing odoo.addons.base.models.ir_module: getting next ir.actions.todo() 
+2024-02-09 13:38:13,269 1 INFO Testing odoo.modules.registry: Registry changed, signaling through the database 
+2024-02-09 13:38:13,284 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:13] "POST /web/dataset/call_button HTTP/1.1" 200 - 32101 28.480 33.343
+2024-02-09 13:38:13,333 1 INFO Testing odoo.addons.base.models.ir_http: Generating routing map for key None 
+2024-02-09 13:38:13,521 1 INFO Testing odoo.addons.base.models.ir_cron: Starting job `Mail: Email Queue Manager`. 
+2024-02-09 13:38:13,553 1 INFO Testing odoo.addons.base.models.ir_cron: Job `Mail: Email Queue Manager` done. 
+2024-02-09 13:38:13,622 1 INFO Testing odoo.addons.base.models.ir_cron: Starting job `Notification: Delete Notifications older than 6 Month`. 
+2024-02-09 13:38:13,722 1 INFO Testing odoo.addons.base.models.ir_cron: Job `Notification: Delete Notifications older than 6 Month` done. 
+2024-02-09 13:38:13,748 1 INFO Testing odoo.addons.base.models.ir_cron: Starting job `Notification: Send scheduled message notifications`. 
+2024-02-09 13:38:13,763 1 INFO Testing odoo.addons.base.models.ir_cron: Job `Notification: Send scheduled message notifications` done. 
+2024-02-09 13:38:13,819 1 INFO Testing odoo.addons.base.models.ir_cron: Starting job `Users: Notify About Unregistered Users`. 
+2024-02-09 13:38:13,870 1 INFO Testing odoo.addons.base.models.ir_cron: Job `Users: Notify About Unregistered Users` done. 
+2024-02-09 13:38:14,020 1 INFO Testing odoo.addons.base.models.ir_cron: Starting job `Partner Autocomplete : Sync with remote DB`. 
+2024-02-09 13:38:14,057 1 INFO Testing odoo.addons.base.models.ir_cron: Job `Partner Autocomplete : Sync with remote DB` done. 
+2024-02-09 13:38:14,178 1 INFO Testing odoo.addons.base.models.ir_cron: Starting job `SMS: SMS Queue Manager`. 
+2024-02-09 13:38:14,196 1 INFO Testing odoo.addons.base.models.ir_cron: Job `SMS: SMS Queue Manager` done. 
+2024-02-09 13:38:14,227 1 INFO Testing odoo.addons.base.models.ir_cron: Starting job `Snailmail: process letters queue`. 
+2024-02-09 13:38:14,249 1 INFO Testing odoo.addons.base.models.ir_cron: Job `Snailmail: process letters queue` done. 
+2024-02-09 13:38:14,265 1 INFO Testing odoo.addons.base.models.ir_cron: Starting job `payment: post-process transactions`. 
+2024-02-09 13:38:14,278 1 INFO Testing odoo.addons.base.models.ir_cron: Job `payment: post-process transactions` done. 
+2024-02-09 13:38:17,754 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:17] "POST /web/action/load HTTP/1.1" 200 - 42 0.122 0.050
+2024-02-09 13:38:18,074 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:18] "POST /web/dataset/call_kw/res.users/get_views HTTP/1.1" 200 - 119 0.146 0.159
+2024-02-09 13:38:18,154 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:18] "POST /web/dataset/call_kw/res.users/has_group HTTP/1.1" 200 - 4 0.007 0.009
+2024-02-09 13:38:18,180 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:18] "POST /web/dataset/call_kw/res.users/web_search_read HTTP/1.1" 200 - 19 0.033 0.017
+2024-02-09 13:38:20,987 1 INFO Testing odoo.modules.registry: At least one model cache has been invalidated, signaling through the database. 
+2024-02-09 13:38:20,990 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:20] "GET /web HTTP/1.1" 200 - 163 0.160 7.503
+2024-02-09 13:38:21,241 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:21] "GET /web/assets/431-6323ddf/web.assets_common.min.css HTTP/1.1" 200 - 9 0.008 0.008
+2024-02-09 13:38:21,259 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:21] "GET /web/assets/432-1471462/web.assets_backend.min.css HTTP/1.1" 200 - 4 0.003 0.012
+2024-02-09 13:38:21,288 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:21] "GET /web/assets/433-6323ddf/web.assets_common.min.js HTTP/1.1" 200 - 4 0.010 0.017
+2024-02-09 13:38:21,289 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:21] "GET /web/assets/435-6e7f40c/web.assets_backend_prod_only.min.js HTTP/1.1" 200 - 4 0.013 0.029
+2024-02-09 13:38:21,293 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:21] "GET /web/assets/434-1471462/web.assets_backend.min.js HTTP/1.1" 200 - 4 0.012 0.021
+2024-02-09 13:38:22,198 1 INFO Testing odoo.addons.partner_autocomplete.models.res_company: Starting enrich of company YourCompany (1) 
+2024-02-09 13:38:22,243 1 INFO Testing odoo.modules.registry: At least one model cache has been invalidated, signaling through the database. 
+2024-02-09 13:38:22,247 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:22] "POST /web/dataset/call_kw/res.company/iap_enrich_auto HTTP/1.1" 200 - 22 0.047 0.039
+2024-02-09 13:38:22,347 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:22] "POST /web/action/load HTTP/1.1" 200 - 10 0.030 0.014
+2024-02-09 13:38:22,361 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:22] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 304 - 23 0.029 0.037
+2024-02-09 13:38:22,531 1 INFO ? werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:22] "GET /mail/static/src/audio/ting.ogg HTTP/1.1" 206 - 0 0.000 0.011
+2024-02-09 13:38:22,535 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:22] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 22 0.031 0.039
+2024-02-09 13:38:22,581 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:22] "POST /mail/init_messaging HTTP/1.1" 200 - 51 0.078 0.040
+2024-02-09 13:38:22,652 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:22] "POST /mail/inbox/messages HTTP/1.1" 200 - 7 0.018 0.017
+2024-02-09 13:38:22,659 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:22] "POST /mail/load_message_failures HTTP/1.1" 200 - 10 0.017 0.027
+2024-02-09 13:38:22,715 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:22] "GET /web/image/mail.channel/1/avatar_128?unique=401b4cfd8b02af8b10e12c84ed1fe260daad0456b9012713b1d53940fe4dfb0dab0f0b0d667b540317f2f33b08bbd624b829c8ec512b72f59858c6b87fa7d40e HTTP/1.1" 200 - 4 0.003 0.013
+2024-02-09 13:38:30,436 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:30] "POST /web/action/load HTTP/1.1" 200 - 10 0.006 0.010
+2024-02-09 13:38:30,538 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:30] "POST /web/dataset/call_kw/res.config.settings/get_views HTTP/1.1" 200 - 40 0.024 0.068
+2024-02-09 13:38:30,679 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:30] "POST /web/dataset/call_kw/res.config.settings/onchange HTTP/1.1" 200 - 122 0.039 0.045
+2024-02-09 13:38:30,801 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:30] "POST /base_setup/demo_active HTTP/1.1" 200 - 3 0.003 0.004
+2024-02-09 13:38:30,822 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:30] "POST /base_setup/data HTTP/1.1" 200 - 6 0.003 0.004
+2024-02-09 13:38:39,259 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:39] "GET /web?debug=1 HTTP/1.1" 200 - 77 0.037 0.392
+2024-02-09 13:38:39,446 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:39] "GET /web/webclient/load_menus/2341db11eb69cd6c9ff14a6282d210528527315e60c6bc02dd7099e034cae907 HTTP/1.1" 200 - 1 0.001 0.006
+2024-02-09 13:38:39,933 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:39] "POST /web/action/load HTTP/1.1" 200 - 8 0.009 0.010
+2024-02-09 13:38:39,937 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:39] "GET /web/image?model=res.users&field=avatar_128&id=2 HTTP/1.1" 304 - 9 0.009 0.015
+2024-02-09 13:38:40,093 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:40] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 11 0.026 0.020
+2024-02-09 13:38:40,110 1 INFO ? werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:40] "GET /mail/static/src/audio/ting.ogg HTTP/1.1" 206 - 0 0.000 0.004
+2024-02-09 13:38:40,130 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:40] "POST /mail/init_messaging HTTP/1.1" 200 - 32 0.045 0.035
+2024-02-09 13:38:40,167 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:40] "POST /mail/inbox/messages HTTP/1.1" 200 - 4 0.010 0.008
+2024-02-09 13:38:40,178 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:40] "POST /mail/load_message_failures HTTP/1.1" 200 - 9 0.009 0.020
+2024-02-09 13:38:45,968 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:45] "POST /web/action/load HTTP/1.1" 200 - 9 0.005 0.010
+2024-02-09 13:38:45,992 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:45] "POST /web/dataset/call_kw/res.config.settings/get_views HTTP/1.1" 200 - 1 0.001 0.014
+2024-02-09 13:38:46,078 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:46] "POST /web/dataset/call_kw/res.config.settings/onchange HTTP/1.1" 200 - 27 0.012 0.021
+2024-02-09 13:38:46,213 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:46] "POST /base_setup/demo_active HTTP/1.1" 200 - 2 0.002 0.004
+2024-02-09 13:38:46,235 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:38:46] "POST /base_setup/data HTTP/1.1" 200 - 5 0.003 0.005
+2024-02-09 13:48:12,322 1 INFO Testing odoo.addons.base.models.ir_cron: Starting job `payment: post-process transactions`. 
+2024-02-09 13:48:12,446 1 INFO Testing odoo.addons.base.models.ir_cron: Job `payment: post-process transactions` done. 
+2024-02-09 13:57:40,787 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 13:57:40] "GET /logo.png?company=1 HTTP/1.1" 200 - 2 0.167 2.839
+2024-02-09 13:58:13,587 1 INFO Testing odoo.addons.base.models.ir_cron: Starting job `payment: post-process transactions`. 
+2024-02-09 13:58:13,673 1 INFO Testing odoo.addons.base.models.ir_cron: Job `payment: post-process transactions` done. 
+2024-02-09 14:07:59,827 1 INFO Testing odoo.addons.base.models.ir_cron: Starting job `payment: post-process transactions`. 
+2024-02-09 14:08:00,157 1 INFO Testing odoo.addons.base.models.ir_cron: Job `payment: post-process transactions` done. 
+2024-02-09 14:09:31,542 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 14:09:31] "POST /web/action/load HTTP/1.1" 200 - 8 2.051 9.154
+2024-02-09 14:09:31,794 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 14:09:31] "POST /web/dataset/call_kw/res.users/systray_get_activities HTTP/1.1" 200 - 17 2.385 5.342
+2024-02-09 14:09:32,252 1 INFO Testing odoo.modules.registry: At least one model cache has been invalidated, signaling through the database. 
+2024-02-09 14:09:32,307 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 14:09:32] "POST /web/dataset/call_kw/res.company/iap_enrich_auto HTTP/1.1" 200 - 19 1.510 10.354
+2024-02-09 14:09:32,402 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 14:09:32] "POST /mail/init_messaging HTTP/1.1" 200 - 51 2.384 5.821
+2024-02-09 14:09:32,885 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 14:09:32] "POST /mail/load_message_failures HTTP/1.1" 200 - 14 0.209 0.113
+2024-02-09 14:09:33,398 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 14:09:33] "GET /bus/websocket_worker_bundle?v=1.0.5 HTTP/1.1" 200 - 15 1.481 11.543
+2024-02-09 14:09:34,739 1 INFO Testing werkzeug: 172.24.0.1 - - [09/Feb/2024 14:09:34] "GET /websocket HTTP/1.1" 101 - 1 0.051 0.884
+2024-02-09 14:13:02,070 1 INFO ? odoo.service.server: Initiating shutdown 
+2024-02-09 14:13:02,129 1 INFO ? odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2024-02-09 14:13:02,797 1 INFO ? odoo.sql_db: ConnectionPool(used=0/count=0/max=64): Closed 8 connections  
+2024-02-09 14:39:55,460 1 WARNING ? py.warnings: /usr/lib/python3/dist-packages/odoo/tools/config.py:560: DeprecationWarning: The osv-memory-age-limit is a deprecated alias to the transient-age-limit option, please use the latter.
+  File "/usr/bin/odoo", line 8, in <module>
+    odoo.cli.main()
+  File "/usr/lib/python3/dist-packages/odoo/cli/command.py", line 66, in main
+    o.run(args)
+  File "/usr/lib/python3/dist-packages/odoo/cli/server.py", line 180, in run
+    main(args)
+  File "/usr/lib/python3/dist-packages/odoo/cli/server.py", line 127, in main
+    odoo.tools.config.parse_config(args)
+  File "/usr/lib/python3/dist-packages/odoo/tools/config.py", line 379, in parse_config
+    self._warn_deprecated_options()
+  File "/usr/lib/python3/dist-packages/odoo/tools/config.py", line 560, in _warn_deprecated_options
+    warnings.warn(
+ 
+2024-02-09 14:39:55,466 1 WARNING ? py.warnings: /usr/lib/python3/dist-packages/odoo/tools/config.py:566: DeprecationWarning: The longpolling-port is a deprecated alias to the gevent-port option, please use the latter.
+  File "/usr/bin/odoo", line 8, in <module>
+    odoo.cli.main()
+  File "/usr/lib/python3/dist-packages/odoo/cli/command.py", line 66, in main
+    o.run(args)
+  File "/usr/lib/python3/dist-packages/odoo/cli/server.py", line 180, in run
+    main(args)
+  File "/usr/lib/python3/dist-packages/odoo/cli/server.py", line 127, in main
+    odoo.tools.config.parse_config(args)
+  File "/usr/lib/python3/dist-packages/odoo/tools/config.py", line 379, in parse_config
+    self._warn_deprecated_options()
+  File "/usr/lib/python3/dist-packages/odoo/tools/config.py", line 566, in _warn_deprecated_options
+    warnings.warn(
+ 
+2024-02-09 14:39:55,468 1 INFO ? odoo: Odoo version 16.0-20240126 
+2024-02-09 14:39:55,471 1 INFO ? odoo: Using configuration file at /etc/odoo/odoo.conf 
+2024-02-09 14:39:55,472 1 INFO ? odoo: addons paths: ['/usr/lib/python3/dist-packages/odoo/addons', '/var/lib/odoo/addons/16.0', '/mnt/extra-addons'] 
+2024-02-09 14:39:55,473 1 INFO ? odoo: database: odoo@db:5432 
+2024-02-09 14:39:58,937 1 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at /usr/local/bin/wkhtmltopdf 
+2024-02-09 14:40:02,770 1 INFO ? odoo.service.server: HTTP service (werkzeug) running on 5f6b0d0ce3ed:8069 
+2024-02-09 14:41:15,055 1 INFO ? odoo.service.server: Initiating shutdown 
+2024-02-09 14:41:15,056 1 INFO ? odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2024-02-09 14:41:15,464 1 INFO ? odoo.sql_db: ConnectionPool(used=0/count=0/max=64): Closed 2 connections  

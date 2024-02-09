@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gestion_directorio,gestion.directorio,model_gestion_directorio,base.group_user,1,1,1,1
+access_gestion_documento,gestion.documento,model_gestion_documento,base.group_user,1,1,1,1
+access_gestion_gestion,gestion.gestion,model_gestion_gestion,base.group_user,1,1,1,1
+access_gestion_bandeja,gestion.bandeja,model_gestion_bandeja,base.group_user,1,1,1,1
+access_gestion_departamento,gestion.departamento,model_gestion_departamento,base.group_user,1,1,1,1
+access_gestion_solicitud,gestion.solicitud,model_gestion_solicitud,base.group_user,1,1,1,1
+

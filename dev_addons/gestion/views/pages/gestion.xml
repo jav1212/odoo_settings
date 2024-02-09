@@ -1,0 +1,26 @@
+<odoo>
+
+    <data>
+
+        <record model="ir.ui.view" id="gestion.gestion_list">
+            <field name="name">gestion directorio list</field>
+            <field name="model">gestion.gestion</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="gestion.action_gestion_window" model="ir.actions.act_window">
+            <field name="name">Gestión general</field>
+            <field name="res_model">gestion.gestion</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="gestion.menu_1_gestion_list" name="Dashboard" action="gestion.action_gestion_window" parent="gestion.menu_1"/>
+
+    </data>
+
+
+</odoo>

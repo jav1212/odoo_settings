@@ -1,0 +1,14 @@
+# Use the official PostgreSQL image as a parent image
+FROM postgres:latest
+
+# Set environment variables for the database
+ENV POSTGRES_DB=postgres \
+    POSTGRES_PASSWORD=myodoo \
+    POSTGRES_USER=odoo \
+    PGDATA=/var/lib/postgresql/data/pgdata
+
+# Expose the PostgreSQL port
+EXPOSE  5432
+
+# Start PostgreSQL server
+CMD ["postgres"]
