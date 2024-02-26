@@ -1,47 +1,44 @@
 <odoo>
     <data>
-
-        <record model="ir.ui.view" id="gestion.documentos_list">
-            <field name="name">gestion documentos list</field>
+        <record id="gestion.documento_tree" model="ir.ui.view">
+            <field name="name">gestion directorio list</field>
             <field name="model">gestion.documento</field>
             <field name="arch" type="xml">
-                <tree create="true" edit='false' delete="false" import="false" export_xlsx="false" sample="1" multi_edit="1">
+                <tree export_xlsx="false">
                     <field name="name"/>
-                    <field name="directorio"/>
+                    <field name='directorio'/>
+                    <field name="departamentos" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="last_update" />
+                    <field name="fileref"/>
                 </tree>
             </field>
         </record>
-
-        <!--    TODO: ES NECESARIO QUE SE TENGA EN CUENTA LA LOGICA DE PROGRAMACION
-                PARA AGREGARLOS A READONLY
-         -->
 
         <record id="gestion.documento_form" model="ir.ui.view">
             <field name="name">Gestion documento formulario</field>
             <field name="model">gestion.documento</field>
             <field name="arch" type="xml">
-                <form create='false' delete="false">
+                <form string="Gestionar Documento">
                     <sheet>
-                        <group>
-                            <field name="is_editable" invisible="1"/>
-                            <field name="name" />
-                            <field name="descripcion" />
-                            <field name="directorio" />
-                            <field name="fileref" filename="name" />
-                            <field name="solicitud"/>
+                        <group attrs="{'invisible': [('is_visible','=',False)]}">
+                            <field name="code" readonly='1' />
+                            <field name="name" required="1"/>
+                            <field name="descripcion" widget="textarea"/>
+                            <field name="directorio"/>
+                            <field name="fileref" filename="name" widget="pdf_viewer" options="{'filename': 'name'}"/>
+                            <field name="departamentos" widget="many2many_tags" options="{'color_field': 'color'}" required='1'/>
+                            <field name='create_uid' widget="many2one_avatar_employee" readonly='1' />
+                            <field name='is_visible' readonly="1" />
+                            <field name="is_admin" readonly="1" />
+                        </group>
+                        <group attrs="{'invisible': [('is_visible','=',True)]}">
+                            <div>
+                                <h2>No tienes acceso a los documentos de este departamento</h2>
+                            </div>
                         </group>
                     </sheet>
                 </form>
             </field>
         </record>
-
-        <record id="gestion.action_documento_window" model="ir.actions.act_window">
-            <field name="name">Gestión de documentos</field>
-            <field name="res_model">gestion.documento</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
-        <menuitem id="gestion.menu_1_documentos_list" name="Documentos" action="gestion.action_documento_window" parent="gestion.menu_1"/>
-
     </data>
 </odoo>

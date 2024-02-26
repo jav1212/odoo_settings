@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="module_gestion_category" model="ir.module.category">
+            <field name="name">Gestion Documental</field>
+            <field name="description">Category for the Gestion Documental module.</field>
+            <field name="sequence">17</field>
+        </record>
+
+        <record id="group_gestion_empleados" model="res.groups">
+            <field name="name">Empleados de gestion</field>
+            <field name="category_id" ref="module_gestion_category"/>
+        </record>
+
+        <record id="group_gestion_jefes" model="res.groups">
+            <field name="name">Jefes / Gerentes de gestion</field>
+            <field name="category_id" ref="module_gestion_category"/>
+        </record>
+
+        <record id="group_gestion_administrador" model="res.groups">
+            <field name="name">Administradores de gestion</field>
+            <field name="category_id" ref="module_gestion_category"/>
+            <field name="implied_ids" eval="[(4, ref('group_gestion_empleados')),(4, ref('group_gestion_jefes')),]"/>
+        </record>
+
+        <record id="group_gestion_director" model="res.groups">
+            <field name="name">Directores de gestion</field>
+            <field name="category_id" ref="module_gestion_category"/>
+            <field name="implied_ids" eval="[
+                (4, ref('group_gestion_empleados')),
+                (4, ref('group_gestion_jefes')),
+                (4, ref('group_gestion_administrador'))]" />
+        </record>
+    </data>
+</odoo>

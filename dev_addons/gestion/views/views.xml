@@ -1,10 +1,85 @@
 <odoo>
   <data>
+
+    <!-- FIRST LEVEL MENU -->
+    <record id="gestion.action_directorio_window" model="ir.actions.act_window">
+      <field name="name">Directorios</field>
+      <field name="res_model">gestion.directorio</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="gestion.action_documento_window" model="ir.actions.act_window">
+      <field name="name">Documentos</field>
+      <field name="res_model">gestion.documento</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- SECOND LEVEL MENU -->
+
+    <record id="gestion.action_departamento_window" model="ir.actions.act_window">
+      <field name="name">Departamentos</field>
+      <field name="res_model">hr.department</field>
+      <field name="view_mode">kanban,form</field>
+    </record>
+
+    <record id="gestion.action_empleados_window" model="ir.actions.act_window">
+      <field name="name">Empleados</field>
+      <field name="res_model">hr.employee</field>
+      <field name="view_mode">kanban,form</field>
+      <field name="domain">[('user_id.groups_id.name', '=', 'Empleados de gestion')]</field>
+    </record>
+
+    <record id="gestion.action_coordinadores_window" model="ir.actions.act_window">
+      <field name="name">Coordinadores</field>
+      <field name="res_model">hr.employee</field>
+      <field name="view_mode">kanban,form</field>
+      <field name="domain">[('user_id.groups_id.name', '=', 'Administradores de gestion')]</field>
+    </record>
+
+    <record id="gestion.action_gerentes_jefes_window" model="ir.actions.act_window">
+      <field name="name">Gerentes / Jefes</field>
+      <field name="res_model">hr.employee</field>
+      <field name="view_mode">kanban,form</field>
+      <field name="domain">[('user_id.groups_id.name', '=', 'Jefes / Gerentes de gestion')]</field>
+    </record>
+
+    <!-- THIRD LEVEL MENU -->
+
+    <record id="gestion.action_solicitud_window" model="ir.actions.act_window">
+      <field name="name">Solicitudes</field>
+      <field name="res_model">gestion.solicitud</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="gestion.action_revision_window" model="ir.actions.act_window">
+      <field name="name">Revisiones</field>
+      <field name="res_model">gestion.revision</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="gestion.action_respuesta_window" model="ir.actions.act_window">
+      <field name="name">Respuestas</field>
+      <field name="res_model">gestion.respuesta</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
     <!-- Top menu item -->
-    <menuitem id="gestion.menu_root" name="Gestion"/>
-
-    <!-- menu categories -->
-    <menuitem id="gestion.menu_1" name="Menú" parent= "gestion.menu_root" />
-
+    <menuitem id="gestion.menu_root" name="Gestion">
+      <menuitem id="gestion.menu_1" name="Explorador de archivos">
+        <menuitem id="gestion.menu_1_directorios_list" name="Directorios" action="gestion.action_directorio_window" />
+        <menuitem id="gestion.menu_1_documentos_list" name="Documentos" action="gestion.action_documento_window"/>
+      </menuitem>
+      <menuitem id="gestion.menu_2" name="Personal Humano" groups="gestion.group_gestion_administrador">
+        <menuitem id="gestion.menu_2_departamentos_list" name="Departamentos" action="gestion.action_departamento_window" />
+        <menuitem id="gestion.menu_2_empleados_list" name="Empleados" action="gestion.action_empleados_window" />
+        <menuitem id="gestion.menu_2_coordinadores_list" name="Coordinadores" action="gestion.action_coordinadores_window" />
+        <menuitem id="gestion.menu_2_gerentes_jefes_list" name="Gerentes / Jefes" action="gestion.action_gerentes_jefes_window"/>
+      </menuitem>
+      <menuitem id="gestion.menu_3" name="Requerimientos" groups="gestion.group_gestion_jefes">
+        <menuitem id="gestion.menu_3_solicitudes_list" name="Solicitudes" action="gestion.action_solicitud_window"/>
+        <menuitem id="gestion.menu_3_revisiones_list" name="Revisiones" action="gestion.action_revision_window"/>
+        <menuitem id="gestion.menu_3_respuestas_list" name="Respuesta" action="gestion.action_respuesta_window"/>
+      </menuitem>
+    </menuitem>
   </data>
 </odoo>

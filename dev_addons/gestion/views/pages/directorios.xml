@@ -1,48 +1,43 @@
 <odoo>
     <data>
-
-        <record model="ir.ui.view" id="gestion.directorios_list">
+        <record id="gestion.directorio_tree" model="ir.ui.view">
             <field name="name">gestion directorio list</field>
             <field name="model">gestion.directorio</field>
             <field name="arch" type="xml">
-                <tree create="true" edit='false' delete="false" import="false" export_xlsx="false" sample="1" multi_edit="1">
-                    <field name="name" />
-                    <field name="descripcion" />
+                <tree >
+                    <field name="name"/>
                     <field name="documentos" />
+                    <field name="departamentos" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="last_update"/>
                 </tree>
             </field>
         </record>
 
-        <!--    TODO: ES NECESARIO QUE SE TENGA EN CUENTA LA LOGICA DE PROGRAMACION
-                PARA AGREGARLOS A READONLY
-         -->
-
         <record id="gestion.directorio_form" model="ir.ui.view">
-            <field name="name">gestion directorio formulario</field>
+            <field name="name">Gestion directorio formulario</field>
             <field name="model">gestion.directorio</field>
             <field name="arch" type="xml">
-                <form create='true' delete="false">
-
+                <form >
                     <sheet>
-                        <group>
-                            <field name="name" />
-                            <field name="descripcion"/>
+                        <group attrs="{'invisible': [('is_visible','=',False)]}">
+                            <group>
+                                <field name="name" required="true"/>
+                                <field name="descripcion" widget="textarea" />
+                                <field name="departamentos" widget="many2many_tags" required="true" options="{'color_field': 'color'}"/>
+                            </group>
+                            <group >
+                                <field name='create_uid' widget="many2one_avatar_employee" readonly='1' />
+                                <field name='is_visible' readonly="1" />
+                                <field name='is_admin' readonly="1" />
+                            </group>
                             <field name="documentos"/>
                         </group>
+                        <group attrs="{'invisible': [('is_visible','=',True)]}">
+                            <h2>No tienes acceso a los directorios de este departamento</h2>
+                        </group>
                     </sheet>
-
                 </form>
-
             </field>
         </record>
-
-        <record id="gestion.action_directorio_window" model="ir.actions.act_window">
-            <field name="name">Gestión de directorios</field>
-            <field name="res_model">gestion.directorio</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
-        <menuitem id="gestion.menu_1_directorios_list" name="Directorios" action="gestion.action_directorio_window" parent="gestion.menu_1"/>
-
     </data>
 </odoo>

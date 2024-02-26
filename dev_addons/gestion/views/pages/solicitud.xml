@@ -1,41 +1,105 @@
 <odoo>
     <data>
-
-        <record model="ir.ui.view" id="gestion.solicitud_list">
-            <field name="name">Gestion solicitud list</field>
+        <record id="view_gestion_solicitud_tree" model="ir.ui.view">
+            <field name="name">gestion.solicitud.tree</field>
             <field name="model">gestion.solicitud</field>
             <field name="arch" type="xml">
-                <tree create="true" edit='false' delete="false" import="false" export_xlsx="false" sample="1" multi_edit="1">
+                <tree string="Solicitudes">
+                    <field name="state_color" invisible='1' />
+                    <field name="code"/>
                     <field name="fecha_emision"/>
+                    <field name="gerencia_solicitante" options="{'color_field': 'color'}"/>
+                    <field name="create_uid" widget="many2one_avatar_employee" readonly='1' />
+                    <field name="state" widget="badge" decoration-danger="state == 'borrador'" decoration-success="state in ['aprobado', 'publicacion', 'publicado']" decoration-warning="state in ['solicitado', 'elaboracion', 'revision', 'revisado', 'aprobacion']"/>
                 </tree>
             </field>
         </record>
-
-        <record id="gestion.solicitud_form" model="ir.ui.view">
+        <record id="gestion.respuesta_form" model="ir.ui.view">
             <field name="name">Gestion solicitud formulario</field>
             <field name="model">gestion.solicitud</field>
             <field name="arch" type="xml">
-                <form create='false' delete="false">
+                <form string="Solicitud">
+                    <header>
+                        <button string="Enviar Solicitud" name="send_email" type="object" class="oe_highlight" states='borrador' confirm='Se enviará un correo electrónico con esta solicitud, ¿Seguro que desea continuar?'/>
+                        <button string="Procedente" name="procedente" type="object" class="oe_highlight" states="solicitado" groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador" />
+                        <button string="No procedente" name="no_procedente" type="object" class="oe_highlight" states="solicitado" groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador" confirm='Se enviará un correo electrónico indicando la razón por la que la solicitud no procede, ¿Seguro que desea continuar?'/>
+                        <button string="Mandar a revisión" name="mandar_a_revision" type="object" class="oe_highlight" states="elaboracion" groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador"/>
+                        <button string="Revisado" name="revisado" type="object" class="oe_highlight" states="revision" confirm='Se enviará un correo electrónico indicando que la solicitud fue revisada, ¿Seguro que desea continuar?' groups="gestion.group_gestion_jefes" perm_read="gestion.group_gestion_jefes"/>
+                        <button string="No conforme" name="no_revisado" type="object" class="oe_highlight" states="revision" confirm='Se enviará un correo electrónico indicando la razón por la que la solicitud no fue revisada, ¿Seguro que desea continuar?' groups="gestion.group_gestion_jefes" perm_read="gestion.group_gestion_jefes"/>
+                        <button string="Mandar a aprobación" name="mandar_a_aprobacion" type="object" class="oe_highlight" states="revisado" groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador"/>
+                        <button string="Aprobado" name="aprobado" type="object" class="oe_highlight" states='aprobacion' confirm='Se enviará un correo electrónico indicando que la solicitud fue aprobada, ¿Seguro que desea continuar?' groups="gestion.group_gestion_director" perm_read="gestion.group_gestion_director"/>
+                        <button string="No aprobado" name="no_aprobado" type="object" class="oe_highlight" states='aprobacion' confirm='Se enviará un correo electrónico indicando que la solicitud fue aprobada, ¿Seguro que desea continuar?' groups="gestion.group_gestion_director" perm_read="gestion.group_gestion_director"/>
+                        <button string="Mandar a publicación" name="mandar_a_publicacion" type="object" class="oe_highlight" states="aprobado" groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador"/>
+                        <button string="Publicado" name="publicado" type="object" class="oe_highlight" states='publicacion' confirm='Se enviará un correo electrónico indicando la publicación del documento, ¿Seguro que desea continuar?' groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador"/>
+                        <field name="state" widget="statusbar" statusbar_colors='{"borrador":"red","solicitado":"yellow"}'/>
+                    </header>
                     <sheet>
-                        <group>
-                            <field name="fecha_emision"/>
-                            <field name="descripcion" />
-                            <field name="fileref" filename="name" />
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_name" type="object" class="oe_stat_button">
+                                <field name="progress" widget="percentpie" string='progreso'/>
+                            </button>
+                        </div>
+                        <group >
+                            <group string='Información de la solicitud'>
+
+                                <field name="code" readonly='1'/>
+                                <field name="name" readonly='1' invisible='1' />
+                                <field name="fecha_emision" readonly='1'/>
+                                <field name="fecha_revision" readonly='1' />
+                                <field name="fecha_aprobacion" readonly='1' />
+                                <field name="fecha_publicacion" readonly='1' />
+                            </group>
+                            <group string="Datos del personal">
+                                <field name="gerencia_solicitante" attrs= "{'readonly': [('state','!=','borrador',)]}"/>
+                                <field name="create_uid" widget="many2one_avatar_employee" readonly='1' />
+                                <field name="coordinador" domain='[("groups_id.name","=","Administradores de gestion")]' attrs= "{'readonly': [('state','!=','borrador',)]}" />
+                            </group>
+                            <notebook>
+                                <page name="requerimientos" string="Requerimiento">
+                                    <group>
+                                        <field name="requerimiento_selection" widget="radio" attrs= "{'readonly': [('state','!=','borrador',)]}"/>
+                                    </group>
+                                    <group >
+                                        <field name="otros_documentos_description" attrs="{'invisible': [('requerimiento_selection', '!=', 'otros')],'readonly': [('state','!=','borrador',)]}"/>
+                                    </group>
+                                </page>
+                                <page name="origen" string="Origen de la solicitud">
+                                    <group >
+                                        <field name="origen_solicitud" widget="radio" attrs= "{'readonly': [('state','!=','borrador',)]}"/>
+                                    </group>
+                                </page>
+                                <page name="documentos" string="Documento">
+                                    <group>
+                                        <field name="documento" attrs= "{'readonly': [('state','!=','borrador',)]}"/>
+                                        <field name="requerimiento" attrs= "{'readonly': [('state','!=','borrador',)]}"/>
+                                    </group>
+                                </page>
+                                <page name="form_procedente" string="Evaluación procedente" attrs="{'invisible':[('state','!=','solicitado')]}">
+                                    <group>
+                                        <field name="descripcion_no_procede" />
+                                    </group>
+                                </page>
+                                <page name="form_revisión" string="Evaluación de la revisión" attrs="{'invisible':[('state','!=','revision')]}">
+                                    <group>
+                                        <field name="descripcion_no_conforme_revision" />
+                                    </group>
+                                </page>
+                                <page name="form_aprobación" string="Evaluación de la aprobación" attrs="{'invisible':[('state','!=','aprobacion')]}">
+                                    <group>
+                                        <field name="descripcion_no_conforme_aprobacion" />
+                                    </group>
+                                </page>
+                                <page name="form_publicacion" string="Publicación" attrs="{'invisible':[('state','!=','publicacion')]}">
+                                    <group>
+                                        <field name="descripcion_publicacion" />
+                                    </group>
+                                </page>
+                            </notebook>
                         </group>
+
                     </sheet>
                 </form>
             </field>
         </record>
-
-        <record id="gestion.action_solicitud_window" model="ir.actions.act_window">
-            <field name="name">Gestión de solicitud</field>
-            <field name="res_model">gestion.solicitud</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-
-        <menuitem id="gestion.menu_1_solicitud_list" name="Solicitudes" action="gestion.action_solicitud_window" parent="gestion.menu_1"/>
-
-
     </data>
-
 </odoo>
