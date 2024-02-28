@@ -16,17 +16,78 @@
 
     <!-- SECOND LEVEL MENU -->
 
+    <!-- 
+    <record id="gestion.departamento_kanban" model="ir.actions.act_window.view">
+      <field name="sequence" eval='1'></field>
+      <field name="view_mode">kanban</field>
+      <field name="view_id" ref='hr.hr_department_view_kanban'></field>
+      <field name="act_window_id" ref='gestion.action_departamento_window'></field>
+    </record>
+
+    <record id="gestion.departamento_view_form" model="ir.ui.view">
+      <field name="name">Departamentos from</field>
+      <field name="model">hr.department</field>
+      <field name="inherit_id" ref='hr.view_department_form'></field>
+      <field name="mode">primary</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="gestion.departamento_form" model="ir.actions.act_window.view">
+      <field name="sequence" eval='2'></field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref='gestion.departamento_view_form'></field>
+      <field name="act_window_id" ref='gestion.action_departamento_window'></field>
+    </record> -->
+
+    <!-- 
+
+    <record id="gestion.departamento_view_form" model="ir.ui.view">
+      <field name="name">Departamento Formulario</field>
+      <field name="model">hr.department</field>
+      <field name="inherit_id" ref=""></field>
+      <field name="arch" type="xml">
+        <form >
+          <group>
+            <field name="code" />
+          </group>
+        </form>
+      </field>
+    </record> -->
+
     <record id="gestion.action_departamento_window" model="ir.actions.act_window">
       <field name="name">Departamentos</field>
       <field name="res_model">hr.department</field>
       <field name="view_mode">kanban,form</field>
     </record>
 
+    <!--  
+    <record id="gestion.action_view_departamento_kanban" model="ir.actions.act_window.view">
+      <field name="sequence" eval='2'></field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="gestion.departamento_view_form"></field>
+      <field name="act_window_id" ref="gestion.action_departamento_window"></field>
+    </record> -->
+
+    <record id="gestion.action_view_departamento_kanban" model="ir.actions.act_window.view">
+      <field name="sequence" eval='1'></field>
+      <field name="view_mode">kanban</field>
+      <field name="view_id" ref="hr.hr_department_view_kanban"></field>
+      <field name="act_window_id" ref="gestion.action_departamento_window"></field>
+    </record>
+
     <record id="gestion.action_empleados_window" model="ir.actions.act_window">
       <field name="name">Empleados</field>
       <field name="res_model">hr.employee</field>
       <field name="view_mode">kanban,form</field>
-      <field name="domain">[('user_id.groups_id.name', '=', 'Empleados de gestion')]</field>
+
     </record>
 
     <record id="gestion.action_coordinadores_window" model="ir.actions.act_window">
@@ -51,18 +112,6 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-    <record id="gestion.action_revision_window" model="ir.actions.act_window">
-      <field name="name">Revisiones</field>
-      <field name="res_model">gestion.revision</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-
-    <record id="gestion.action_respuesta_window" model="ir.actions.act_window">
-      <field name="name">Respuestas</field>
-      <field name="res_model">gestion.respuesta</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-
     <!-- Top menu item -->
     <menuitem id="gestion.menu_root" name="Gestion">
       <menuitem id="gestion.menu_1" name="Explorador de archivos">
@@ -77,8 +126,6 @@
       </menuitem>
       <menuitem id="gestion.menu_3" name="Requerimientos" groups="gestion.group_gestion_jefes">
         <menuitem id="gestion.menu_3_solicitudes_list" name="Solicitudes" action="gestion.action_solicitud_window"/>
-        <menuitem id="gestion.menu_3_revisiones_list" name="Revisiones" action="gestion.action_revision_window"/>
-        <menuitem id="gestion.menu_3_respuestas_list" name="Respuesta" action="gestion.action_respuesta_window"/>
       </menuitem>
     </menuitem>
   </data>

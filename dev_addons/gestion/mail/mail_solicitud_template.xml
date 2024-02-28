@@ -3,14 +3,12 @@
         <record id="mail_solicitud_template" model="mail.template">
             <field name="name">Solicitud plantilla</field>
             <field name="model_id" ref="gestion.model_gestion_solicitud"/>
-            <field name="subject">Solicitud de Requerimiento: '{{ object.code }}'</field>
+            <field name="subject">Solicitud de Requerimiento: '{{ object.name }}'</field>
             <field name="email_from">{{ user.email }}</field>
             <field name="email_to">{{ object.coordinador.email }}</field>
             <field name="body_html" type="html">
                 <div style="font-family: Arial, sans-serif; font-size:  14px; color: #333;">
-                    <p>Estimado/a <t t-esc="object.coordinador.name"/>
-,</p>
-                    <p>Se ha realizado una nueva solicitud de requerimiento de cambio con el código: <t t-esc="object.code"/>
+                    <p>Se ha realizado una nueva solicitud de requerimiento de cambio con el código: <t t-esc="object.name"/>
 .</p>
                     <p>Fecha de emisión: <t t-esc="object.fecha_emision"/>
 .</p>

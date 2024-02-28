@@ -17,21 +17,26 @@ class directorio(models.Model):
         required=True,
         help="Introduzca el nombre del directorio",
     )  # Nombre del directorio
+
     descripcion = fields.Text()  # Descripcion del directorio
+
     documentos = fields.One2many(
         string="Documentos", comodel_name="gestion.documento", inverse_name="directorio"
     )  # Documentos del directorio
+
     departamentos = fields.Many2many(
         comodel_name="hr.department",
         relation="directorio_departamento_rel",
         column1="directorio_id",
         column2="departamento_id",
-        string="Departamentos",
+        string="Visible para los departamentos",
         required=True,
     )  # Departamentos que pueden acceder al departamento
+
     last_update = fields.Datetime(
         default=lambda self: fields.Datetime.now(), string="Fecha de creación"
     )  # Fecha de emision
+
     create_uid = fields.Many2one(
         "res.users", string="Creado por", readonly=True
     )  # Indica el creador del directorio
@@ -76,7 +81,7 @@ class documento(models.Model):
     solicitud = fields.One2many(
         string="Solicitudes", comodel_name="gestion.solicitud", inverse_name="documento"
     )  # Requerimientos de cambio para el documento
-    fileref = fields.Binary(string="Archivo")  # Archivo de formato pdf, word, ppt
+    fileref = fields.Binary()  # Archivo de formato pdf, word, ppt
     departamentos = fields.Many2many(
         comodel_name="hr.department",
         relation="documento_departamento_rel",
@@ -110,6 +115,21 @@ class documento(models.Model):
             documento.is_visible = (
                 self.env.user.department_id.id in documento.departamentos.ids
             ) or documento.is_admin
+
+
+# TODO arreglar las direcciones de los correos CHECKKKKK
+# TODO hacer los caminos fallidos del workflow de la solicitud SEMI-CHECKKK
+# TODO preguntar lo del many2many del empleado NOT CHECKK
+# TODO pautar la reunion de control SEMI-CHECKKK
+# TODO preguntar el codigo de los departamentos, en las lista maestra CHECKK
+# TODO adjuntar un los archivos al correo CHECKKKK
+
+# TODO arregla cuando el correo no tiene archivo adjunto
+# TODO hacer el flujo complejo de la solicitud
+# TODO arreglar los formularios
+# TODO generar los reportes de la solicitud
+# TODO arreglar lo del many2many del empleado
+# TODO ver lo de la publicacion
 
 
 class Solicitud(models.Model):
@@ -162,13 +182,12 @@ class Solicitud(models.Model):
         "hr.department", readonly=True, default=lambda self: self.env.user.department_id
     )
 
-    code = fields.Char(compute="_compute_code", default="SOL-NUEVA")
-    name = fields.Char(default=lambda self: self.code)
+    name = fields.Char(compute="_compute_code", default="SOL-NUEVA", string="Codigo")
 
     @api.depends()
     def _compute_code(self):
         for solicitud in self:
-            solicitud.code = f"SOL-{solicitud.id}"
+            solicitud.name = f"SOL-{solicitud.id}"
 
     email_from = fields.Char()
     email_to = fields.Char()
@@ -267,11 +286,24 @@ class Solicitud(models.Model):
         self.fecha_emision = fields.Datetime.now()
         template = self.env.ref("gestion.mail_solicitud_template")
         for rec in self:
+            attachment = self.env["ir.attachment"].create(
+                {
+                    "name": "solicitud.pdf",
+                    "datas": rec.documento.fileref,
+                    "type": "binary",
+                    "res_model": "gestion.documento",
+                    "res_id": rec.id,
+                }
+            )
+            template.attachment_ids = [(6, 0, [attachment.id])]
             template.send_mail(rec.id, force_send=True)
 
     def no_procedente(self):
         self.state = "borrador"
         self.fecha_emision = False
+        template = self.env.ref("gestion.mail_no_procede_template")
+        for rec in self:
+            template.send_mail(rec.id, force_send=True)
 
     def procedente(self):
         self.state = "elaboracion"
@@ -336,21 +368,8 @@ class Solicitud(models.Model):
         pass
 
 
-class Revision(models.Model):
-    _name = "gestion.revision"
-    _description = "gestion.revision"
+class Departamentos(models.Model):
+    _name = "hr.department"
+    _inherit = "hr.department"
 
-    code = fields.Char()
-    fecha_emision = fields.Datetime(default=fields.Datetime.now())
-    create_uid = fields.Many2one("res.users", string="Creado por", readonly=True)
-    descripcion = fields.Text()
-
-
-class Respuesta(models.Model):
-    _name = "gestion.respuesta"
-    _description = "gestion.respuesta"
-
-    code = fields.Char()
-    fecha_emision = fields.Datetime(default=fields.Datetime.now())
-    create_uid = fields.Many2one("res.users", string="Creado por", readonly=True)
-    descripcion = fields.Text()
+    code = fields.Char(string="Codigo")

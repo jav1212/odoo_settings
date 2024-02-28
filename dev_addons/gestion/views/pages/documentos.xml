@@ -21,13 +21,20 @@
                 <form string="Gestionar Documento">
                     <sheet>
                         <group attrs="{'invisible': [('is_visible','=',False)]}">
-                            <field name="code" readonly='1' />
-                            <field name="name" required="1"/>
-                            <field name="descripcion" widget="textarea"/>
-                            <field name="directorio"/>
-                            <field name="fileref" filename="name" widget="pdf_viewer" options="{'filename': 'name'}"/>
-                            <field name="departamentos" widget="many2many_tags" options="{'color_field': 'color'}" required='1'/>
-                            <field name='create_uid' widget="many2one_avatar_employee" readonly='1' />
+                            <group string='Información del documento'>
+                                <field name="code" readonly='1' />
+                                <field name="name" required="1"/>
+                                <field name="directorio"/>
+                                <field name="descripcion" widget="textarea"/>
+                            </group>
+                            <group string='Información externa'>
+                                <field name="departamentos" widget="many2many_tags" options="{'color_field': 'color'}" required='1'/>
+                                <field name='create_uid' widget="many2one_avatar_employee" readonly='1' />
+                            </group>
+                            <div>
+                                <field name="fileref" filename="name" widget='pdf_viewer'/>
+                            </div>
+
                             <field name='is_visible' readonly="1" />
                             <field name="is_admin" readonly="1" />
                         </group>

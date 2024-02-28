@@ -3,12 +3,14 @@
         <record id="mail_revisado_template" model="mail.template">
             <field name="name">Solicitud plantilla</field>
             <field name="model_id" ref="gestion.model_gestion_solicitud"/>
-            <field name="subject">Solicitud de Requerimiento Revisada: '{{ object.code }}'</field>
-            <field name="email_from">{{ user.mail }}</field>
+            <field name="subject">Solicitud de Requerimiento Revisada: '{{ object.name }}'</field>
+            <!--  TODO: cambiar por el que esta revisando -->
+            <field name="email_from">{{ user.email }}</field>
+            <!-- TODO: cambiar por el coordinador que esta asignado-->
             <field name="email_to">{{ object.create_uid.email }}</field>
             <field name="body_html" type="html">
                 <div style="font-family: Arial, sans-serif; font-size:  14px; color: #333;">
-                    <p>La solicitud de requerimiento de cambio con el código: <t t-esc="object.code"/>
+                    <p>La solicitud de requerimiento de cambio con el código: <t t-esc="object.name"/>
  ha sido revisada
 .</p>
                     <p>Fecha de emisión: <t t-esc="object.fecha_emision"/>

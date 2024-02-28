@@ -1,0 +1,30 @@
+<odoo>
+    <data noupdate="0">
+        <record id="mail_aprobado_template" model="mail.template">
+            <field name="name">Solicitud plantilla</field>
+            <field name="model_id" ref="gestion.model_gestion_solicitud"/>
+            <field name="subject">Solicitud de Requerimiento No Aprobada: '{{ object.name }}'</field>
+            <field name="email_from">{{ user.email }}</field>
+            <field name="email_to">{{ object.create_uid.email }}, {{ object.coordinador.email }}</field>
+            <field name="body_html" type="html">
+                <div style="font-family: Arial, sans-serif; font-size:  14px; color: #333;">
+                    <p>La solicitud de requerimiento de cambio con el código: <t t-esc="object.name"/>
+ no ha sido aprobada
+.</p>
+                    <p>Gerencia solicitante: <t t-esc="object.gerencia_solicitante.name"/>
+.</p>
+                    <p>Solicitante: <t t-esc="object.create_uid.name"/>
+.</p>
+                    <p>Descripción del requerimiento:</p>
+
+                    <t t-out="object.requerimiento"/>
+
+                    <p>No aprobada por las siguientes razones:</p>
+
+                    <t t-out="object.descripcion_no_conforme_aprobacion"/>
+
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

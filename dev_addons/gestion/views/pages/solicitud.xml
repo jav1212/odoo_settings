@@ -6,7 +6,7 @@
             <field name="arch" type="xml">
                 <tree string="Solicitudes">
                     <field name="state_color" invisible='1' />
-                    <field name="code"/>
+                    <field name="name"/>
                     <field name="fecha_emision"/>
                     <field name="gerencia_solicitante" options="{'color_field': 'color'}"/>
                     <field name="create_uid" widget="many2one_avatar_employee" readonly='1' />
@@ -41,9 +41,7 @@
                         </div>
                         <group >
                             <group string='Información de la solicitud'>
-
-                                <field name="code" readonly='1'/>
-                                <field name="name" readonly='1' invisible='1' />
+                                <field name="name" readonly='1'/>
                                 <field name="fecha_emision" readonly='1'/>
                                 <field name="fecha_revision" readonly='1' />
                                 <field name="fecha_aprobacion" readonly='1' />

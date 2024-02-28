@@ -3,12 +3,12 @@
         <record id="mail_aprobado_template" model="mail.template">
             <field name="name">Solicitud plantilla</field>
             <field name="model_id" ref="gestion.model_gestion_solicitud"/>
-            <field name="subject">Solicitud de Requerimiento Aprobada: '{{ object.code }}'</field>
+            <field name="subject">Solicitud de Requerimiento Aprobada: '{{ object.name }}'</field>
             <field name="email_from">{{ user.email }}</field>
             <field name="email_to">{{ object.create_uid.email }}, {{ object.coordinador.email }}</field>
             <field name="body_html" type="html">
                 <div style="font-family: Arial, sans-serif; font-size:  14px; color: #333;">
-                    <p>La solicitud de requerimiento de cambio con el código: <t t-esc="object.code"/>
+                    <p>La solicitud de requerimiento de cambio con el código: <t t-esc="object.name"/>
  ha sido aprobada
 .</p>
                     <p>Fecha de emisión: <t t-esc="object.fecha_emision"/>
