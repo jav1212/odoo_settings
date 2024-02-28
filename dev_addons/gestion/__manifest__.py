@@ -36,6 +36,9 @@
         "mail/mail_aprobado_template.xml",
         "mail/mail_publicado_template.xml",
         "mail/mail_no_procede_template.xml",
+        "mail/mail_no_aprobado_template.xml",
+        "mail/mail_no_conforme_template.xml",
+        "mail/mail_elaboracion_template.xml",
         "reports/report.xml",
     ],
     # only loaded in demonstration mode

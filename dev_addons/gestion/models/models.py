@@ -231,7 +231,12 @@ class Solicitud(models.Model):
     )
     requerimiento = fields.Text()
 
+    # ARCHIVOS
     documento = fields.Many2one("gestion.documento", string="Documento asociado")
+    documento_elaboracion = fields.Binary()
+    documento_revision = fields.Binary()
+
+    # PERSONAL
     create_uid = fields.Many2one("res.users", string="Creado por", readonly=True)
     reviewed_uid = fields.Many2one("res.users", string="Revisado por", readonly=True)
     approved_uid = fields.Many2one("res.users", string="Aprobado por", readonly=True)
@@ -310,9 +315,35 @@ class Solicitud(models.Model):
 
     def mandar_a_revision(self):
         self.state = "revision"
+        # template = self.env.ref("gestion.mail_elaboracion_template")
+        # for rec in self:
+        #    attachment = self.env["ir.attachment"].create(
+        #        {
+        #            "name": f"Elaborado-{rec.name}.pdf",
+        #            "datas": rec.documento_elaboracion,
+        #            "type": "binary",
+        #            "res_model": "gestion.solicitud",
+        #            "res_id": rec.id,
+        #        }
+        #    )
+        #    template.attachment_ids = [(6, 0, [attachment.id])]
+        #    template.send_mail(rec.id, force_send=True)
 
     def no_revisado(self):
         self.state = "elaboracion"
+        template = self.env.ref("gestion.mail_no_conforme_template")
+        for rec in self:
+            attachment = self.env["ir.attachment"].create(
+                {
+                    "name": f"Inconformidad-{rec.name}.pdf",
+                    "datas": rec.documento_revision,
+                    "type": "binary",
+                    "res_model": "gestion.solicitud",
+                    "res_id": rec.id,
+                }
+            )
+            template.attachment_ids = [(6, 0, [attachment.id])]
+            template.send_mail(rec.id, force_send=True)
 
     def revisado(self):
         self.state = "revisado"
@@ -329,6 +360,11 @@ class Solicitud(models.Model):
         self.state = "borrador"
         self.fecha_emision = False
         self.fecha_revision = False
+        self.approved_uid = False
+        self.reviewed_uid = False
+        template = self.env.ref("gestion.mail_no_aprobado_template")
+        for rec in self:
+            template.send_mail(rec.id, force_send=True)
 
     def aprobado(self):
         self.state = "aprobado"

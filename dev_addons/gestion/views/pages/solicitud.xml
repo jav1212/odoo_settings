@@ -23,7 +23,7 @@
                         <button string="Enviar Solicitud" name="send_email" type="object" class="oe_highlight" states='borrador' confirm='Se enviará un correo electrónico con esta solicitud, ¿Seguro que desea continuar?'/>
                         <button string="Procedente" name="procedente" type="object" class="oe_highlight" states="solicitado" groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador" />
                         <button string="No procedente" name="no_procedente" type="object" class="oe_highlight" states="solicitado" groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador" confirm='Se enviará un correo electrónico indicando la razón por la que la solicitud no procede, ¿Seguro que desea continuar?'/>
-                        <button string="Mandar a revisión" name="mandar_a_revision" type="object" class="oe_highlight" states="elaboracion" groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador"/>
+                        <button string="Mandar a revisión" name="mandar_a_revision" type="object" class="oe_highlight" states="elaboracion" groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador" confirm='Se enviará un correo electrónico adjuntando el documentos elaborado, ¿Seguro que desea continuar?'/>
                         <button string="Revisado" name="revisado" type="object" class="oe_highlight" states="revision" confirm='Se enviará un correo electrónico indicando que la solicitud fue revisada, ¿Seguro que desea continuar?' groups="gestion.group_gestion_jefes" perm_read="gestion.group_gestion_jefes"/>
                         <button string="No conforme" name="no_revisado" type="object" class="oe_highlight" states="revision" confirm='Se enviará un correo electrónico indicando la razón por la que la solicitud no fue revisada, ¿Seguro que desea continuar?' groups="gestion.group_gestion_jefes" perm_read="gestion.group_gestion_jefes"/>
                         <button string="Mandar a aprobación" name="mandar_a_aprobacion" type="object" class="oe_highlight" states="revisado" groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador"/>
@@ -77,8 +77,14 @@
                                         <field name="descripcion_no_procede" />
                                     </group>
                                 </page>
+                                <page name="form_elaboracion" string="Elaboración">
+                                    <group>
+                                        <field name="documento_elaboracion" filename="name" attrs= "{'required': [('state','=','elaboracion',)]}"/>
+                                    </group>
+                                </page>
                                 <page name="form_revisión" string="Evaluación de la revisión" attrs="{'invisible':[('state','!=','revision')]}">
                                     <group>
+                                        <field name="documento_revision" filename="name"/>
                                         <field name="descripcion_no_conforme_revision" />
                                     </group>
                                 </page>
