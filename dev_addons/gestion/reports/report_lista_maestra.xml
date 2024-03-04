@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_lista_maestra">
+
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <table class='table table-sm'>
+                    <thead >
+                        <tr>
+                            <th colspan="13" style="text-align: center; border: 1px solid black;">
+                                <h2>
+                                    <strong>LISTA MAESTRA DE DOCUMENTO</strong>
+                                </h2>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th name='numero' style="text-align: center; border: 1px solid black;">
+                                <strong>N°</strong>
+                            </th>
+                            <th name='unidad_padre' style="text-align: center; border: 1px solid black;">
+                                <strong>Unidad a la que pertence</strong>
+                            </th>
+                            <th name='codigo_documento' style="text-align: center; border: 1px solid black;">
+                                <strong>Codigo del documento</strong>
+                            </th>
+                            <th name='tipo_documento' style="text-align: center; border: 1px solid black;">
+                                <strong>Tipo de documento</strong>
+                            </th>
+                            <th name='nombre_documento' style="text-align: center; border: 1px solid black;">
+                                <strong>Nombre del documento</strong>
+                            </th>
+                            <th name='responsabilidades' style="text-align: center; border: 1px solid black;">
+                                <strong>Responsabilidades</strong>
+                            </th>
+                            <th name='fecha_elaboracion' style="text-align: center; border: 1px solid black;">
+                                <strong>Fecha elaboración</strong>
+                            </th>
+                            <th name='fecha_revision' style="text-align: center; border: 1px solid black;">
+                                <strong>Fecha revisión</strong>
+                            </th>
+                            <th name='fecha_aprobacion' style="text-align: center; border: 1px solid black;">
+                                <strong>Fecha aprobación</strong>
+                            </th>
+                            <th name='fecha_prox_revision' style="text-align: center; border: 1px solid black;">
+                                <strong>Fecha próxima revisión</strong>
+                            </th>
+                            <th name='revision' style="text-align: center; border: 1px solid black;">
+                                <strong>Revisión</strong>
+                            </th>
+                            <th name='forma_distribucion' style="text-align: center; border: 1px solid black;">
+                                <strong>Forma distribución</strong>
+                            </th>
+                            <th name='frecuencia_revision' style="text-align: center; border: 1px solid black;">
+                                <strong>Frecuencia de revisión</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="docs" t-as="documento">
+                            <td style="text-align: center; border: 1px solid black;">
+
+                                <span t-field='documento.id'/>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+                                <span t-field='documento.departamento_padre.name'/>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+                                <span t-field='documento.code'/>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+                                <span t-field='documento.tipo_documento'/>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+                                <span t-field='documento.name'/>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+
+                                <p>
+                                    <strong>
+                                        <span>Elaborado: </span>
+                                    </strong>
+                                    <span t-field='documento.create_uid.department_id.name'/>
+                                </p>
+                                <p>
+                                    <strong>
+                                        <span>Revisado: </span>
+                                    </strong>
+                                    <span t-field='documento.reviewed_uid.department_id.name'/>
+                                </p>
+                                <p>
+                                    <strong>
+                                        <span>Aprobado: </span>
+                                    </strong>
+                                    <span t-field='documento.approved_uid.department_id.name'/>
+                                </p>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+                                <strong>
+                                    <span>Fecha elaboración</span>
+                                </strong>
+                                <span t-field='documento.fecha_elaboracion'/>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+                                <strong>
+                                    <span>Fecha revisión</span>
+                                </strong>
+                                <span t-field='documento.fecha_revision'/>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+                                <strong>
+                                    <span>Fecha aprobación</span>
+                                </strong>
+                                <span t-field='documento.fecha_aprobacion'/>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+                                <strong>
+                                    <span>Fecha próxima revisión</span>
+                                </strong>
+                                <span t-field='documento.fecha_prox_revision'/>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+                                <span t-field='documento.revision'/>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+                                <span t-field='documento.forma_distribucion'/>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+                                <p>
+                                    <span t-field='documento.frecuencia_revision'/>
+ años</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+        </t>
+    </template>
+
+
+    <record id="report_lista_maestra_action" model="ir.actions.report">
+        <field name="name">Lista maestra</field>
+        <field name="model">gestion.documento</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">gestion.report_lista_maestra</field>
+        <field name="report_file">report_lista_maestra</field>
+        <field name="binding_model_id" ref='model_gestion_documento' />
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

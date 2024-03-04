@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_solicitud_detail">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="solicitud">
+                <t t-call="web.external_layout">
+                    <header>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <h3>Solicitud de Requerimiento <span t-field="solicitud.name"/>
+                                    </h3>
+                                    <p>
+                                        <strong>Documento Asociado:</strong>
+                                        <span t-field="solicitud.documento.name"/>
+                                        <strong>
+                                            <span t-field="solicitud.documento.code"/>
+                                        </strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    <div style="height:50px">
+                    </div>
+                    <div class="oe_structure">
+                        <div class="col-md-6">
+                            <h3>Detalles de la Solicitud</h3>
+                            <hr/>
+                            <p>
+                                <strong>Estado de la Solicitud:</strong>
+                                <span style="solicitud.state_color" t-field="solicitud.state"/>
+                            </p>
+                            <p>
+                                <strong>Gerencia Solicitante:</strong>
+                                <span t-field="solicitud.gerencia_solicitante.name"/>
+                            </p>
+                            <p>
+                                <strong>Fecha de Emisión:</strong>
+                                <span t-esc="solicitud.fecha_emision"/>
+                            </p>
+                            <p>
+                                <strong>Fecha de Revisión:</strong>
+                                <span t-esc="solicitud.fecha_revision"/>
+                            </p>
+                            <p>
+                                <strong>Fecha de Aprobación:</strong>
+                                <span t-esc="solicitud.fecha_aprobacion"/>
+                            </p>
+                            <p>
+                                <strong>Fecha de Publicación:</strong>
+                                <span t-esc="solicitud.fecha_publicacion"/>
+                            </p>
+                        </div>
+                    </div>
+                    <div style="height:50px">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Requerimiento</h3>
+                            <hr/>
+                            <p>
+                                <strong>Tipo de Requerimiento:</strong>
+                                <span t-field="solicitud.requerimiento_selection"/>
+                            </p>
+                            <p>
+                                <strong>Otros:</strong>
+                            </p>
+                            <p t-esc="solicitud.otros_documentos_description or '________'"/>
+                            <p>
+                                <strong>Origen de la Solicitud:</strong>
+                                <span t-field="solicitud.origen_solicitud"/>
+                            </p>
+                            <p>
+                                <strong>Descripción del Requerimiento:</strong>
+                            </p>
+                            <p t-esc="solicitud.requerimiento or '________'"/>
+                        </div>
+                    </div>
+                    <div style="height:50px">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Personal Involucrado</h3>
+                            <hr/>
+                            <p>
+                                <strong>Creado por:</strong>
+                                <span t-field="solicitud.create_uid.name"/>
+                            </p>
+                            <p>
+                                <strong>Revisado por:</strong>
+                                <span t-field="solicitud.reviewed_uid.name"/>
+                            </p>
+                            <p>
+                                <strong>Aprobado por:</strong>
+                                <span t-field="solicitud.approved_uid.name"/>
+                            </p>
+                            <p>
+                                <strong>Publicado por:</strong>
+                                <span t-field="solicitud.published_uid.name"/>
+                            </p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="report_solicitud_detail_action" model="ir.actions.report">
+        <field name="name">Solicitud de requerimiento</field>
+        <field name="model">gestion.solicitud</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">gestion.report_solicitud_detail</field>
+        <field name="report_file">gestion.report_solicitud_detail</field>
+        <field name="binding_model_id" ref='model_gestion_solicitud' />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

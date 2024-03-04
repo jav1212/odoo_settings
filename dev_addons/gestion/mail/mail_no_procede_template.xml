@@ -3,7 +3,7 @@
         <record id="mail_no_procede_template" model="mail.template">
             <field name="name">Solicitud plantilla</field>
             <field name="model_id" ref="gestion.model_gestion_solicitud"/>
-            <field name="subject">Solicitud de Requerimiento: '{{ object.name }} No Procede'</field>
+            <field name="subject">Solicitud de Requerimiento: '{{ object.code }} No Procede'</field>
             <field name="email_from">{{ user.email }}</field>
             <field name="email_to">{{ object.create_uid.email }}</field>
             <field name="body_html" type="html">

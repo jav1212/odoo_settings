@@ -12,6 +12,7 @@
       <field name="name">Documentos</field>
       <field name="res_model">gestion.documento</field>
       <field name="view_mode">tree,form</field>
+      <field name="domain">[('fecha_aprobacion','!=',False)]</field>
     </record>
 
     <!-- SECOND LEVEL MENU -->
@@ -112,6 +113,20 @@
       <field name="view_mode">tree,form</field>
     </record>
 
+    <record id="gestion.action_cambios_window" model="ir.actions.act_window">
+      <field name="name">Cambios</field>
+      <field name="res_model">gestion.solicitud</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[('state','=','publicado')]</field>
+    </record>
+
+    <!-- FOUR LEVEL MENU -->
+    <record id="gestion.action_tablero_window" model="ir.actions.act_window">
+      <field name="name">Tablero</field>
+      <field name="res_model">gestion.tablero</field>
+      <field name="view_mode">form,graph</field>
+    </record>
+
     <!-- Top menu item -->
     <menuitem id="gestion.menu_root" name="Gestion">
       <menuitem id="gestion.menu_1" name="Explorador de archivos">
@@ -126,6 +141,9 @@
       </menuitem>
       <menuitem id="gestion.menu_3" name="Requerimientos" groups="gestion.group_gestion_jefes">
         <menuitem id="gestion.menu_3_solicitudes_list" name="Solicitudes" action="gestion.action_solicitud_window"/>
+        <menuitem id="gestion.menu_3_cambios_list" name="Cambios" action="gestion.action_cambios_window"/>
+      </menuitem>
+      <menuitem id="gestion.menu_4" name="Tablero" groups="gestion.group_gestion_administrador" action="gestion.action_tablero_window">
       </menuitem>
     </menuitem>
   </data>

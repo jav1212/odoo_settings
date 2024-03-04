@@ -6,6 +6,8 @@
             <field name="subject">Solicitud de Requerimiento: '{{ object.name }}'</field>
             <field name="email_from">{{ user.email }}</field>
             <field name="email_to">{{ object.coordinador.email }}</field>
+            <field name="report_template" ref='report_solicitud_detail_action' />
+            <field name="report_name">Reporte_Solicitud_{{object.name}}</field>
             <field name="body_html" type="html">
                 <div style="font-family: Arial, sans-serif; font-size:  14px; color: #333;">
                     <p>Se ha realizado una nueva solicitud de requerimiento de cambio con el código: <t t-esc="object.name"/>

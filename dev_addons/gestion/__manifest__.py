@@ -15,7 +15,8 @@
     # for the full list
     "version": "0.1",
     # any module necessary for this one to work correctly
-    "depends": ["base", "web", "mail", "hr"],
+    "depends": ["base", "web", "mail", "hr", "board"],
+    "application": "True",
     # always loaded
     "data": [
         "security/security.xml",
@@ -30,6 +31,7 @@
         "views/pages/empleados.xml",
         "views/pages/respuestas.xml",
         "views/pages/revisiones.xml",
+        "views/pages/tablero.xml",
         "views/templates.xml",
         "mail/mail_solicitud_template.xml",
         "mail/mail_revisado_template.xml",
@@ -39,7 +41,9 @@
         "mail/mail_no_aprobado_template.xml",
         "mail/mail_no_conforme_template.xml",
         "mail/mail_elaboracion_template.xml",
-        "reports/report.xml",
+        "reports/report_solicitud_detail.xml",
+        "reports/report_lista_maestra.xml",
+        "reports/report_lista_cambio.xml",
     ],
     # only loaded in demonstration mode
     "demo": [

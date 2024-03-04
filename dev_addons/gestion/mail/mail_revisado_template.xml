@@ -7,7 +7,9 @@
             <!--  TODO: cambiar por el que esta revisando -->
             <field name="email_from">{{ user.email }}</field>
             <!-- TODO: cambiar por el coordinador que esta asignado-->
-            <field name="email_to">{{ object.create_uid.email }}</field>
+            <field name="email_to">{{ object.coordinador.email }}</field>
+            <field name="report_template" ref='report_solicitud_detail_action' />
+            <field name="report_name">Reporte_Solicitud_{{object.name}}</field>
             <field name="body_html" type="html">
                 <div style="font-family: Arial, sans-serif; font-size:  14px; color: #333;">
                     <p>La solicitud de requerimiento de cambio con el código: <t t-esc="object.name"/>

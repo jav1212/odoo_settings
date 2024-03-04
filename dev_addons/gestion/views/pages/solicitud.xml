@@ -50,57 +50,68 @@
                             <group string="Datos del personal">
                                 <field name="gerencia_solicitante" attrs= "{'readonly': [('state','!=','borrador',)]}"/>
                                 <field name="create_uid" widget="many2one_avatar_employee" readonly='1' />
-                                <field name="coordinador" domain='[("groups_id.name","=","Administradores de gestion")]' attrs= "{'readonly': [('state','!=','borrador',)]}" />
+                                <field name="coordinador" required='1' domain='[("groups_id.name","=","Administradores de gestion")]' attrs= "{'readonly': [('state','!=','borrador',)]}" />
                             </group>
                             <notebook>
+                                <!-- PAGINA PARA INDICAR EL TIPO DE REQUERIMIENTO -->
                                 <page name="requerimientos" string="Requerimiento">
                                     <group>
-                                        <field name="requerimiento_selection" widget="radio" attrs= "{'readonly': [('state','!=','borrador',)]}"/>
+                                        <field name="requerimiento_selection" widget="radio" attrs= "{'readonly': [('state','!=','borrador',)]}" required='1'/>
                                     </group>
                                     <group >
-                                        <field name="otros_documentos_description" attrs="{'invisible': [('requerimiento_selection', '!=', 'otros')],'readonly': [('state','!=','borrador',)]}"/>
+                                        <field name="otros_documentos_description" attrs="{'invisible': [('requerimiento_selection', '!=', 'Otros')],'readonly': [('state','!=','borrador',)]}"/>
                                     </group>
                                 </page>
+                                <!-- PAGINA PARA INDICAR EL ORIGEN DE LA SOLICITUD -->
                                 <page name="origen" string="Origen de la solicitud">
                                     <group >
-                                        <field name="origen_solicitud" widget="radio" attrs= "{'readonly': [('state','!=','borrador',)]}"/>
+                                        <field name="origen_solicitud" widget="radio" attrs= "{'readonly': [('state','!=','borrador',)]}" required='1'/>
                                     </group>
                                 </page>
+                                <!-- PAGINA PARA ADJUNTAR DOCUMENTOS Y REQUERIMIENTO -->
                                 <page name="documentos" string="Documento">
                                     <group>
-                                        <field name="documento" attrs= "{'readonly': [('state','!=','borrador',)]}"/>
-                                        <field name="requerimiento" attrs= "{'readonly': [('state','!=','borrador',)]}"/>
+                                        <field name="documento" attrs= "{'readonly': [('state','!=','borrador',)], 'required':[('requerimiento_selection','!=','Documento nuevo')], 'invisible':[('requerimiento_selection','=','Documento nuevo')]}" />
+                                        <field name="requerimiento" attrs= "{'readonly': [('state','!=','borrador',)]}" required='1'/>
                                     </group>
                                 </page>
+                                <!-- PAGINA PARA EVALUAR SI ES PROCEDENTE -->
                                 <page name="form_procedente" string="Evaluación procedente" attrs="{'invisible':[('state','!=','solicitado')]}">
                                     <group>
                                         <field name="descripcion_no_procede" />
                                     </group>
                                 </page>
-                                <page name="form_elaboracion" string="Elaboración">
+                                <!-- PAGINA PARA LA ELABORACION -->
+                                <page name="form_elaboracion" string="Elaboración" attrs="{'invisible':[('state','!=','elaboracion')]}">
                                     <group>
-                                        <field name="documento_elaboracion" filename="name" attrs= "{'required': [('state','=','elaboracion',)]}"/>
+                                        <field name="documento_elaboracion" widget='binary' filename='name' attrs= "{'required': [('state','=','elaboracion',)]}"/>
                                     </group>
                                 </page>
+                                <!-- PAGINA PARA LA REVISION -->
                                 <page name="form_revisión" string="Evaluación de la revisión" attrs="{'invisible':[('state','!=','revision')]}">
                                     <group>
-                                        <field name="documento_revision" filename="name"/>
+                                        <field name="documento_revision" widget='binary' filename='name' />
                                         <field name="descripcion_no_conforme_revision" />
                                     </group>
                                 </page>
+                                <!-- PAGINA PARA EL FORMULARIO DE LA APROBACION -->
                                 <page name="form_aprobación" string="Evaluación de la aprobación" attrs="{'invisible':[('state','!=','aprobacion')]}">
                                     <group>
                                         <field name="descripcion_no_conforme_aprobacion" />
                                     </group>
                                 </page>
+                                <!-- PAGINA PARA EL FORMULARIO DE LA PUBLICACION -->
                                 <page name="form_publicacion" string="Publicación" attrs="{'invisible':[('state','!=','publicacion')]}">
                                     <group>
-                                        <field name="descripcion_publicacion" />
+                                        <field name="documento_nuevo" attrs="{'required': [('requerimiento_selection','=','Documento nuevo',),('state','=','publicacion')], 'invisible':[('requerimiento_selection','!=','Documento nuevo')]}"/>
+                                        <field name="descripcion_publicacion" attrs="{'required':[('state','=','publicacion')]}"/>
+                                        <field name="descripcion_cambios" attrs="{'required':[('state','=','publicacion')]}" />
+                                        <field name="numero_cambio" attrs="{'required':[('state','=','publicacion')]}" />
+                                        <field name="fecha_cambio" readonly='1' />
                                     </group>
                                 </page>
                             </notebook>
                         </group>
-
                     </sheet>
                 </form>
             </field>

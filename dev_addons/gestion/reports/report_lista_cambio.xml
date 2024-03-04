@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_lista_cambio">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <table class='table table-sm'>
+                    <thead >
+                        <tr>
+                            <th colspan="6" style="text-align: center; border: 1px solid black;">
+                                <h4>
+                                    <strong>DESCRIPCIÓN DE LOS CAMBIOS DE LA DOCUMENTACIÓN</strong>
+                                </h4>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th name='nombre_documento' style="text-align: center; border: 1px solid black;">
+                                <strong>Nombre del documento</strong>
+                            </th>
+                            <th name='fecha' style="text-align: center; border: 1px solid black;">
+                                <strong>Fecha de la revision</strong>
+                            </th>
+                            <th name='codigo' style="text-align: center; border: 1px solid black;">
+                                <strong>Codigo de la revision</strong>
+                            </th>
+                            <th name='numero' style="text-align: center; border: 1px solid black;">
+                                <strong>Numero de la revision</strong>
+                            </th>
+                            <th name='descripcion' style="text-align: center; border: 1px solid black;">
+                                <strong>Descripción de los cambios realizados</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="docs" t-as="solicitud">
+                            <td style="text-align: center; border: 1px solid black;">
+                                <t t-if="solicitud.documento_nuevo.id">
+                                    <span t-field="solicitud.documento_nuevo.name"/>
+                                </t>
+                                <t t-else="">
+                                    <span t-field="solicitud.documento.name"/>
+                                </t>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+                                <span t-field='solicitud.fecha_revision'/>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+                                <t t-if="solicitud.documento_nuevo.id">
+                                    <span t-field="solicitud.documento_nuevo.code"/>
+                                </t>
+                                <t t-else="">
+                                    <span t-field="solicitud.documento.code"/>
+                                </t>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+                                <span t-field='solicitud.numero_cambio'/>
+                            </td>
+                            <td style="text-align: center; border: 1px solid black;">
+                                <span t-field='solicitud.descripcion_cambios'/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+        </t>
+    </template>
+
+
+    <record id="report_lista_cambio_action" model="ir.actions.report">
+        <field name="name">Cambios de la Documentación</field>
+        <field name="model">gestion.solicitud</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">gestion.report_lista_cambio</field>
+        <field name="report_file">report_lista_cambio</field>
+        <field name="binding_model_id" ref='model_gestion_solicitud' />
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

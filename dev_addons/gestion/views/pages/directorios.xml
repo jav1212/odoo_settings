@@ -30,7 +30,7 @@
                                 <field name='is_visible' readonly="1" />
                                 <field name='is_admin' readonly="1" />
                             </group>
-                            <field name="documentos"/>
+                            <field name="documentos" domain="[('fecha_aprobacion','!=',False)]"/>
                         </group>
                         <group attrs="{'invisible': [('is_visible','=',True)]}">
                             <h2>No tienes acceso a los directorios de este departamento</h2>

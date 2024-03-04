@@ -3,6 +3,7 @@
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 from odoo import _
+from datetime import timedelta
 
 # TODO: ask about ids at models fields
 # TODO: ask about employes and how they are going to store specially if is User o Partner
@@ -65,10 +66,8 @@ class documento(models.Model):
     _name = "gestion.documento"
     _description = "gestion.documento"
 
-    version = fields.Char()
-    comentarios_version = fields.Text()
-    code = fields.Char()
     version = fields.Integer(default=1)
+    comentarios_version = fields.Text()
     name = fields.Char(
         string="Nombre",
         required=True,
@@ -81,18 +80,74 @@ class documento(models.Model):
     solicitud = fields.One2many(
         string="Solicitudes", comodel_name="gestion.solicitud", inverse_name="documento"
     )  # Requerimientos de cambio para el documento
-    fileref = fields.Binary()  # Archivo de formato pdf, word, ppt
+    fileref = fields.Binary()  # Archivo de formato pdf
+    departamento_padre = fields.Many2one(
+        "hr.department",
+        string="Departamento padre",
+        required=True,
+    )
+    tipo_documento = fields.Selection(
+        [
+            ("P", "Procedimiento"),
+            ("I", "Instructivo"),
+            ("F", "Formulario"),
+            ("D", "Documento del SGC"),
+        ],
+        required=True,
+        default="D",
+    )
+    code = fields.Char(compute="_compute_code", default="XXX-YNNN")
+
+    def _compute_code(self):
+        for rec in self:
+            if rec.id < 10:
+                rec.code = (
+                    f"{rec.departamento_padre.code}-{rec.tipo_documento}00{rec.id}"
+                )
+            elif rec.id < 100:
+                rec.code = (
+                    f"{rec.departamento_padre.code}-{rec.tipo_documento}0{rec.id}"
+                )
+            else:
+                rec.code = f"{rec.departamento_padre.code}-{rec.tipo_documento}{rec.id}"
+
     departamentos = fields.Many2many(
         comodel_name="hr.department",
         relation="documento_departamento_rel",
         column1="directorio_id",
         column2="departamento_id",
-        string="Departamentos",
+        string="Visible para los departamentos",
         # compute="_compute_departments",
     )
 
-    last_update = fields.Datetime(
-        default=lambda self: fields.Datetime.now(), string="Fecha de creación"
+    # PERSONAL PARA LA LISTA MAESTRA
+
+    create_uid = fields.Many2one("res.users", string="Creado por", readonly=True)
+    reviewed_uid = fields.Many2one("res.users", string="Revisado por", readonly=True)
+    approved_uid = fields.Many2one("res.users", string="Aprobado por", readonly=True)
+
+    # FECHAS PARA LA LISTA MAESTRA
+
+    fecha_elaboracion = fields.Datetime(
+        default=lambda self: fields.Datetime.now(), string="Fecha de elaboración"
+    )
+    fecha_revision = fields.Datetime()
+    fecha_aprobacion = fields.Datetime()
+    fecha_publicacion = fields.Datetime()
+
+    #  PARA LA LISTA MAESTRA
+    frecuencia_revision = fields.Integer(default=0)
+    fecha_prox_revision = fields.Datetime()
+    # TODO: ELIMINAR ESTE CAMPO
+    cantidad_ultima_revision = fields.Integer()
+    revision = fields.Integer(readonly=True)
+    forma_distribucion = fields.Selection(
+        [
+            ("Electrónica", "Electrónica"),
+            ("Física", "Física"),
+            ("Electrónica y Física", "Electrónica y Física"),
+        ],
+        required=True,
     )
 
     create_uid = fields.Many2one("res.users", string="Creado por", readonly=True)
@@ -116,6 +171,9 @@ class documento(models.Model):
                 self.env.user.department_id.id in documento.departamentos.ids
             ) or documento.is_admin
 
+    def generate_lista_maestra(self):
+        p
+
 
 # TODO arreglar las direcciones de los correos CHECKKKKK
 # TODO hacer los caminos fallidos del workflow de la solicitud SEMI-CHECKKK
@@ -124,11 +182,11 @@ class documento(models.Model):
 # TODO preguntar el codigo de los departamentos, en las lista maestra CHECKK
 # TODO adjuntar un los archivos al correo CHECKKKK
 
-# TODO arregla cuando el correo no tiene archivo adjunto
-# TODO hacer el flujo complejo de la solicitud
-# TODO arreglar los formularios
-# TODO generar los reportes de la solicitud
-# TODO arreglar lo del many2many del empleado
+# TODO arregla cuando el correo no tiene archivo adjunto checkkkk
+# TODO hacer el flujo complejo de la solicitud semi-checkkk
+# TODO arreglar los formularios semi-checkkk
+# TODO generar los reportes de la solicitud semi-checkkk
+# TODO arreglar lo del many2many del empleado not checkkk
 # TODO ver lo de la publicacion
 
 
@@ -151,31 +209,29 @@ class Solicitud(models.Model):
         default="borrador",
         string="Estatus de la solicitud",
     )
-    state_color = fields.Char(
-        compute="_compute_state_color", store=False, default="red"
-    )
+    state_color = fields.Char(compute="_compute_state_color", default="red")
 
     @api.depends("state")
     def _compute_state_color(self):
         for record in self:
             if record.state == "borrador":
-                record.state_color = "red"
+                record.state_color = "color:red"
             elif record.state == "solicitado":
-                record.state_color = "yellow"
+                record.state_color = "color:orange"
             elif record.state == "elaboracion":
-                record.state_color = "blue"
+                record.state_color = "color:orange"
             elif record.state == "revision":
-                record.state_color = "orange"
+                record.state_color = "color:orange"
             elif record.state == "revisado":
-                record.state_color = "green"
+                record.state_color = "color:yellow"
             elif record.state == "aprobacion":
-                record.state_color = "purple"
+                record.state_color = "color:yellow"
             elif record.state == "aprobado":
-                record.state_color = "lime"
+                record.state_color = "color:green"
             elif record.state == "publicacion":
-                record.state_color = "pink"
+                record.state_color = "color:green"
             elif record.state == "publicado":
-                record.state_color = "cyan"
+                record.state_color = "color:green"
 
     fecha_emision = fields.Datetime()
     gerencia_solicitante = fields.Many2one(
@@ -195,15 +251,15 @@ class Solicitud(models.Model):
     # Requerimiento
     requerimiento_selection = fields.Selection(
         [
-            ("documento nuevo", "Documento nuevo"),
-            ("actualizacion", "Actualización"),
-            ("modificacion", "Modificación"),
-            ("procedimiento", "Procedimiento"),
-            ("instructivo", "Instructivo"),
-            ("formulario", "Formulario"),
-            ("manual", "Manual"),
-            ("políticas", "Políticas"),
-            ("otros", "Otros"),
+            ("Documento nuevo", "Documento nuevo"),
+            ("Actualización", "Actualización"),
+            ("Modificación", "Modificación"),
+            ("Procedimiento", "Procedimiento"),
+            ("Instructivo", "Instructivo"),
+            ("Formulario", "Formulario"),
+            ("Manual", "Manual"),
+            ("Políticas", "Políticas"),
+            ("Otros", "Otros"),
         ],
         string="Requerimientos",
     )
@@ -233,6 +289,9 @@ class Solicitud(models.Model):
 
     # ARCHIVOS
     documento = fields.Many2one("gestion.documento", string="Documento asociado")
+    documento_nuevo = fields.Many2one(
+        "gestion.documento", string="Documento nuevo asociado"
+    )
     documento_elaboracion = fields.Binary()
     documento_revision = fields.Binary()
 
@@ -243,7 +302,7 @@ class Solicitud(models.Model):
     published_uid = fields.Many2one("res.users", string="Publicado por", readonly=True)
     coordinador = fields.Many2one(
         "res.users",
-        string="Coordinadores",
+        string="Coordinador asignado",
     )
 
     # fields para cuando no procede
@@ -258,10 +317,24 @@ class Solicitud(models.Model):
     # fields para cuando se va a publicar
     descripcion_publicacion = fields.Text()
 
+    # FECHAS
     fecha_revision = fields.Datetime()
     fecha_aprobacion = fields.Datetime()
     fecha_publicacion = fields.Datetime()
 
+    # CAMBIOS
+    origen = fields.Selection(
+        [
+            ("Auditoría Interna", "Auditoría Interna"),
+            ("Auditoría Externa", "Auditoría Externa"),
+        ],
+        string="Origen del documento",
+    )
+    descripcion_cambios = fields.Text()
+    numero_cambio = fields.Integer()
+    fecha_cambio = fields.Datetime(default=lambda self: self.fecha_publicacion)
+
+    # SMART BUTTONS
     progress = fields.Integer(default=lambda self: 0, compute="_compute_progress")
 
     @api.depends("state")
@@ -291,16 +364,16 @@ class Solicitud(models.Model):
         self.fecha_emision = fields.Datetime.now()
         template = self.env.ref("gestion.mail_solicitud_template")
         for rec in self:
-            attachment = self.env["ir.attachment"].create(
-                {
-                    "name": "solicitud.pdf",
-                    "datas": rec.documento.fileref,
-                    "type": "binary",
-                    "res_model": "gestion.documento",
-                    "res_id": rec.id,
-                }
-            )
-            template.attachment_ids = [(6, 0, [attachment.id])]
+            # attachment = self.env["ir.attachment"].create(
+            #    {
+            #        "name": f"Documento-{rec.name}.pdf",
+            #        "datas": rec.documento.fileref,
+            #        "type": "binary",
+            #        "res_model": "gestion.documento",
+            #        "res_id": rec.id,
+            #    }
+            # )
+            # template.attachment_ids = [(6, 0, [attachment.id])]
             template.send_mail(rec.id, force_send=True)
 
     def no_procedente(self):
@@ -315,19 +388,19 @@ class Solicitud(models.Model):
 
     def mandar_a_revision(self):
         self.state = "revision"
-        # template = self.env.ref("gestion.mail_elaboracion_template")
-        # for rec in self:
-        #    attachment = self.env["ir.attachment"].create(
-        #        {
-        #            "name": f"Elaborado-{rec.name}.pdf",
-        #            "datas": rec.documento_elaboracion,
-        #            "type": "binary",
-        #            "res_model": "gestion.solicitud",
-        #            "res_id": rec.id,
-        #        }
-        #    )
-        #    template.attachment_ids = [(6, 0, [attachment.id])]
-        #    template.send_mail(rec.id, force_send=True)
+        template = self.env.ref("gestion.mail_elaboracion_template")
+        for rec in self:
+            attachment = self.env["ir.attachment"].create(
+                {
+                    "name": f"Elaborado-{rec.name}.pdf",
+                    "datas": rec.documento_elaboracion,
+                    "type": "binary",
+                    "res_model": "gestion.solicitud",
+                    "res_id": rec.id,
+                }
+            )
+            template.attachment_ids = [(6, 0, [attachment.id])]
+            template.send_mail(rec.id, force_send=True)
 
     def no_revisado(self):
         self.state = "elaboracion"
@@ -351,6 +424,17 @@ class Solicitud(models.Model):
         self.reviewed_uid = self.env.user
         template = self.env.ref("gestion.mail_revisado_template")
         for rec in self:
+            # TODO: fix the use case when the user cant create the document, thats a if
+            # attachment = self.env["ir.attachment"].create(
+            #    {
+            #        "name": f"Documento-{rec.name}.pdf",
+            #        "datas": rec.documento.fileref,
+            #        "type": "binary",
+            #        "res_model": "gestion.documento",
+            #        "res_id": rec.id,
+            #    }
+            # )
+            # template.attachment_ids = [(6, 0, [attachment.id])]
             template.send_mail(rec.id, force_send=True)
 
     def mandar_a_aprobacion(self):
@@ -372,6 +456,16 @@ class Solicitud(models.Model):
         self.approved_uid = self.env.user
         template = self.env.ref("gestion.mail_aprobado_template")
         for rec in self:
+            attachment = self.env["ir.attachment"].create(
+                {
+                    "name": f"Documento-{rec.name}.pdf",
+                    "datas": rec.documento.fileref,
+                    "type": "binary",
+                    "res_model": "gestion.documento",
+                    "res_id": rec.id,
+                }
+            )
+            template.attachment_ids = [(6, 0, [attachment.id])]
             template.send_mail(rec.id, force_send=True)
 
     def mandar_a_publicacion(self):
@@ -381,8 +475,40 @@ class Solicitud(models.Model):
         self.state = "publicado"
         self.fecha_publicacion = fields.Datetime.now()
         self.published_uid = self.env.user
+        if self.requerimiento_selection == "Documento nuevo":
+            self.documento_nuevo.create_uid = self.env.user
+            self.documento_nuevo.reviewed_uid = self.reviewed_uid
+            self.documento_nuevo.approved_uid = self.approved_uid
+            self.documento_nuevo.fecha_elaboracion = self.fecha_publicacion
+            self.documento_nuevo.fecha_revision = self.fecha_revision
+            self.documento_nuevo.fecha_prox_revision = self.fecha_revision + timedelta(
+                days=self.documento_nuevo.frecuencia_revision * 345
+            )
+            self.documento_nuevo.fecha_aprobacion = self.fecha_aprobacion
+            self.documento_nuevo.fecha_publicacion = self.fecha_publicacion
+            self.documento_nuevo.revision = 1
+        else:
+            self.documento.reviewed_uid = self.reviewed_uid
+            self.documento.approved_uid = self.approved_uid
+            self.documento.fecha_revision = self.fecha_revision
+            self.documento.fecha_prox_revision = self.fecha_revision + timedelta(
+                days=self.documento.frecuencia_revision * 345
+            )
+            self.documento.fecha_aprobacion = self.fecha_aprobacion
+            self.documento.fecha_publicacion = self.fecha_publicacion
+            self.documento.revision = self.documento.revision + 1
         template = self.env.ref("gestion.mail_publicado_template")
         for rec in self:
+            attachment = self.env["ir.attachment"].create(
+                {
+                    "name": f"Documento-{rec.name}.pdf",
+                    "datas": rec.documento.fileref,
+                    "type": "binary",
+                    "res_model": "gestion.documento",
+                    "res_id": rec.id,
+                }
+            )
+            template.attachment_ids = [(6, 0, [attachment.id])]
             template.send_mail(rec.id, force_send=True)
 
     # TODO: preguntar hasta que punto se puede cancelar la solicitud
@@ -409,3 +535,11 @@ class Departamentos(models.Model):
     _inherit = "hr.department"
 
     code = fields.Char(string="Codigo")
+
+
+class Tablero(models.Model):
+    _name = "gestion.tablero"
+    _description = "gestion.tablero"
+
+    def actualizar_lista_maestra(self):
+        pass

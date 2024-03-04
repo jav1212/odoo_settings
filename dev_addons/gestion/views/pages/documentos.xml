@@ -4,12 +4,13 @@
             <field name="name">gestion directorio list</field>
             <field name="model">gestion.documento</field>
             <field name="arch" type="xml">
-                <tree export_xlsx="false">
+                <tree export_xlsx='0' >
+                    <field name="code" readonly='1' />
                     <field name="name"/>
                     <field name='directorio'/>
                     <field name="departamentos" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                    <field name="last_update" />
-                    <field name="fileref"/>
+                    <field name="fecha_elaboracion" />
+                    <field name="fileref" string='Peso del archivo'/>
                 </tree>
             </field>
         </record>
@@ -25,23 +26,33 @@
                                 <field name="code" readonly='1' />
                                 <field name="name" required="1"/>
                                 <field name="directorio"/>
-                                <field name="descripcion" widget="textarea"/>
+                                <field name="tipo_documento" widget="radio"/>
                             </group>
                             <group string='Información externa'>
+                                <field name="departamento_padre" />
                                 <field name="departamentos" widget="many2many_tags" options="{'color_field': 'color'}" required='1'/>
                                 <field name='create_uid' widget="many2one_avatar_employee" readonly='1' />
                             </group>
-                            <div>
-                                <field name="fileref" filename="name" widget='pdf_viewer'/>
-                            </div>
-
-                            <field name='is_visible' readonly="1" />
-                            <field name="is_admin" readonly="1" />
+                            <group string="Control de cálidad">
+                                <field name="fecha_prox_revision" readonly='1'/>
+                                <field name="cantidad_ultima_revision" />
+                                <field name="revision" />
+                                <field name="forma_distribucion" widget='ratio'/>
+                                <field name="frecuencia_revision" required='1'/>
+                            </group>
+                            <group string="Fechas">
+                                <field name="fecha_elaboracion" readonly='1'/>
+                                <field name="fecha_revision" readonly='1'/>
+                                <field name="fecha_aprobacion" readonly='1'/>
+                                <field name="fecha_publicacion" readonly='1'/>
+                            </group>
+                            <field name="descripcion" widget="textarea"/>
+                            <field name="fileref" string='Archivo' filename="name" widget='pdf_viewer'/>
+                            <field name='is_visible' readonly="1" invisible='1'/>
+                            <field name="is_admin" readonly="1" invisible='1'/>
                         </group>
-                        <group attrs="{'invisible': [('is_visible','=',True)]}">
-                            <div>
-                                <h2>No tienes acceso a los documentos de este departamento</h2>
-                            </div>
+                        <group string='No tienes acceso a los documentos de este departamento' attrs="{'invisible': [('is_visible','=',True)]}">
+
                         </group>
                     </sheet>
                 </form>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="gestion" model="ir.ui.view">
+            <field name="name">model_name=.view.graph</field>
+            <field name="model">gestion.tablero</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Actualizar Lista Maestra" name="actualizar_lista_maestra" type="object" class="oe_highlight" confirm='Se actualizará la Lista Maestra de Documento, ¿Seguro que desea continuar?'/>
+                    </header>
+                    <board style='1-2'>
+
+                    </board>
+                </form>
+            </field>
+        </record>
+
+    </data>
+
+
+</odoo>
