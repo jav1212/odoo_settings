@@ -486,7 +486,9 @@ class Solicitud(models.Model):
             )
             self.documento_nuevo.fecha_aprobacion = self.fecha_aprobacion
             self.documento_nuevo.fecha_publicacion = self.fecha_publicacion
+            # TODO: FIX THE NUMERO CAMBIO
             self.documento_nuevo.revision = 1
+            self.numero_cambio = 0
         else:
             self.documento.reviewed_uid = self.reviewed_uid
             self.documento.approved_uid = self.approved_uid
@@ -497,6 +499,8 @@ class Solicitud(models.Model):
             self.documento.fecha_aprobacion = self.fecha_aprobacion
             self.documento.fecha_publicacion = self.fecha_publicacion
             self.documento.revision = self.documento.revision + 1
+            # TODO: FIX THE NUMERO CAMBIO
+            self.numero_cambio = self.numero_cambio + 1
         template = self.env.ref("gestion.mail_publicado_template")
         for rec in self:
             attachment = self.env["ir.attachment"].create(

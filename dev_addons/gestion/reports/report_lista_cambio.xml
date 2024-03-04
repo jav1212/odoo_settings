@@ -52,7 +52,12 @@
                                 </t>
                             </td>
                             <td style="text-align: center; border: 1px solid black;">
-                                <span t-field='solicitud.numero_cambio'/>
+                                <t t-if="solicitud.documento_nuevo.id">
+                                    <span t-field="solicitud.documento_nuevo.revision"/>
+                                </t>
+                                <t t-else="">
+                                    <span t-field="solicitud.documento.revision"/>
+                                </t>
                             </td>
                             <td style="text-align: center; border: 1px solid black;">
                                 <span t-field='solicitud.descripcion_cambios'/>
