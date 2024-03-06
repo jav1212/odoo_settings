@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="0">
-
+        <!-- TODO: ask about the implied ids -->
         <record id="module_gestion_category" model="ir.module.category">
             <field name="name">Gestion Documental</field>
             <field name="description">Category for the Gestion Documental module.</field>

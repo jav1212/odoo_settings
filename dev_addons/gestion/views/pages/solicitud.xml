@@ -20,7 +20,7 @@
             <field name="arch" type="xml">
                 <form string="Solicitud">
                     <header>
-                        <button string="Enviar Solicitud" name="send_email" type="object" class="oe_highlight" states='borrador' confirm='Se enviará un correo electrónico con esta solicitud, ¿Seguro que desea continuar?'/>
+                        <button string="Enviar Solicitud" name="send_email" type="object" class="oe_highlight" states='borrador' confirm='Se enviará un correo electrónico con esta solicitud, ¿Seguro que desea continuar?' />
                         <button string="Procedente" name="procedente" type="object" class="oe_highlight" states="solicitado" groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador" />
                         <button string="No procedente" name="no_procedente" type="object" class="oe_highlight" states="solicitado" groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador" confirm='Se enviará un correo electrónico indicando la razón por la que la solicitud no procede, ¿Seguro que desea continuar?'/>
                         <button string="Mandar a revisión" name="mandar_a_revision" type="object" class="oe_highlight" states="elaboracion" groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador" confirm='Se enviará un correo electrónico adjuntando el documentos elaborado, ¿Seguro que desea continuar?'/>
@@ -76,13 +76,13 @@
                                     </group>
                                 </page>
                                 <!-- PAGINA PARA EVALUAR SI ES PROCEDENTE -->
-                                <page name="form_procedente" string="Evaluación procedente" attrs="{'invisible':[('state','!=','solicitado')]}">
+                                <page name="form_procedente" string="Evaluación procedente" attrs="{'invisible':[('state','!=','solicitado')]}" groups='gestion.group_gestion_administrador'>
                                     <group>
                                         <field name="descripcion_no_procede" />
                                     </group>
                                 </page>
                                 <!-- PAGINA PARA LA ELABORACION -->
-                                <page name="form_elaboracion" string="Elaboración" attrs="{'invisible':[('state','!=','elaboracion')]}">
+                                <page name="form_elaboracion" string="Elaboración" attrs="{'invisible':[('state','!=','elaboracion')]}" groups='gestion.group_gestion_administrador'>
                                     <group>
                                         <field name="documento_elaboracion" widget='binary' filename='name' attrs= "{'required': [('state','=','elaboracion',)]}"/>
                                     </group>
@@ -95,13 +95,13 @@
                                     </group>
                                 </page>
                                 <!-- PAGINA PARA EL FORMULARIO DE LA APROBACION -->
-                                <page name="form_aprobación" string="Evaluación de la aprobación" attrs="{'invisible':[('state','!=','aprobacion')]}">
+                                <page name="form_aprobación" string="Evaluación de la aprobación" attrs="{'invisible':[('state','!=','aprobacion')]}" groups='gestion.group_gestion_director'>
                                     <group>
                                         <field name="descripcion_no_conforme_aprobacion" />
                                     </group>
                                 </page>
                                 <!-- PAGINA PARA EL FORMULARIO DE LA PUBLICACION -->
-                                <page name="form_publicacion" string="Publicación" attrs="{'invisible':[('state','!=','publicacion')]}">
+                                <page name="form_publicacion" string="Publicación" attrs="{'invisible':[('state','!=','publicacion')]}" groups='gestion.group_gestion_administrador'>
                                     <group>
                                         <field name="documento_nuevo" attrs="{'required': [('requerimiento_selection','=','Documento nuevo',),('state','=','publicacion')], 'invisible':[('requerimiento_selection','!=','Documento nuevo')]}"/>
                                         <field name="descripcion_publicacion" attrs="{'required':[('state','=','publicacion')]}"/>

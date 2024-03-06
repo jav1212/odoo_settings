@@ -337,6 +337,19 @@ class Solicitud(models.Model):
     # SMART BUTTONS
     progress = fields.Integer(default=lambda self: 0, compute="_compute_progress")
 
+    # VERIFICACIONES SOBRE EL USUARIO ACTUAL
+
+    is_creator = fields.Boolean(compute="_compute_is_creator", default=True)
+
+    @api.depends("create_uid")
+    def _compute_is_creator(self):
+        for rec in self:
+            if rec.create_uid != False:
+                if rec.create_uid.name == self.env.user.name:
+                    rec.is_creator = True
+                else:
+                    rec.is_creator = False
+
     @api.depends("state")
     def _compute_progress(self):
         for solicitud in self:
@@ -359,23 +372,24 @@ class Solicitud(models.Model):
             elif solicitud.state == "publicado":
                 solicitud.progress = 100
 
+    # DESDE GERENTES EN ADELANTE
     def send_email(self):
         self.state = "solicitado"
         self.fecha_emision = fields.Datetime.now()
         template = self.env.ref("gestion.mail_solicitud_template")
         for rec in self:
-            # attachment = self.env["ir.attachment"].create(
-            #    {
-            #        "name": f"Documento-{rec.name}.pdf",
-            #        "datas": rec.documento.fileref,
-            #        "type": "binary",
-            #        "res_model": "gestion.documento",
-            #        "res_id": rec.id,
-            #    }
-            # )
-            # template.attachment_ids = [(6, 0, [attachment.id])]
+            attachment = self.env["ir.attachment"].create(
+                {
+                    "name": f"Documento-{rec.name}.pdf",
+                    "datas": rec.documento.fileref,
+                    "type": "binary",
+                    "res_id": rec.id,
+                }
+            )
+            template.attachment_ids = [(6, 0, [attachment.id])]
             template.send_mail(rec.id, force_send=True)
 
+    # DESDE ADMINISTRADORES EN ADELANTE
     def no_procedente(self):
         self.state = "borrador"
         self.fecha_emision = False
@@ -383,9 +397,11 @@ class Solicitud(models.Model):
         for rec in self:
             template.send_mail(rec.id, force_send=True)
 
+    # DESDE ADMINISTRADORES EN ADELANTE
     def procedente(self):
         self.state = "elaboracion"
 
+    # DESDE ADMINISTRADORES EN ADELANTE
     def mandar_a_revision(self):
         self.state = "revision"
         template = self.env.ref("gestion.mail_elaboracion_template")
@@ -402,44 +418,61 @@ class Solicitud(models.Model):
             template.attachment_ids = [(6, 0, [attachment.id])]
             template.send_mail(rec.id, force_send=True)
 
+    # DESDE GERENTES EN ADELANTE
     def no_revisado(self):
-        self.state = "elaboracion"
-        template = self.env.ref("gestion.mail_no_conforme_template")
-        for rec in self:
-            attachment = self.env["ir.attachment"].create(
-                {
-                    "name": f"Inconformidad-{rec.name}.pdf",
-                    "datas": rec.documento_revision,
-                    "type": "binary",
-                    "res_model": "gestion.solicitud",
-                    "res_id": rec.id,
-                }
+        if self.is_creator == True:
+            self.state = "elaboracion"
+            template = self.env.ref("gestion.mail_no_conforme_template")
+            for rec in self:
+                attachment = self.env["ir.attachment"].create(
+                    {
+                        "name": f"Inconformidad-{rec.name}.pdf",
+                        "datas": rec.documento_revision,
+                        "type": "binary",
+                        "res_model": "gestion.solicitud",
+                        "res_id": rec.id,
+                    }
+                )
+                template.attachment_ids = [(6, 0, [attachment.id])]
+                template.send_mail(rec.id, force_send=True)
+        else:
+            raise ValidationError(
+                _(
+                    "No eres el creador de la solicitud, por lo tanto no puedes revisarla"
+                )
             )
-            template.attachment_ids = [(6, 0, [attachment.id])]
-            template.send_mail(rec.id, force_send=True)
 
+    # DESDE GERENTES EN ADELANTE
     def revisado(self):
-        self.state = "revisado"
-        self.fecha_revision = fields.Datetime.now()
-        self.reviewed_uid = self.env.user
-        template = self.env.ref("gestion.mail_revisado_template")
-        for rec in self:
-            # TODO: fix the use case when the user cant create the document, thats a if
-            # attachment = self.env["ir.attachment"].create(
-            #    {
-            #        "name": f"Documento-{rec.name}.pdf",
-            #        "datas": rec.documento.fileref,
-            #        "type": "binary",
-            #        "res_model": "gestion.documento",
-            #        "res_id": rec.id,
-            #    }
-            # )
-            # template.attachment_ids = [(6, 0, [attachment.id])]
-            template.send_mail(rec.id, force_send=True)
+        if self.is_creator == True:
+            self.state = "revisado"
+            self.fecha_revision = fields.Datetime.now()
+            self.reviewed_uid = self.env.user
+            template = self.env.ref("gestion.mail_revisado_template")
+            for rec in self:
+                # TODO: fix the use case when the user cant create the document, thats a if CHECCCCCK
+                attachment = self.env["ir.attachment"].create(
+                    {
+                        "name": f"Documento-{rec.name}.pdf",
+                        "datas": rec.documento.fileref,
+                        "type": "binary",
+                        "res_id": rec.id,
+                    }
+                )
+                template.attachment_ids = [(6, 0, [attachment.id])]
+                template.send_mail(rec.id, force_send=True)
+        else:
+            raise ValidationError(
+                _(
+                    "No eres el creador de la solicitud, por lo tanto no puedes revisarla"
+                )
+            )
 
+    # DESDE ADMINISTRADORES EN ADELANTE
     def mandar_a_aprobacion(self):
         self.state = "aprobacion"
 
+    # DESDE DIRECTORES EN ADELANTE
     def no_aprobado(self):
         self.state = "borrador"
         self.fecha_emision = False
@@ -450,6 +483,7 @@ class Solicitud(models.Model):
         for rec in self:
             template.send_mail(rec.id, force_send=True)
 
+    # DESDE DIRECTORES EN ADELANTE
     def aprobado(self):
         self.state = "aprobado"
         self.fecha_aprobacion = fields.Datetime.now()
@@ -468,9 +502,11 @@ class Solicitud(models.Model):
             template.attachment_ids = [(6, 0, [attachment.id])]
             template.send_mail(rec.id, force_send=True)
 
+    # DESDE ADMINISTRADORES EN ADELANTE
     def mandar_a_publicacion(self):
         self.state = "publicacion"
 
+    # DESDE ADMINISTRADORES EN ADELANTE
     def publicado(self):
         self.state = "publicado"
         self.fecha_publicacion = fields.Datetime.now()
@@ -515,7 +551,7 @@ class Solicitud(models.Model):
             template.attachment_ids = [(6, 0, [attachment.id])]
             template.send_mail(rec.id, force_send=True)
 
-    # TODO: preguntar hasta que punto se puede cancelar la solicitud
+    # TODO: preguntar hasta que punto se puede cancelar la solicitud hoy en la prueba
     def cancelado(self):
         if self.state == "solicitado":
             # se envia un correo indicando pq no procede
