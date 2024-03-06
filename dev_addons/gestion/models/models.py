@@ -136,7 +136,7 @@ class documento(models.Model):
     fecha_publicacion = fields.Datetime()
 
     #  PARA LA LISTA MAESTRA
-    frecuencia_revision = fields.Integer(default=0)
+    frecuencia_revision = fields.Integer()
     fecha_prox_revision = fields.Datetime()
     # TODO: ELIMINAR ESTE CAMPO
     cantidad_ultima_revision = fields.Integer()
@@ -149,6 +149,9 @@ class documento(models.Model):
         ],
         required=True,
     )
+
+    # PARA LA LISTA DE CAMBIOS
+    numero_cambio = fields.Integer()
 
     create_uid = fields.Many2one("res.users", string="Creado por", readonly=True)
 
@@ -188,6 +191,8 @@ class documento(models.Model):
 # TODO generar los reportes de la solicitud semi-checkkk
 # TODO arreglar lo del many2many del empleado not checkkk
 # TODO ver lo de la publicacion
+
+# TODO: bloquear el form al igual que el Validation raise error
 
 
 class Solicitud(models.Model):
@@ -570,13 +575,15 @@ class Solicitud(models.Model):
                 self.documento_nuevo.approved_uid = self.approved_uid
                 self.documento_nuevo.fecha_elaboracion = self.fecha_publicacion
                 self.documento_nuevo.fecha_revision = self.fecha_revision
-                self.documento_nuevo.fecha_prox_revision = self.fecha_revision + timedelta(
-                    days=self.documento_nuevo.frecuencia_revision * 345
+                self.documento_nuevo.fecha_prox_revision = (
+                    self.fecha_revision
+                    + timedelta(days=self.documento_nuevo.frecuencia_revision * 345)
                 )
                 self.documento_nuevo.fecha_aprobacion = self.fecha_aprobacion
                 self.documento_nuevo.fecha_publicacion = self.fecha_publicacion
-                # TODO: FIX THE NUMERO CAMBIO
                 self.documento_nuevo.revision = 1
+                # NOTE: cuando se crea el documento el cambio es 0
+                self.documento_nuevo.numero_cambio = 0
                 self.numero_cambio = 0
             else:
                 self.documento.reviewed_uid = self.reviewed_uid
@@ -588,8 +595,9 @@ class Solicitud(models.Model):
                 self.documento.fecha_aprobacion = self.fecha_aprobacion
                 self.documento.fecha_publicacion = self.fecha_publicacion
                 self.documento.revision = self.documento.revision + 1
-                # TODO: FIX THE NUMERO CAMBIO
-                self.numero_cambio = self.numero_cambio + 1
+                # NOTE: cuando no se crea el documento se tiene que aumentar el cambio en 1
+                self.numero_cambio = self.documento.numero_cambio + 1
+                self.documento.numero_cambio = self.documento.numero_cambio + 1
             template = self.env.ref("gestion.mail_publicado_template")
             for rec in self:
                 attachment = self.env["ir.attachment"].create(
