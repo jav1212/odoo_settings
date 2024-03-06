@@ -19,11 +19,24 @@ class directorio(models.Model):
         help="Introduzca el nombre del directorio",
     )  # Nombre del directorio
 
-    descripcion = fields.Text()  # Descripcion del directorio
+    descripcion = fields.Text(
+        string="Descripción del directorio",
+        help="Introduzca una breve descripción del directorio",
+    )  # Descripcion del directorio
 
     documentos = fields.One2many(
         string="Documentos", comodel_name="gestion.documento", inverse_name="directorio"
     )  # Documentos del directorio
+
+    suma_tamaños = fields.Integer(
+        string="Suma de Tamaños de Archivos", compute="_calcular_suma_tamaños"
+    )
+
+    @api.depends("documentos.tamaño_archivo")
+    def _calcular_suma_tamaños(self):
+        for record in self:
+            record.suma_tamaños = sum(doc.tamaño_archivo for doc in record.documentos)
+            record.suma_tamaños = record.suma_tamaños / (1024 * 1024)
 
     departamentos = fields.Many2many(
         comodel_name="hr.department",
@@ -36,13 +49,15 @@ class directorio(models.Model):
 
     last_update = fields.Datetime(
         default=lambda self: fields.Datetime.now(), string="Fecha de creación"
-    )  # Fecha de emision
+    )  # Fecha de emisión
 
     create_uid = fields.Many2one(
         "res.users", string="Creado por", readonly=True
     )  # Indica el creador del directorio
 
-    is_admin = fields.Boolean(compute="_compute_admin", default=True)
+    is_admin = fields.Boolean(
+        compute="_compute_admin", default=True
+    )  # Verifica si el usuario actual es administrador
 
     def _compute_admin(self):
         for directorio in self:
@@ -52,7 +67,7 @@ class directorio(models.Model):
 
     is_visible = fields.Boolean(
         compute="_compute_visible", default=True
-    )  # Verifica si es visible
+    )  # Verifica si el documento es visible para el usuario actual
 
     @api.depends("departamentos", "is_admin")
     def _compute_visible(self):
@@ -61,30 +76,54 @@ class directorio(models.Model):
                 self.env.user.department_id.id in directorio.departamentos.ids
             ) or directorio.is_admin
 
+    def action_name(self):
+        pass
+
 
 class documento(models.Model):
     _name = "gestion.documento"
     _description = "gestion.documento"
 
-    version = fields.Integer(default=1)
     name = fields.Char(
         string="Nombre",
         required=True,
         help="Introduzca el nombre del documento",
     )  # Nombre del documento
-    descripcion = fields.Text()  # Descripcion del documento
+
+    descripcion = fields.Text(
+        string="Descripción del directorio",
+        help="Introduzca una breve descripción del documento",
+    )
+    # Descripcion del documento
+
     directorio = fields.Many2one(
-        "gestion.directorio", required=True
+        "gestion.directorio", required=True, string="Directorio padre"
     )  # Directorio al que pertenece
-    solicitud = fields.One2many(
-        string="Solicitudes", comodel_name="gestion.solicitud", inverse_name="documento"
-    )  # Requerimientos de cambio para el documento
-    fileref = fields.Binary()  # Archivo de formato pdf
+
+    fileref = fields.Binary(
+        string="Archivo adjunto",
+        help="Adjunta un archivo en formato PDF, WORD, PPT o EXCEL",
+    )  # Archivo de formato pdf
+
+    tamaño_archivo = fields.Integer(
+        string="Tamaño del Archivo", compute="_calcular_tamaño_archivo"
+    )
+
+    @api.depends("fileref")
+    def _calcular_tamaño_archivo(self):
+        for record in self:
+            if record.fileref:
+                # Calcular el tamaño del archivo en bytes
+                record.tamaño_archivo = len(record.fileref)
+            else:
+                record.tamaño_archivo = 0
+
     departamento_padre = fields.Many2one(
         "hr.department",
         string="Departamento padre",
         required=True,
-    )
+    )  # Departamento padre del archivo
+
     tipo_documento = fields.Selection(
         [
             ("P", "Procedimiento"),
@@ -94,8 +133,12 @@ class documento(models.Model):
         ],
         required=True,
         default="D",
-    )
-    code = fields.Char(compute="_compute_code", default="XXX-YNNN")
+        string="Tipo de Documento",
+    )  # Tipo del documento
+
+    code = fields.Char(
+        compute="_compute_code", default="XXX-YNNN", string="Código del documento"
+    )  # Codigo del documento
 
     def _compute_code(self):
         for rec in self:
@@ -116,31 +159,53 @@ class documento(models.Model):
         column1="directorio_id",
         column2="departamento_id",
         string="Visible para los departamentos",
-        # compute="_compute_departments",
-    )
+    )  # Departamentos para los cuales es visible
 
     # PERSONAL PARA LA LISTA MAESTRA
+    create_uid = fields.Many2one(
+        "res.users", string="Creado por", readonly=True
+    )  # Creador del documento
 
-    create_uid = fields.Many2one("res.users", string="Creado por", readonly=True)
-    reviewed_uid = fields.Many2one("res.users", string="Revisado por", readonly=True)
-    approved_uid = fields.Many2one("res.users", string="Aprobado por", readonly=True)
+    reviewed_uid = fields.Many2one(
+        "res.users", string="Revisado por", readonly=True
+    )  # Revisor del documento
+
+    approved_uid = fields.Many2one(
+        "res.users", string="Aprobado por", readonly=True
+    )  # Aprobador del documento
 
     # FECHAS PARA LA LISTA MAESTRA
-
     fecha_elaboracion = fields.Datetime(
         default=lambda self: fields.Datetime.now(), string="Fecha de elaboración"
-    )
-    fecha_revision = fields.Datetime()
-    fecha_aprobacion = fields.Datetime()
-    fecha_publicacion = fields.Datetime()
+    )  # Fecha de elaboración del documento
+
+    fecha_revision = fields.Datetime(
+        string="Fecha de revisión"
+    )  # Fecha de revision del documento
+
+    fecha_aprobacion = fields.Datetime(
+        string="Fecha de aprobación"
+    )  # Fecha de aprobacion del documento
+
+    fecha_publicacion = fields.Datetime(
+        string="Fecha de publicación y distribución"
+    )  # Fecha de publicación y distribución del documento
 
     #  PARA LA LISTA MAESTRA
-    frecuencia_revision = fields.Integer()
-    fecha_prox_revision = fields.Datetime()
-    # TODO: ELIMINAR ESTE CAMPO
-    cantidad_ultima_revision = fields.Integer()
-    revision = fields.Integer(readonly=True)
-    revision_text = fields.Char()
+    frecuencia_revision = fields.Integer(
+        string="Frecuencia de la revisiones (años)"
+    )  # Frecuencia en la que se realiza la revisión en años
+
+    fecha_prox_revision = fields.Datetime(
+        string="Fecha de la próxima revisión"
+    )  # Fecha de la próxima revisión programada con el atributo frecuencia revisión
+
+    revision = fields.Integer(
+        readonly=True, string="Número de revisión vigente"
+    )  # Numero de revision vigente
+
+    revision_text = fields.Char()  # Campo de apoyo para los reportes
+
     forma_distribucion = fields.Selection(
         [
             ("Electrónica", "Electrónica"),
@@ -148,14 +213,15 @@ class documento(models.Model):
             ("Electrónica y Física", "Electrónica y Física"),
         ],
         required=True,
-    )
+        string="Forma de distribución del documento",
+    )  # Forma de distribucion del documento
 
     # PARA LA LISTA DE CAMBIOS
-    numero_cambio = fields.Integer()
+    numero_cambio = fields.Integer()  # Numero de cambios totales
 
-    create_uid = fields.Many2one("res.users", string="Creado por", readonly=True)
-
-    is_admin = fields.Boolean(compute="_compute_admin", default=True)
+    is_admin = fields.Boolean(
+        compute="_compute_admin", default=True
+    )  # Verifica si el usuario tiene permisos administrativos
 
     def _compute_admin(self):
         for documento in self:
@@ -165,7 +231,7 @@ class documento(models.Model):
 
     is_visible = fields.Boolean(
         compute="_compute_visible", default=True
-    )  # Verifica si es visible
+    )  # Verifica si es documento es visible para el usuario actual
 
     @api.depends("departamentos", "is_admin")
     def _compute_visible(self):
@@ -173,9 +239,6 @@ class documento(models.Model):
             documento.is_visible = (
                 self.env.user.department_id.id in documento.departamentos.ids
             ) or documento.is_admin
-
-    def generate_lista_maestra(self):
-        p
 
 
 # TODO arreglar las direcciones de los correos CHECKKKKK

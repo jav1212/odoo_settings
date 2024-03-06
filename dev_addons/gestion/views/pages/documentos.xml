@@ -35,7 +35,6 @@
                             </group>
                             <group string="Gestión documental">
                                 <field name="fecha_prox_revision" readonly='1'/>
-                                <field name="cantidad_ultima_revision" />
                                 <field name="revision" readonly='1' />
                                 <field name="forma_distribucion" widget='ratio'/>
                                 <field name="frecuencia_revision" required='1'/>
