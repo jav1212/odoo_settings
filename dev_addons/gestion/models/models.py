@@ -67,7 +67,6 @@ class documento(models.Model):
     _description = "gestion.documento"
 
     version = fields.Integer(default=1)
-    comentarios_version = fields.Text()
     name = fields.Char(
         string="Nombre",
         required=True,
@@ -141,6 +140,7 @@ class documento(models.Model):
     # TODO: ELIMINAR ESTE CAMPO
     cantidad_ultima_revision = fields.Integer()
     revision = fields.Integer(readonly=True)
+    revision_text = fields.Char()
     forma_distribucion = fields.Selection(
         [
             ("Electrónica", "Electrónica"),
@@ -328,18 +328,13 @@ class Solicitud(models.Model):
     fecha_publicacion = fields.Datetime()
 
     # CAMBIOS
-    origen = fields.Selection(
-        [
-            ("Auditoría Interna", "Auditoría Interna"),
-            ("Auditoría Externa", "Auditoría Externa"),
-        ],
-        string="Origen del documento",
-    )
     descripcion_cambios = fields.Text()
     numero_cambio = fields.Integer()
+    numero_cambio_text = fields.Char()
     fecha_cambio = fields.Datetime(default=lambda self: self.fecha_publicacion)
 
     # SMART BUTTONS
+
     progress = fields.Integer(default=lambda self: 0, compute="_compute_progress")
 
     # VERIFICACIONES SOBRE EL USUARIO ACTUAL
@@ -576,27 +571,31 @@ class Solicitud(models.Model):
                 self.documento_nuevo.fecha_elaboracion = self.fecha_publicacion
                 self.documento_nuevo.fecha_revision = self.fecha_revision
                 self.documento_nuevo.fecha_prox_revision = (
-                    self.fecha_revision
-                    + timedelta(days=self.documento_nuevo.frecuencia_revision * 345)
+                    self.fecha_aprobacion
+                    + timedelta(days=self.documento_nuevo.frecuencia_revision * 365)
                 )
                 self.documento_nuevo.fecha_aprobacion = self.fecha_aprobacion
                 self.documento_nuevo.fecha_publicacion = self.fecha_publicacion
-                self.documento_nuevo.revision = 1
+                self.documento_nuevo.revision = 0
+                self.documento_nuevo.revision_text = f"0{self.documento_nuevo.revision}"
                 # NOTE: cuando se crea el documento el cambio es 0
                 self.documento_nuevo.numero_cambio = 0
                 self.numero_cambio = 0
+                self.numero_cambio_text = f"0{self.numero_cambio}"
             else:
                 self.documento.reviewed_uid = self.reviewed_uid
                 self.documento.approved_uid = self.approved_uid
                 self.documento.fecha_revision = self.fecha_revision
-                self.documento.fecha_prox_revision = self.fecha_revision + timedelta(
-                    days=self.documento.frecuencia_revision * 345
+                self.documento.fecha_prox_revision = self.fecha_aprobacion + timedelta(
+                    days=self.documento.frecuencia_revision * 365
                 )
                 self.documento.fecha_aprobacion = self.fecha_aprobacion
                 self.documento.fecha_publicacion = self.fecha_publicacion
                 self.documento.revision = self.documento.revision + 1
+                self.documento.revision_text = f"0{self.documento.revision}"
                 # NOTE: cuando no se crea el documento se tiene que aumentar el cambio en 1
                 self.numero_cambio = self.documento.numero_cambio + 1
+                self.numero_cambio_text = f"0{self.numero_cambio}"
                 self.documento.numero_cambio = self.documento.numero_cambio + 1
             template = self.env.ref("gestion.mail_publicado_template")
             for rec in self:

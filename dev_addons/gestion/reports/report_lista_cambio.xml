@@ -53,10 +53,10 @@
                             </td>
                             <td style="text-align: center; border: 1px solid black;">
                                 <t t-if="solicitud.documento_nuevo.id">
-                                    <span t-field="solicitud.numero_cambio"/>
+                                    <span t-field="solicitud.numero_cambio_text"/>
                                 </t>
                                 <t t-else="">
-                                    <span t-field="solicitud.numero_cambio"/>
+                                    <span t-field="solicitud.numero_cambio_text"/>
                                 </t>
                             </td>
                             <td style="text-align: center; border: 1px solid black;">

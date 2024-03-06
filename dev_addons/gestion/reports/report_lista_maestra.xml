@@ -119,7 +119,7 @@
                                 <span t-field='documento.fecha_prox_revision'/>
                             </td>
                             <td style="text-align: center; border: 1px solid black;">
-                                <span t-field='documento.revision'/>
+                                <span t-field='documento.revision_text'/>
                             </td>
                             <td style="text-align: center; border: 1px solid black;">
                                 <span t-field='documento.forma_distribucion'/>
