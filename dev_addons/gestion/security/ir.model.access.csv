@@ -9,7 +9,8 @@ access_gestion_documento_empleado,gestion.documento,model_gestion_documento,gest
 access_gestion_documento_gerente,gestion.documento,model_gestion_documento,gestion.group_gestion_jefes,1,0,0,0
 access_gestion_documento_administrador,gestion.documento,model_gestion_documento,gestion.group_gestion_administrador,1,1,1,1
 access_gestion_documento_director,gestion.documento,model_gestion_documento,gestion.group_gestion_director,1,1,1,1
-access_gestion_solicitud,gestion.solicitud,model_gestion_solicitud,gestion.group_gestion_jefes,1,1,1,0
+access_gestion_solicitud_gerente,gestion.solicitud,model_gestion_solicitud,gestion.group_gestion_jefes,1,1,1,0
+access_gestion_solicitud_administrador,gestion.solicitud,model_gestion_solicitud,gestion.group_gestion_administrador,1,1,1,1
 access_gestion_tablero,gestion.tablero,model_gestion_tablero,gestion.group_gestion_administrador,1,1,1,1
 
 

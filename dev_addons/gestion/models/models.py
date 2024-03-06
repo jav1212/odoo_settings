@@ -350,6 +350,17 @@ class Solicitud(models.Model):
                 else:
                     rec.is_creator = False
 
+    is_assigned_coordinator = fields.Boolean(compute="_compute_is_assigned_coordinator")
+
+    @api.depends("coordinador")
+    def _compute_is_assigned_coordinator(self):
+        for rec in self:
+            if rec.coordinador != False:
+                if rec.coordinador.name == self.env.user.name:
+                    rec.is_assigned_coordinator = True
+                else:
+                    rec.is_assigned_coordinator = False
+
     @api.depends("state")
     def _compute_progress(self):
         for solicitud in self:
@@ -376,6 +387,7 @@ class Solicitud(models.Model):
     def send_email(self):
         self.state = "solicitado"
         self.fecha_emision = fields.Datetime.now()
+        self.create_uid = self.env.user
         template = self.env.ref("gestion.mail_solicitud_template")
         for rec in self:
             attachment = self.env["ir.attachment"].create(
@@ -391,36 +403,57 @@ class Solicitud(models.Model):
 
     # DESDE ADMINISTRADORES EN ADELANTE
     def no_procedente(self):
-        self.state = "borrador"
-        self.fecha_emision = False
-        template = self.env.ref("gestion.mail_no_procede_template")
-        for rec in self:
-            template.send_mail(rec.id, force_send=True)
+        if self.is_assigned_coordinator:
+            self.state = "borrador"
+            self.fecha_emision = False
+            template = self.env.ref("gestion.mail_no_procede_template")
+            for rec in self:
+                template.send_mail(rec.id, force_send=True)
+        else:
+            raise ValidationError(
+                _(
+                    "No eres el coordinador asignado de la solicitud, por lo tanto no puedes evaluar su estado de procedencia"
+                )
+            )
 
     # DESDE ADMINISTRADORES EN ADELANTE
     def procedente(self):
-        self.state = "elaboracion"
+        if self.is_assigned_coordinator:
+            self.state = "elaboracion"
+        else:
+            raise ValidationError(
+                _(
+                    "No eres el coordinador asignado de la solicitud, por lo tanto no puedes evaluar su estado de procedencia"
+                )
+            )
 
     # DESDE ADMINISTRADORES EN ADELANTE
     def mandar_a_revision(self):
-        self.state = "revision"
-        template = self.env.ref("gestion.mail_elaboracion_template")
-        for rec in self:
-            attachment = self.env["ir.attachment"].create(
-                {
-                    "name": f"Elaborado-{rec.name}.pdf",
-                    "datas": rec.documento_elaboracion,
-                    "type": "binary",
-                    "res_model": "gestion.solicitud",
-                    "res_id": rec.id,
-                }
+        if self.is_assigned_coordinator:
+            self.state = "revision"
+            template = self.env.ref("gestion.mail_elaboracion_template")
+            for rec in self:
+                attachment = self.env["ir.attachment"].create(
+                    {
+                        "name": f"Elaborado-{rec.name}.pdf",
+                        "datas": rec.documento_elaboracion,
+                        "type": "binary",
+                        "res_model": "gestion.solicitud",
+                        "res_id": rec.id,
+                    }
+                )
+                template.attachment_ids = [(6, 0, [attachment.id])]
+                template.send_mail(rec.id, force_send=True)
+        else:
+            raise ValidationError(
+                _(
+                    "No eres el coordinador asignado de la solicitud, por lo tanto no puedes mandar la solicitud al estado de revision"
+                )
             )
-            template.attachment_ids = [(6, 0, [attachment.id])]
-            template.send_mail(rec.id, force_send=True)
 
     # DESDE GERENTES EN ADELANTE
     def no_revisado(self):
-        if self.is_creator == True:
+        if self.is_creator:
             self.state = "elaboracion"
             template = self.env.ref("gestion.mail_no_conforme_template")
             for rec in self:
@@ -470,7 +503,14 @@ class Solicitud(models.Model):
 
     # DESDE ADMINISTRADORES EN ADELANTE
     def mandar_a_aprobacion(self):
-        self.state = "aprobacion"
+        if self.is_assigned_coordinator:
+            self.state = "aprobacion"
+        else:
+            raise ValidationError(
+                _(
+                    "No eres el coordinador asignado de la solicitud, por lo tanto no puedes mandar la solicitud al estado de aprobacion"
+                )
+            )
 
     # DESDE DIRECTORES EN ADELANTE
     def no_aprobado(self):
@@ -479,6 +519,11 @@ class Solicitud(models.Model):
         self.fecha_revision = False
         self.approved_uid = False
         self.reviewed_uid = False
+        self.descripcion_no_procede = False
+        self.descripcion_no_conforme_revision = False
+        self.descripcion_no_conforme_aprobacion = False
+        self.documento_elaboracion = False
+        self.documento_revision = False
         template = self.env.ref("gestion.mail_no_aprobado_template")
         for rec in self:
             template.send_mail(rec.id, force_send=True)
@@ -504,52 +549,66 @@ class Solicitud(models.Model):
 
     # DESDE ADMINISTRADORES EN ADELANTE
     def mandar_a_publicacion(self):
-        self.state = "publicacion"
+        if self.is_assigned_coordinator:
+            self.state = "publicacion"
+        else:
+            raise ValidationError(
+                _(
+                    "No eres el coordinador asignado de la solicitud, por lo tanto no puedes mandar la solicitud al estado de publicacion"
+                )
+            )
 
     # DESDE ADMINISTRADORES EN ADELANTE
     def publicado(self):
-        self.state = "publicado"
-        self.fecha_publicacion = fields.Datetime.now()
-        self.published_uid = self.env.user
-        if self.requerimiento_selection == "Documento nuevo":
-            self.documento_nuevo.create_uid = self.env.user
-            self.documento_nuevo.reviewed_uid = self.reviewed_uid
-            self.documento_nuevo.approved_uid = self.approved_uid
-            self.documento_nuevo.fecha_elaboracion = self.fecha_publicacion
-            self.documento_nuevo.fecha_revision = self.fecha_revision
-            self.documento_nuevo.fecha_prox_revision = self.fecha_revision + timedelta(
-                days=self.documento_nuevo.frecuencia_revision * 345
-            )
-            self.documento_nuevo.fecha_aprobacion = self.fecha_aprobacion
-            self.documento_nuevo.fecha_publicacion = self.fecha_publicacion
-            # TODO: FIX THE NUMERO CAMBIO
-            self.documento_nuevo.revision = 1
-            self.numero_cambio = 0
+        if self.is_assigned_coordinator:
+            self.state = "publicado"
+            self.fecha_publicacion = fields.Datetime.now()
+            self.published_uid = self.env.user
+            if self.requerimiento_selection == "Documento nuevo":
+                self.documento_nuevo.create_uid = self.env.user
+                self.documento_nuevo.reviewed_uid = self.reviewed_uid
+                self.documento_nuevo.approved_uid = self.approved_uid
+                self.documento_nuevo.fecha_elaboracion = self.fecha_publicacion
+                self.documento_nuevo.fecha_revision = self.fecha_revision
+                self.documento_nuevo.fecha_prox_revision = self.fecha_revision + timedelta(
+                    days=self.documento_nuevo.frecuencia_revision * 345
+                )
+                self.documento_nuevo.fecha_aprobacion = self.fecha_aprobacion
+                self.documento_nuevo.fecha_publicacion = self.fecha_publicacion
+                # TODO: FIX THE NUMERO CAMBIO
+                self.documento_nuevo.revision = 1
+                self.numero_cambio = 0
+            else:
+                self.documento.reviewed_uid = self.reviewed_uid
+                self.documento.approved_uid = self.approved_uid
+                self.documento.fecha_revision = self.fecha_revision
+                self.documento.fecha_prox_revision = self.fecha_revision + timedelta(
+                    days=self.documento.frecuencia_revision * 345
+                )
+                self.documento.fecha_aprobacion = self.fecha_aprobacion
+                self.documento.fecha_publicacion = self.fecha_publicacion
+                self.documento.revision = self.documento.revision + 1
+                # TODO: FIX THE NUMERO CAMBIO
+                self.numero_cambio = self.numero_cambio + 1
+            template = self.env.ref("gestion.mail_publicado_template")
+            for rec in self:
+                attachment = self.env["ir.attachment"].create(
+                    {
+                        "name": f"Documento-{rec.name}.pdf",
+                        "datas": rec.documento.fileref,
+                        "type": "binary",
+                        "res_model": "gestion.documento",
+                        "res_id": rec.id,
+                    }
+                )
+                template.attachment_ids = [(6, 0, [attachment.id])]
+                template.send_mail(rec.id, force_send=True)
         else:
-            self.documento.reviewed_uid = self.reviewed_uid
-            self.documento.approved_uid = self.approved_uid
-            self.documento.fecha_revision = self.fecha_revision
-            self.documento.fecha_prox_revision = self.fecha_revision + timedelta(
-                days=self.documento.frecuencia_revision * 345
+            raise ValidationError(
+                _(
+                    "No eres el coordinador asignado de la solicitud, por lo tanto no puedes publicar la solicitud"
+                )
             )
-            self.documento.fecha_aprobacion = self.fecha_aprobacion
-            self.documento.fecha_publicacion = self.fecha_publicacion
-            self.documento.revision = self.documento.revision + 1
-            # TODO: FIX THE NUMERO CAMBIO
-            self.numero_cambio = self.numero_cambio + 1
-        template = self.env.ref("gestion.mail_publicado_template")
-        for rec in self:
-            attachment = self.env["ir.attachment"].create(
-                {
-                    "name": f"Documento-{rec.name}.pdf",
-                    "datas": rec.documento.fileref,
-                    "type": "binary",
-                    "res_model": "gestion.documento",
-                    "res_id": rec.id,
-                }
-            )
-            template.attachment_ids = [(6, 0, [attachment.id])]
-            template.send_mail(rec.id, force_send=True)
 
     # TODO: preguntar hasta que punto se puede cancelar la solicitud hoy en la prueba
     def cancelado(self):

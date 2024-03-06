@@ -3,13 +3,13 @@
         <record id="mail_no_conforme_template" model="mail.template">
             <field name="name">Solicitud plantilla</field>
             <field name="model_id" ref="gestion.model_gestion_solicitud"/>
-            <field name="subject">Solicitud de Requerimiento No Revisada: '{{ object.name }}'</field>
+            <field name="subject">Solicitud de Requerimiento No Conforme: '{{ object.name }}'</field>
             <field name="email_from">{{ user.email }}</field>
             <field name="email_to"> {{ object.coordinador.email }}</field>
             <field name="body_html" type="html">
                 <div style="font-family: Arial, sans-serif; font-size:  14px; color: #333;">
                     <p>La solicitud de requerimiento de cambio con el código: <t t-esc="object.name"/>
- no ha sido revisada
+ no ha sido aprobada en fase de revisión
 .</p>
                     <p>Gerencia solicitante: <t t-esc="object.gerencia_solicitante.name"/>
 .</p>
