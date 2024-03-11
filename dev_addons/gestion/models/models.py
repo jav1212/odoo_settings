@@ -258,6 +258,18 @@ class documento(models.Model):
 # TODO: bloquear el form al igual que el Validation raise error
 
 
+# TODO: agregar documento para agregar en la solicitud nueva
+# TODO: agregar la condicion de nuevo cuando crea un nuevo documento por solicitud
+# TODO: agregar pestaña de cancelados al workflow de la solicitud
+# TODO: agregar validacion de que no esta procedente, revisado, aprobado y dar los comentarios de porque no
+# TODO: cambiar el flujo de la negacion de aprobacion de borrador a en elaboracion
+# TODO: agregar el codigo al nombre al inicio y agregar la revision al final
+# TODO: eliminar el numero de cambios en el formulario de publicacion
+# TODO: agregar el nombre al reporte de solicitud
+# TODO: cambiar las solicitud publicadas a la pantalla de cambios
+# TODO: revisar el nombre de la busqueda
+
+
 class Solicitud(models.Model):
     _name = "gestion.solicitud"
     _description = "gestion.solicitud"
