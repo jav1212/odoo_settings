@@ -51,7 +51,7 @@
                             <field name="is_admin" readonly="1" invisible='1'/>
                         </group>
                         <group string='No tienes acceso a los documentos de este departamento' attrs="{'invisible': [('is_visible','=',True)]}">
-                            <h2>No tienes acceso a los documentos de este departamento</h2>
+
                         </group>
                     </sheet>
                 </form>
