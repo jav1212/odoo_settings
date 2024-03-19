@@ -12,10 +12,23 @@
                                     </h3>
                                     <p>
                                         <strong>Documento Asociado:</strong>
-                                        <span t-field="solicitud.documento.name"/>
+                                        <t t-if="not solicitud.documentos_asociados">
+                                            <span>Documentos nuevo</span>
+                                            <!-- Aquí va el contenido que quieres mostrar cuando documentos_asociados es False -->
+                                        </t>
+                                        <t t-else="">
+                                            <t t-foreach="solicitud.documentos_asociados" t-as="docs">
+                                                <span t-field="docs.code" />
+                                                <span t-field="docs.name" />
+                                            </t>
+                                            <!-- Aquí va el contenido que quieres mostrar cuando documentos_asociados es True -->
+                                        </t>
+
+                                        <!-- TODO: fix this tomorrow morning <span t-field="solicitud.documento.name"/>
                                         <strong>
                                             <span t-field="solicitud.documento.code"/>
-                                        </strong>
+                                        </strong> -->
+
                                     </p>
                                 </div>
                             </div>

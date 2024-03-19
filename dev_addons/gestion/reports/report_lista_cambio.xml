@@ -32,36 +32,23 @@
                     </thead>
                     <tbody>
                         <tr t-foreach="docs" t-as="solicitud">
-                            <td style="text-align: center; border: 1px solid black;">
-                                <t t-if="solicitud.documento_nuevo.id">
-                                    <span t-field="solicitud.documento_nuevo.name"/>
-                                </t>
-                                <t t-else="">
-                                    <span t-field="solicitud.documento.name"/>
-                                </t>
-                            </td>
-                            <td style="text-align: center; border: 1px solid black;">
-                                <span t-field='solicitud.fecha_revision'/>
-                            </td>
-                            <td style="text-align: center; border: 1px solid black;">
-                                <t t-if="solicitud.documento_nuevo.id">
-                                    <span t-field="solicitud.documento_nuevo.code"/>
-                                </t>
-                                <t t-else="">
-                                    <span t-field="solicitud.documento.code"/>
-                                </t>
-                            </td>
-                            <td style="text-align: center; border: 1px solid black;">
-                                <t t-if="solicitud.documento_nuevo.id">
+                            <tr t-foreach="solicitud.documentos_merged" t-as="documento">
+                                <td style="text-align: center; border: 1px solid black;">
+                                    <span t-field="documento.name"/>
+                                </td>
+                                <td style="text-align: center; border: 1px solid black;">
+                                    <span t-field='solicitud.fecha_revision'/>
+                                </td>
+                                <td style="text-align: center; border: 1px solid black;">
+                                    <span t-field="documento.code"/>
+                                </td>
+                                <td style="text-align: center; border: 1px solid black;">
                                     <span t-field="solicitud.numero_cambio_text"/>
-                                </t>
-                                <t t-else="">
-                                    <span t-field="solicitud.numero_cambio_text"/>
-                                </t>
-                            </td>
-                            <td style="text-align: center; border: 1px solid black;">
-                                <span t-field='solicitud.descripcion_cambios'/>
-                            </td>
+                                </td>
+                                <td style="text-align: center; border: 1px solid black;">
+                                    <span t-field='solicitud.descripcion_cambios'/>
+                                </td>
+                            </tr>
                         </tr>
                     </tbody>
                 </table>

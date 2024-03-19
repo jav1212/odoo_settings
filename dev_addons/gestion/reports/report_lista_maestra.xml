@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_lista_maestra">
-
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
-                <table class='table table-sm'>
+                <table class='table table-sm' style="width: 100%; border-collapse: collapse;">
                     <thead >
                         <tr>
                             <th colspan="13" style="text-align: center; border: 1px solid black;">
@@ -70,7 +69,7 @@
                             <td style="text-align: center; border: 1px solid black;">
                                 <span t-field='documento.tipo_documento'/>
                             </td>
-                            <td style="text-align: center; border: 1px solid black;">
+                            <td style="text-align: center; border: 1px solid black; word-wrap: break-word; ">
                                 <span t-field='documento.name'/>
                             </td>
                             <td style="text-align: center; border: 1px solid black;">

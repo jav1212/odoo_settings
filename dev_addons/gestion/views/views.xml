@@ -111,6 +111,7 @@
       <field name="name">Solicitudes</field>
       <field name="res_model">gestion.solicitud</field>
       <field name="view_mode">tree,form</field>
+      <field name="domain">[('state','!=','publicado')]</field>
     </record>
 
     <record id="gestion.action_cambios_window" model="ir.actions.act_window">

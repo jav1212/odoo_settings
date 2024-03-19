@@ -10,7 +10,7 @@
                     <field name="fecha_emision"/>
                     <field name="gerencia_solicitante" options="{'color_field': 'color'}"/>
                     <field name="create_uid" widget="many2one_avatar_employee" readonly='1' />
-                    <field name="state" widget="badge" decoration-danger="state == 'borrador'" decoration-success="state in ['aprobado', 'publicacion', 'publicado']" decoration-warning="state in ['solicitado', 'elaboracion', 'revision', 'revisado', 'aprobacion']"/>
+                    <field name="state" widget="badge" decoration-primary="state == 'borrador'" decoration-danger="state == 'cancelado'" decoration-success="state in ['aprobado', 'publicacion', 'publicado']" decoration-warning="state in ['solicitado', 'elaboracion', 'revision', 'revisado', 'aprobacion']"/>
                 </tree>
             </field>
         </record>
@@ -31,7 +31,7 @@
                         <button string="No aprobado" name="no_aprobado" type="object" class="oe_highlight" states='aprobacion' confirm='Se enviará un correo electrónico indicando que la solicitud fue aprobada, ¿Seguro que desea continuar?' groups="gestion.group_gestion_director" perm_read="gestion.group_gestion_director"/>
                         <button string="Mandar a publicación" name="mandar_a_publicacion" type="object" class="oe_highlight" states="aprobado" groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador"/>
                         <button string="Publicado" name="publicado" type="object" class="oe_highlight" states='publicacion' confirm='Se enviará un correo electrónico indicando la publicación del documento, ¿Seguro que desea continuar?' groups="gestion.group_gestion_administrador" perm_read="gestion.group_gestion_administrador"/>
-                        <field name="state" widget="statusbar" statusbar_colors='{"borrador":"red","solicitado":"yellow"}'/>
+                        <field name="state" widget="statusbar" />
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
@@ -71,7 +71,8 @@
                                 <!-- PAGINA PARA ADJUNTAR DOCUMENTOS Y REQUERIMIENTO -->
                                 <page name="documentos" string="Documento">
                                     <group>
-                                        <field name="documento" attrs= "{'readonly': [('state','!=','borrador',)], 'required':[('requerimiento_selection','!=','Documento nuevo')], 'invisible':[('requerimiento_selection','=','Documento nuevo')]}" />
+                                        <field name="archivos" attrs= "{'readonly': [('state','!=','borrador',)]}"/>
+                                        <field name="documentos_asociados" attrs= "{'readonly': [('state','!=','borrador',)], 'required':[('requerimiento_selection','!=','Documento nuevo')], 'invisible':[('requerimiento_selection','=','Documento nuevo')]}"/>
                                         <field name="requerimiento" attrs= "{'readonly': [('state','!=','borrador',)]}" required='1'/>
                                     </group>
                                 </page>
@@ -84,13 +85,13 @@
                                 <!-- PAGINA PARA LA ELABORACION -->
                                 <page name="form_elaboracion" string="Elaboración" attrs="{'invisible':[('state','!=','elaboracion')]}" groups='gestion.group_gestion_administrador'>
                                     <group>
-                                        <field name="documento_elaboracion" widget='binary' filename='name' attrs= "{'required': [('state','=','elaboracion',)]}"/>
+                                        <field string="Archivos" name="archivos_elaboracion" attrs= "{'required': [('state','=','elaboracion',)]}"/>
                                     </group>
                                 </page>
                                 <!-- PAGINA PARA LA REVISION -->
                                 <page name="form_revisión" string="Evaluación de la revisión" attrs="{'invisible':[('state','!=','revision')]}">
                                     <group>
-                                        <field name="documento_revision" widget='binary' filename='name' />
+                                        <field name="archivos_revision" />
                                         <field name="descripcion_no_conforme_revision" />
                                     </group>
                                 </page>
@@ -103,11 +104,10 @@
                                 <!-- PAGINA PARA EL FORMULARIO DE LA PUBLICACION -->
                                 <page name="form_publicacion" string="Publicación" attrs="{'invisible':[('state','!=','publicacion')]}" groups='gestion.group_gestion_administrador'>
                                     <group>
-                                        <field name="documento_nuevo" attrs="{'required': [('requerimiento_selection','=','Documento nuevo',),('state','=','publicacion')], 'invisible':[('requerimiento_selection','!=','Documento nuevo')]}"/>
+                                        <field name="documentos_nuevos_asociados" attrs="{'required': [('requerimiento_selection','=','Documento nuevo',),('state','=','publicacion')], 'invisible':[('requerimiento_selection','!=','Documento nuevo')]}"/>
                                         <field name="descripcion_publicacion" attrs="{'required':[('state','=','publicacion')]}"/>
                                         <field name="descripcion_cambios" attrs="{'required':[('state','=','publicacion')]}" />
-                                        <field name="numero_cambio" attrs="{'required':[('state','=','publicacion')]}" />
-                                        <field name="fecha_cambio" readonly='1' />
+                                        <field name="fecha_cambio" readonly='1' invisible="1"/>
                                     </group>
                                 </page>
                             </notebook>

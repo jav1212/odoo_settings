@@ -32,6 +32,7 @@
         "views/pages/respuestas.xml",
         "views/pages/revisiones.xml",
         "views/pages/tablero.xml",
+        "views/pages/archivos.xml",
         "views/templates.xml",
         "mail/mail_solicitud_template.xml",
         "mail/mail_revisado_template.xml",

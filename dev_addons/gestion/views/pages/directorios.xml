@@ -32,8 +32,8 @@
                             </group>
                             <field name="documentos" domain="[('fecha_aprobacion','!=',False)]"/>
                         </group>
-                        <group attrs="{'invisible': [('is_visible','=',True)]}">
-                            <h2>No tienes acceso a los directorios de este departamento</h2>
+                        <group string='No tienes acceso a los directorios de este departamento' attrs="{'invisible': [('is_visible','=',True)]}">
+
                         </group>
                     </sheet>
                 </form>
