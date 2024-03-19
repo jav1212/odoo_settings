@@ -144,8 +144,10 @@
         <menuitem id="gestion.menu_3_solicitudes_list" name="Solicitudes" action="gestion.action_solicitud_window"/>
         <menuitem id="gestion.menu_3_cambios_list" name="Cambios" action="gestion.action_cambios_window"/>
       </menuitem>
-      <menuitem id="gestion.menu_4" name="Tablero" groups="gestion.group_gestion_administrador" action="gestion.action_tablero_window">
-      </menuitem>
+      <!--
+        <menuitem id="gestion.menu_4" name="Tablero" groups="gestion.group_gestion_administrador" action="gestion.action_tablero_window">
+        </menuitem>
+      -->
     </menuitem>
   </data>
 </odoo>

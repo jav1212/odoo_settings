@@ -5,10 +5,6 @@ from odoo.exceptions import ValidationError
 from odoo import _
 from datetime import timedelta
 
-# TODO: ask about ids at models fields
-# TODO: ask about employes and how they are going to store specially if is User o Partner
-
-
 class directorio(models.Model):
     _name = "gestion.directorio"
     _description = "gestion.directorio"
@@ -812,7 +808,6 @@ class Solicitud(models.Model):
                 )
             )
 
-    # TODO: preguntar hasta que punto se puede cancelar la solicitud hoy en la prueba
     def cancelado(self):
         if self.state == "solicitado":
             # se envia un correo indicando pq no procede
