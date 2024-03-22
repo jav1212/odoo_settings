@@ -50,7 +50,10 @@
                             <group string="Datos del personal">
                                 <field name="gerencia_solicitante" attrs= "{'readonly': [('state','!=','borrador',)]}"/>
                                 <field name="create_uid" widget="many2one_avatar_employee" readonly='1' />
-                                <field name="coordinador" required='1' domain='[("groups_id.name","=","Administradores de gestion")]' attrs= "{'readonly': [('state','!=','borrador',)]}" />
+                                <field name="coordinador" widget="many2one_avatar_employee" required='1' domain='[("groups_id.name","=","Administradores de gestion")]' attrs= "{'readonly': [('state','!=','borrador',)]}" />
+                                <field name="revisor" widget="many2one_avatar_employee" attrs= "{'readonly': [('state','!=','borrador',)]}" />
+                                <field name="aprobador" widget="many2one_avatar_employee" attrs= "{'readonly': [('state','!=','borrador',)]}" />
+                                <field name="revisor_y_aprobador" widget="many2one_avatar_employee" attrs= "{'readonly': [('state','!=','borrador',)]}" />
                             </group>
                             <notebook>
                                 <!-- PAGINA PARA INDICAR EL TIPO DE REQUERIMIENTO -->

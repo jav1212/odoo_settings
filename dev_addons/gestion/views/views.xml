@@ -6,6 +6,7 @@
       <field name="name">Directorios</field>
       <field name="res_model">gestion.directorio</field>
       <field name="view_mode">tree,form</field>
+      <field name="domain">[('directorio_padre','=',False)]</field>
     </record>
 
     <record id="gestion.action_documento_window" model="ir.actions.act_window">
@@ -17,7 +18,7 @@
 
     <!-- SECOND LEVEL MENU -->
 
-    <!-- 
+    <!--
     <record id="gestion.departamento_kanban" model="ir.actions.act_window.view">
       <field name="sequence" eval='1'></field>
       <field name="view_mode">kanban</field>

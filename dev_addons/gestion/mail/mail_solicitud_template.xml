@@ -10,6 +10,11 @@
             <field name="report_name">Reporte_Solicitud_{{object.name}}</field>
             <field name="body_html" type="html">
                 <div style="font-family: Arial, sans-serif; font-size:  14px; color: #333;">
+                    <div style="margin: 16px 0px 16px 0px;">
+                        <a t-att-href="ctx.get('token_url')" style="background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;">
+                            Validate my account
+                        </a>
+                    </div>
                     <p>Se ha realizado una nueva solicitud de requerimiento de cambio con el código: <t t-esc="object.name"/>
 .</p>
                     <p>Fecha de emisión: <t t-esc="object.fecha_emision"/>

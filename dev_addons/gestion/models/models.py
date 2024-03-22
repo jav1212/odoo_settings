@@ -5,6 +5,7 @@ from odoo.exceptions import ValidationError
 from odoo import _
 from datetime import timedelta
 
+
 class directorio(models.Model):
     _name = "gestion.directorio"
     _description = "gestion.directorio"
@@ -72,6 +73,16 @@ class directorio(models.Model):
                 self.env.user.department_id.id in directorio.departamentos.ids
             ) or directorio.is_admin
 
+    directorio_hijos = fields.One2many(
+        string="Directorio hijo",
+        comodel_name="gestion.directorio",
+        inverse_name="directorio_padre",
+    )  # Directorio al que pertenece
+
+    directorio_padre = fields.Many2one(
+        "gestion.directorio", string="Directorio padre"
+    )  # Directorio al que pertenece
+
     def action_name(self):
         pass
 
@@ -93,7 +104,7 @@ class documento(models.Model):
     # Descripcion del documento
 
     directorio = fields.Many2one(
-        "gestion.directorio", required=True, string="Directorio padre"
+        "gestion.directorio", string="Directorio padre"
     )  # Directorio al que pertenece
 
     fileref = fields.Binary(
@@ -219,6 +230,12 @@ class documento(models.Model):
         compute="_compute_admin", default=True
     )  # Verifica si el usuario tiene permisos administrativos
 
+    # DETALLES DEL FLUJO DE BORRADO DE LA SOLICITUD
+    doc_name_auxiliar = fields.Char()
+    doc_code_auxiliar = fields.Char()
+    doc_revision_auxiliar = fields.Char()
+    doc_fecha_revision_auxiliar = fields.Datetime()
+
     def _compute_admin(self):
         for documento in self:
             documento.is_admin = self.env.user.has_group(
@@ -258,11 +275,9 @@ class Archivo(models.Model):
     solicitud_borrador = fields.Many2one(
         "gestion.solicitud", required=True, string="Solicitud", ondelete="cascade"
     )
-
     solicitud_elaboracion = fields.Many2one(
         "gestion.solicitud", required=True, string="Solicitud", ondelete="cascade"
     )
-
     solicitud_revision = fields.Many2one(
         "gestion.solicitud", required=True, string="Solicitud", ondelete="cascade"
     )
@@ -271,6 +286,11 @@ class Archivo(models.Model):
 class Solicitud(models.Model):
     _name = "gestion.solicitud"
     _description = "gestion.solicitud"
+
+    # ^ CAMPOS BASICOS DE LA SOLICITUD
+    # & STATE = CAMPO DE SELECCION QUE REPRESENTA EL ESTADO ACTUAL DE LA SOLICITUD
+    # & GERENCIA_SOLICITANTE = REFERENCIA A LA GERENCIA QUE ESTA QUE ESTA SOLICITANTE
+    # & NAME = CAMPO COMPUTADO QUE DENOTA EL NOMBRE DE LA SOLICITUD CON EL ID DE LA MISMA
 
     state = fields.Selection(
         [
@@ -288,52 +308,31 @@ class Solicitud(models.Model):
         default="borrador",
         string="Estatus de la solicitud",
     )
-    state_color = fields.Char(compute="_compute_state_color", default="red")
-
-    @api.depends("state")
-    def _compute_state_color(self):
-        for record in self:
-            if record.state == "borrador":
-                record.state_color = "color:blue"
-            elif record.state == "solicitado":
-                record.state_color = "color:orange"
-            elif record.state == "elaboracion":
-                record.state_color = "color:orange"
-            elif record.state == "revision":
-                record.state_color = "color:orange"
-            elif record.state == "revisado":
-                record.state_color = "color:yellow"
-            elif record.state == "aprobacion":
-                record.state_color = "color:yellow"
-            elif record.state == "aprobado":
-                record.state_color = "color:green"
-            elif record.state == "publicacion":
-                record.state_color = "color:green"
-            elif record.state == "publicado":
-                record.state_color = "color:green"
-            elif record.state == "cancelado":
-                record.state_color = "color:red"
-
     gerencia_solicitante = fields.Many2one(
         "hr.department",
         readonly=True,
         default=lambda self: self.env.user.department_id,
         string="Gerencia Solicitante",
     )
-
-    name = fields.Char(compute="_compute_code", default="SOL-NUEVA", string="Codigo")
+    name = fields.Char(compute="_compute_name", default="SOL-NUEVA", string="Codigo")
 
     @api.depends()
-    def _compute_code(self):
+    def _compute_name(self):
         for solicitud in self:
             solicitud.name = f"SOL-{solicitud.id}"
 
-    # Requerimiento
+    # ^ REFERENCIA AL MODELS ARCHIVO DE LA SIGUIENTE MANERA
+    # & REQUERIMIENTO_SELECTION = CAMPO DE SELECCION DEL FORMULARIO DE LA SOLICITUD QUE SE REFIERE AL TIPO DE REQUERIMIENTO
+    # & OTROS DOCUMENTOS_DESCRIPTION = CAMPO DE TEXTO EN CASO DE QUE SE SELECCIONE "OTROS" EN EL SELECTOR DEL REQUERIMIENTO_SELECTION
+    # & ORIGEN = CAMPO DE SELECCION DE FORMULARIO DE LA SOLICITUD QUE SE REFIERE AL ORIGEN DE LA SOLICITUD
+    # & REQUERIMIENTO = DESCRIPCION BASICA DEL REQUERIMIENTO EN GENERAL
+
     requerimiento_selection = fields.Selection(
         [
             ("Documento nuevo", "Documento nuevo"),
             ("Actualización", "Actualización"),
             ("Modificación", "Modificación"),
+            ("Eliminación", "Eliminación"),
             ("Procedimiento", "Procedimiento"),
             ("Instructivo", "Instructivo"),
             ("Formulario", "Formulario"),
@@ -343,10 +342,7 @@ class Solicitud(models.Model):
         ],
         string="Requerimiento de la solicitud",
     )
-    # Descripcion del requerimiento
     otros_documentos_description = fields.Text(string="Descripción de otros")
-
-    # Origen de las solicitudes
     origen_solicitud = fields.Selection(
         [
             ("auditoria externa", "Auditoria externa"),
@@ -362,17 +358,16 @@ class Solicitud(models.Model):
                 "requisitos legales y reglamentarios",
                 "Requisitos Legales y Reglamentarios",
             ),
+            ("revision por la direccion", "Revisión por la dirección"),
         ],
         string="Origen de la solicitud",
     )
     requerimiento = fields.Text(string="Descripción del requerimiento")
 
-    # ARCHIVOS
-    archivos = fields.One2many(
-        string="Archivos",
-        comodel_name="gestion.archivo",
-        inverse_name="solicitud_borrador",
-    )  # Archivos adjuntos de la solicitud
+    # ^ REFERENCIA AL MODELS ARCHIVO DE LA SIGUIENTE MANERA
+    # & DOCUMENTOS_ASOCIADOS = REFERENCIA A DOCUMENTOS YA PREVIAMENTE CREADOS
+    # & DOCUMENTOS_NUEVOS_ASOCIADOS = REFERENCIA A NUEVOS DOCUMENTOS
+    # & DOCUMENTOS_MERGED = UNION DE LAS REFERENCIAS ANTERIORES
 
     documentos_asociados = fields.Many2many(
         comodel_name="gestion.documento",
@@ -380,7 +375,7 @@ class Solicitud(models.Model):
         column1="solicitud_id",
         column2="documento_id",
         string="Documentos",
-    )  # Documentos masivos asociados a una solicitud
+    )
 
     documentos_nuevos_asociados = fields.Many2many(
         comodel_name="gestion.documento",
@@ -388,19 +383,7 @@ class Solicitud(models.Model):
         column1="solicitud_nuevo_id",
         column2="documento_nuevo_id",
         string="Documentos",
-    )  # Documentos masivos asociados a una solicitud
-
-    archivos_elaboracion = fields.One2many(
-        string="Archivos",
-        comodel_name="gestion.archivo",
-        inverse_name="solicitud_elaboracion",
-    )  # Archivos adjuntos de la solicitud
-
-    archivos_revision = fields.One2many(
-        string="Archivos",
-        comodel_name="gestion.archivo",
-        inverse_name="solicitud_revision",
-    )  # Archivos adjuntos de la solicitud
+    )
 
     documentos_merged = fields.Many2many(
         comodel_name="gestion.documento",
@@ -415,75 +398,108 @@ class Solicitud(models.Model):
                 record.documentos_nuevos_asociados | record.documentos_asociados
             )
 
-    # PERSONAL
+    # ^ REFERENCIA AL MODELS ARCHIVO DE LA SIGUIENTE MANERA
+    # & ARCHIVOS = ADJUNTOS VARIOS AL MOMENTO DE CREAR LA SOLICITUD
+    # & ARCHIVOS_ELABORACION = ADJUNTOS VARIOS AL MOMENTO DE ELABORAR EL DOCUMENTO DE LA SOLICITUD
+    # & ARCHIVOS_REVISION = ADJUNTOS VARIOS AL MOMENTO DE LA REVISION NO CONFORME DE LA SOLICITUD
+
+    archivos = fields.One2many(
+        string="Archivos",
+        comodel_name="gestion.archivo",
+        inverse_name="solicitud_borrador",
+    )
+
+    archivos_elaboracion = fields.One2many(
+        string="Archivos",
+        comodel_name="gestion.archivo",
+        inverse_name="solicitud_elaboracion",
+    )
+
+    archivos_revision = fields.One2many(
+        string="Archivos",
+        comodel_name="gestion.archivo",
+        inverse_name="solicitud_revision",
+    )
+
+    # ^ REFERENCIA AL MODELS RES.USERS DE LA SIGUIENTE MANERA
+    # & CREATE_UID = USUARIO CREADOR DE LA SOLICITUD
+    # & REVIEWED_UID = USUARIO REVISOR DE LA SOLICITUD
+    # & APPROVED_UID = USUARIO APROBADOR DE LA SOLICITUD
+    # & PUBLISHED_UID = USUARIO PUBLICADOR DE LA SOLICITUD
+
     create_uid = fields.Many2one("res.users", string="Creado por", readonly=True)
     reviewed_uid = fields.Many2one("res.users", string="Revisado por", readonly=True)
     approved_uid = fields.Many2one("res.users", string="Aprobado por", readonly=True)
     published_uid = fields.Many2one("res.users", string="Publicado por", readonly=True)
+
+    # TODO: aca tenemos que verificar que si selecciona revisor y aprobador no se seleccione revisor individuales o aprobador individuales y viceversa
+
+    # ^ REFERENCIA AL MODELS RES.USERS DE LA SIGUIENTE MANERA
+    # & REVISOR = USUARIO DESIGNADO PARA REVISAR LA SOLICITUD CREADA POR EL COORDINADOR
+    # & APROBADOR = USUARIO DESIGNAOD PARA APROBAR LA SOLICITUD CREADA POR EL COORDINADOR
+    # & REVISOR_Y_APROBADOR = USUARIO DESIGANDOR PARA REVISAR Y APROBAR LA SOLICITUD POR EL DIRECTOR
+    # & COORDINADOR = USUARIO PUBLICADOR DE LA SOLICITUD
+
+    revisor = fields.Many2one(
+        "res.users",
+        string="Revisor",
+    )
+    aprobador = fields.Many2one(
+        "res.users",
+        string="Aprobador",
+    )
+    revisor_y_aprobador = fields.Many2one(
+        "res.users",
+        string="Revisor y Aprobador",
+    )
     coordinador = fields.Many2one(
         "res.users",
         string="Coordinador asignado",
     )
 
-    # fields para cuando no procede
-    descripcion_no_procede = fields.Text(string="Razones de la no procedencia")
+    # ^ CAMPOS DE DESCRIPCION DESGLOSADOS DE LA SIGUIENTE MANERA
+    # & DESCRIPCION_NO_PROCEDE = DESCRIPCION BASICA DE PORQUE NO PROCEDE LA SOLICITUD
+    # & DESCRIPCION_NO_CONFORME_REVISION = DESCRIPCION BASICA DE LAS RAZONES POR LAS CUALES NO ESTA CONFORME LA REVISION
+    # & DESCRIPCION_NO_CONFORME_APROBACION = DESCRIPCION BASICA DE LAS RAZONES POR LAS CUALES NO ESTA CONFORE LA APROBACION
+    # & DESCRIPCION_PUBLICACION = DESCRIPCION BASICA LOS CAMBIOS REALIZADO PARA LAS NOTIFICACIONES POR CORREO
 
-    # fields para cuando no esta conforme con los cambios
+    descripcion_no_procede = fields.Text(string="Razones de la no procedencia")
     descripcion_no_conforme_revision = fields.Text(
         string="Razones de la no conformidad de revisión"
     )
-
-    # fields para cuando no esta conforme la aprobacion
     descripcion_no_conforme_aprobacion = fields.Text(
         string="Razones de la no conformidad de aprobación"
     )
-
-    # fields para cuando se va a publicar
     descripcion_publicacion = fields.Text(
         string="Explique los cambios a publicar por correo"
     )
 
-    # FECHAS
+    # ^ CAMPOS DE FECHA DESGLOSADOS DE LA SIGUIENTE MANERA
+    # & FECHA_EMISION = CAPTURA LA FECHA EXACTA DE CUANDO LA SOLICITUD SE MANDA A LA EVALUACION DE PROCEDENCIA
+    # & FECHA_REVISION = CAPTURA LA FECHA EXACTA DE CUANDO LA SOLICITUD SE REVISA CONFORME
+    # & FECHA_APROBACION = CAPTURA LA FECHA EXACTA DE CUANDO LA SOLICITUD SE APRUEBA CONFORME
+    # & FECHA_PUBLICACION = CAPTURA LA FECHA EXACTA DE CUANDO LA SOLICITUD SE PUBLICA
+
     fecha_emision = fields.Datetime(string="Fecha de emisión")
     fecha_revision = fields.Datetime(string="Fecha de revisión")
     fecha_aprobacion = fields.Datetime(string="Fecha de aprobación")
     fecha_publicacion = fields.Datetime(string="Fecha de publicación")
 
-    # CAMBIOS
+    # ^ CAMPOS DE FECHA DESGLOSADOS DE LA SIGUIENTE MANERA
+    # & DESCRIPCION_CAMBIOS = DESCRIPCION BASICA DE LOS CAMBIOS PARA EL REPORTE DE CAMBIOS
+    # & NUMERO_CAMBIO = CAPTURA LA FECHA EXACTA DE CUANDO LA SOLICITUD SE REVISA CONFORME
+    # & NUMERO_CAMBIO_TEXT = CAPTURA LA FECHA EXACTA DE CUANDO LA SOLICITUD SE APRUEBA CONFORME
+
     descripcion_cambios = fields.Text(
         string="Descripción de los cambios para el reporte"
     )
     numero_cambio = fields.Integer()
     numero_cambio_text = fields.Char()
-    fecha_cambio = fields.Datetime(default=lambda self: self.fecha_publicacion)
 
-    # SMART BUTTONS
+    # ^ CAMPOS DE FECHA DESGLOSADOS DE LA SIGUIENTE MANERA
+    # & PROGRESS = CAMPO ADICIONAL PARA MOSTRAR UN PROGRESO DE LA SOLICITUD
 
     progress = fields.Integer(default=lambda self: 0, compute="_compute_progress")
-
-    # VERIFICACIONES SOBRE EL USUARIO ACTUAL
-
-    is_creator = fields.Boolean(compute="_compute_is_creator", default=True)
-
-    @api.depends("create_uid")
-    def _compute_is_creator(self):
-        for rec in self:
-            if rec.create_uid != False:
-                if rec.create_uid.name == self.env.user.name:
-                    rec.is_creator = True
-                else:
-                    rec.is_creator = False
-
-    is_assigned_coordinator = fields.Boolean(compute="_compute_is_assigned_coordinator")
-
-    @api.depends("coordinador")
-    def _compute_is_assigned_coordinator(self):
-        for rec in self:
-            if rec.coordinador != False:
-                if rec.coordinador.name == self.env.user.name:
-                    rec.is_assigned_coordinator = True
-                else:
-                    rec.is_assigned_coordinator = False
 
     @api.depends("state")
     def _compute_progress(self):
@@ -507,7 +523,34 @@ class Solicitud(models.Model):
             elif solicitud.state == "publicado":
                 solicitud.progress = 100
 
-    # DESDE GERENTES EN ADELANTE
+    # ^ CAMPOS DE FECHA DESGLOSADOS DE LA SIGUIENTE MANERA
+    # & IS_CREATOR = CAMPO BOOLEANO QUE VERIFICA SI EL USUARIO ACTUAL ES EL CREADOR DE LA SOLICITUD
+    # & IS_ASSIGNED_COORDINATOR = CAMPO BOOLEANO QUE VERIFICA SI EL USUARIO ACTUAL ES EL COORDINADOR ASIGANDO PARA LA SOLICITUD
+
+    is_creator = fields.Boolean(compute="_compute_is_creator", default=True)
+
+    @api.depends("create_uid")
+    def _compute_is_creator(self):
+        for rec in self:
+            if rec.create_uid != False:
+                if rec.create_uid.name == self.env.user.name:
+                    rec.is_creator = True
+                else:
+                    rec.is_creator = False
+
+    is_assigned_coordinator = fields.Boolean(compute="_compute_is_assigned_coordinator")
+
+    @api.depends("coordinador")
+    def _compute_is_assigned_coordinator(self):
+        for rec in self:
+            if rec.coordinador != False:
+                if rec.coordinador.name == self.env.user.name:
+                    rec.is_assigned_coordinator = True
+                else:
+                    rec.is_assigned_coordinator = False
+
+    # ^ FUNCIONES LIGADAS A BOTONES EN LA VISTA DE SOLICITUD
+
     def send_email(self):
         self.state = "solicitado"
         self.fecha_emision = fields.Datetime.now()
@@ -515,8 +558,8 @@ class Solicitud(models.Model):
         template = self.env.ref("gestion.mail_solicitud_template")
         massive_attachment = []
         for rec in self:
+            # & SE UNIFICAN TODOS LOS ARCHIVOS ADJUNTOS EN LA CREACION DE LA SOLICITUD
             if rec.archivos:
-                # Para cada archivo masivo no creado como un archivo
                 for archivo in rec.archivos:
                     attachment = self.env["ir.attachment"].create(
                         {
@@ -528,7 +571,7 @@ class Solicitud(models.Model):
                     )
                     massive_attachment.append(attachment)
 
-            # Assuming you want to create a PDF attachment for each record
+            # & SE UNIFICAN TODOS LOS DOCUMENTOS ASOCIADOS EN LA CREACION DE LA SOLICITUD
             for doc in rec.documentos_asociados:
                 attachment = self.env["ir.attachment"].create(
                     {
@@ -540,13 +583,12 @@ class Solicitud(models.Model):
                 )
                 massive_attachment.append(attachment)
 
-            # Assuming `template` is defined elsewhere in your code
+            # & SE REFERENCIAN AL MAIL TEMPLATE Y SE ENVIAN POSTERIORMENTE
             template.attachment_ids = [
                 (6, 0, [attach.id for attach in massive_attachment])
             ]
             template.send_mail(rec.id, force_send=True)
 
-    # DESDE ADMINISTRADORES EN ADELANTE
     def no_procedente(self):
         if self.is_assigned_coordinator:
             if self.descripcion_no_procede != False:
@@ -565,7 +607,6 @@ class Solicitud(models.Model):
                 )
             )
 
-    # DESDE ADMINISTRADORES EN ADELANTE
     def procedente(self):
         if self.is_assigned_coordinator:
             self.state = "elaboracion"
@@ -576,7 +617,6 @@ class Solicitud(models.Model):
                 )
             )
 
-    # DESDE ADMINISTRADORES EN ADELANTE
     def mandar_a_revision(self):
         if self.is_assigned_coordinator:
             self.state = "revision"
@@ -606,7 +646,6 @@ class Solicitud(models.Model):
                 )
             )
 
-    # DESDE GERENTES EN ADELANTE
     def no_revisado(self):
         if self.is_creator:
             if self.descripcion_no_conforme_revision != False:
@@ -643,7 +682,6 @@ class Solicitud(models.Model):
                 )
             )
 
-    # DESDE GERENTES EN ADELANTE
     def revisado(self):
         if self.is_creator == True:
             self.state = "revisado"
@@ -676,7 +714,6 @@ class Solicitud(models.Model):
                 )
             )
 
-    # DESDE ADMINISTRADORES EN ADELANTE
     def mandar_a_aprobacion(self):
         if self.is_assigned_coordinator:
             self.state = "aprobacion"
@@ -687,7 +724,6 @@ class Solicitud(models.Model):
                 )
             )
 
-    # DESDE DIRECTORES EN ADELANTE
     def no_aprobado(self):
         if self.descripcion_no_conforme_aprobacion != False:
             self.state = "elaboracion"
@@ -706,7 +742,6 @@ class Solicitud(models.Model):
                 )
             )
 
-    # DESDE DIRECTORES EN ADELANTE
     def aprobado(self):
         self.state = "aprobado"
         self.fecha_aprobacion = fields.Datetime.now()
@@ -730,7 +765,6 @@ class Solicitud(models.Model):
             ]
             template.send_mail(rec.id, force_send=True)
 
-    # DESDE ADMINISTRADORES EN ADELANTE
     def mandar_a_publicacion(self):
         if self.is_assigned_coordinator:
             self.state = "publicacion"
@@ -741,7 +775,6 @@ class Solicitud(models.Model):
                 )
             )
 
-    # DESDE ADMINISTRADORES EN ADELANTE
     def publicado(self):
         if self.is_assigned_coordinator:
             self.state = "publicado"

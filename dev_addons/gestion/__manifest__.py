@@ -29,6 +29,9 @@
         "views/pages/revisiones.xml",
         "views/pages/archivos.xml",
         "views/templates.xml",
+        "reports/report_solicitud_detail.xml",
+        "reports/report_lista_maestra.xml",
+        "reports/report_lista_cambio.xml",
         "mail/mail_solicitud_template.xml",
         "mail/mail_revisado_template.xml",
         "mail/mail_aprobado_template.xml",
@@ -37,9 +40,6 @@
         "mail/mail_no_aprobado_template.xml",
         "mail/mail_no_conforme_template.xml",
         "mail/mail_elaboracion_template.xml",
-        "reports/report_solicitud_detail.xml",
-        "reports/report_lista_maestra.xml",
-        "reports/report_lista_cambio.xml",
     ],
     # only loaded in demonstration mode
     "demo": [

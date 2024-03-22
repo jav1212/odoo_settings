@@ -124,7 +124,7 @@
         <field name="model">gestion.solicitud</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">gestion.report_solicitud_detail</field>
-        <field name="report_file">gestion.report_solicitud_detail</field>
+        <field name="report_file">report_solicitud_detail</field>
         <field name="binding_model_id" ref='model_gestion_solicitud' />
         <field name="binding_type">report</field>
     </record>

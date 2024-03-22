@@ -25,11 +25,13 @@
                                 <field name="descripcion" widget="textarea" />
                                 <field name="departamentos" widget="many2many_tags" required="true" options="{'color_field': 'color'}"/>
                             </group>
-                            <group >
+                            <group>
+                                <field name="directorio_padre" readonly='1'/>
                                 <field name='create_uid' widget="many2one_avatar_employee" readonly='1' />
                                 <field name='is_visible' readonly="1" invisible='1'/>
                                 <field name='is_admin' readonly="1" invisible='1'/>
                             </group>
+                            <field name="directorio_hijos" string="directorios hijos"/>
                             <field name="documentos" domain="[('fecha_aprobacion','!=',False)]"/>
                         </group>
                         <group string='No tienes acceso a los directorios de este departamento' attrs="{'invisible': [('is_visible','=',True)]}">
