@@ -4,6 +4,9 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 from odoo import _
 from datetime import timedelta
+import base64
+from odoo import fields, http
+from odoo.http import request
 
 
 class directorio(models.Model):
@@ -93,18 +96,13 @@ class documento(models.Model):
     )  # Archivo de formato pdf
 
     def descargar_archivo(self):
-        """Redirects to the download URL."""
-        self.ensure_one()
-        if self.fileref:
-            # Asegúrate de que 'gestion.documento' sea el modelo correcto y 'fileref' sea el campo correcto.
-            # Si estos valores son dinámicos, necesitarás ajustarlos en consecuencia.
-            return {
-                "type": "ir.actions.act_url",
-                "url": "/download/gestion.documento/%s/fileref" % self.id,
-                "target": "self",
-            }
-        else:
-            return {"error": "No se ha adjuntado ningún archivo."}
+        base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
+        download_url = base_url + "/download/binary/file/%s" % self.id
+        return {
+            "type": "ir.actions.act_url",
+            "url": download_url,
+            "target": "self",
+        }
 
     descripcion = fields.Text(
         string="Descripción del directorio",
@@ -882,3 +880,11 @@ class AccessLog(models.Model):
 class DownloadLog(models.Model):
     _name = "gestion.downloadlog"
     _description = "gestion.downloadlog"
+
+    downloaded_by = fields.Many2one(
+        "res.users", string="Descargado por", readonly=True
+    )  # Indica quien esta descargando
+
+    last_update = fields.Datetime(
+        default=lambda self: fields.Datetime.now(), string="Fecha de creación"
+    )  # Fecha de la descarga

@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
+from odoo.http import request, content_disposition
+import datetime
 from odoo import http
 from odoo.http import request
+from werkzeug.wrappers import Response
+import base64
 
 
 class Gestion(http.Controller):
@@ -24,25 +28,15 @@ class Gestion(http.Controller):
     def object(self, obj, **kw):
         return http.request.render("gestion.object", {"object": obj})
 
-    @http.route("/download/<model>/<id>/<field>", type="http", auth="user")
-    def download(self, model, id, field, **kw):
-        record = request.env[model].sudo().browse(int(id))
-
-        if not record or field not in record:
-            return request.not_found()
-
-        field_data = record[field]
-        if not isinstance(field_data, bytes):
-            raise ValueError(
-                "The field '%s' does not contain byte stream data." % field
-            )
-
-        filename = record.name or "download.bin"
-
-        return request.make_response(
-            field_data,
-            headers=[
-                ("Content-Type", "application/octet-stream"),
-                ("Content-Disposition", f'attachment; filename="{filename}"'),
-            ],
-        )
+    @http.route(
+        '/download/binary/file/<model("gestion.documento"):record>',
+        type="http",
+        auth="public",
+    )
+    def saveas(self, record):
+        file_content = base64.b64decode(record.fileref)
+        headers = [
+            ("Content-Type", "application/octet-stream"),
+            ("Content-Disposition", "attachment; filename=%s" % record.name),
+        ]
+        return request.make_response(file_content, headers=headers)
