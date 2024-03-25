@@ -20,6 +20,9 @@
             <field name="model">gestion.documento</field>
             <field name="arch" type="xml">
                 <form string="Gestionar Documento">
+                    <header>
+                        <button string="Descargar documento" name="descargar_archivo" type="object" class="oe_highlight"/>
+                    </header>
                     <sheet>
                         <group attrs="{'invisible': [('is_visible','=',False)]}">
                             <group string='Información del documento'>

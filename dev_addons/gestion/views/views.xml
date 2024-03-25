@@ -124,9 +124,21 @@
 
     <!-- FOUR LEVEL MENU -->
     <record id="gestion.action_tablero_window" model="ir.actions.act_window">
-      <field name="name">Tablero</field>
+      <field name="name">Indicadores</field>
       <field name="res_model">gestion.tablero</field>
       <field name="view_mode">form,graph</field>
+    </record>
+
+    <record id="gestion.action_logger_acceso_window" model="ir.actions.act_window">
+      <field name="name">Logger de acceso</field>
+      <field name="res_model">gestion.accesslog</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+    <record id="gestion.action_logger_download_window" model="ir.actions.act_window">
+      <field name="name">Logger de descarga</field>
+      <field name="res_model">gestion.downloadlog</field>
+      <field name="view_mode">tree</field>
     </record>
 
     <!-- Top menu item -->
@@ -145,10 +157,10 @@
         <menuitem id="gestion.menu_3_solicitudes_list" name="Solicitudes" action="gestion.action_solicitud_window"/>
         <menuitem id="gestion.menu_3_cambios_list" name="Cambios" action="gestion.action_cambios_window"/>
       </menuitem>
-      <!--
-        <menuitem id="gestion.menu_4" name="Tablero" groups="gestion.group_gestion_administrador" action="gestion.action_tablero_window">
-        </menuitem>
-      -->
+      <menuitem id="gestion.menu_4" name="Tablero" groups="gestion.group_gestion_administrador">
+        <menuitem id="gestion.menu_4_logger_access" name="Logger de acceso" action="gestion.action_logger_acceso_window"/>
+        <menuitem id="gestion.menu_4_logger_download" name="Logger de descarga" action="gestion.action_logger_download_window"/>
+      </menuitem>
     </menuitem>
   </data>
 </odoo>

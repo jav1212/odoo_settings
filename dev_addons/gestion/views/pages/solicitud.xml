@@ -5,7 +5,6 @@
             <field name="model">gestion.solicitud</field>
             <field name="arch" type="xml">
                 <tree string="Solicitudes">
-                    <field name="state_color" invisible='1' />
                     <field name="name"/>
                     <field name="fecha_emision"/>
                     <field name="gerencia_solicitante" options="{'color_field': 'color'}"/>
@@ -110,7 +109,6 @@
                                         <field name="documentos_nuevos_asociados" attrs="{'required': [('requerimiento_selection','=','Documento nuevo',),('state','=','publicacion')], 'invisible':[('requerimiento_selection','!=','Documento nuevo')]}"/>
                                         <field name="descripcion_publicacion" attrs="{'required':[('state','=','publicacion')]}"/>
                                         <field name="descripcion_cambios" attrs="{'required':[('state','=','publicacion')]}" />
-                                        <field name="fecha_cambio" readonly='1' invisible="1"/>
                                     </group>
                                 </page>
                             </notebook>

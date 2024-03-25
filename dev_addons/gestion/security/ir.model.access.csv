@@ -14,5 +14,7 @@ access_gestion_solicitud_administrador,gestion.solicitud,model_gestion_solicitud
 access_gestion_archivo_empleado,gestion.archivo,model_gestion_archivo,gestion.group_gestion_empleados,1,1,1,1
 access_gestion_archivo_gerente,gestion.archivo,model_gestion_archivo,gestion.group_gestion_jefes,1,1,1,1
 access_gestion_tablero,gestion.tablero,model_gestion_tablero,gestion.group_gestion_administrador,1,1,1,1
+access_gestion_logger_acceso,gestion.accesslog,model_gestion_accesslog,gestion.group_gestion_administrador,1,1,1,1
+access_gestion_logger_download,gestion.downloadlog,model_gestion_downloadlog,gestion.group_gestion_administrador,1,1,1,1
 
 

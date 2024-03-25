@@ -25,16 +25,6 @@ class directorio(models.Model):
         string="Documentos", comodel_name="gestion.documento", inverse_name="directorio"
     )  # Documentos del directorio
 
-    suma_tamaños = fields.Integer(
-        string="Suma de Tamaños de Archivos", compute="_calcular_suma_tamaños"
-    )
-
-    @api.depends("documentos.tamaño_archivo")
-    def _calcular_suma_tamaños(self):
-        for record in self:
-            record.suma_tamaños = sum(doc.tamaño_archivo for doc in record.documentos)
-            record.suma_tamaños = record.suma_tamaños / (1024 * 1024)
-
     departamentos = fields.Many2many(
         comodel_name="hr.department",
         relation="directorio_departamento_rel",
@@ -74,7 +64,7 @@ class directorio(models.Model):
             ) or directorio.is_admin
 
     directorio_hijos = fields.One2many(
-        string="Directorio hijo",
+        string="Directorios hijos",
         comodel_name="gestion.directorio",
         inverse_name="directorio_padre",
     )  # Directorio al que pertenece
@@ -97,6 +87,25 @@ class documento(models.Model):
         help="Introduzca el nombre del documento",
     )  # Nombre del documento
 
+    fileref = fields.Binary(
+        string="Archivo adjunto",
+        help="Adjunta un archivo en formato PDF, WORD, PPT o EXCEL",
+    )  # Archivo de formato pdf
+
+    def descargar_archivo(self):
+        """Redirects to the download URL."""
+        self.ensure_one()
+        if self.fileref:
+            # Asegúrate de que 'gestion.documento' sea el modelo correcto y 'fileref' sea el campo correcto.
+            # Si estos valores son dinámicos, necesitarás ajustarlos en consecuencia.
+            return {
+                "type": "ir.actions.act_url",
+                "url": "/download/gestion.documento/%s/fileref" % self.id,
+                "target": "self",
+            }
+        else:
+            return {"error": "No se ha adjuntado ningún archivo."}
+
     descripcion = fields.Text(
         string="Descripción del directorio",
         help="Introduzca una breve descripción del documento",
@@ -106,24 +115,6 @@ class documento(models.Model):
     directorio = fields.Many2one(
         "gestion.directorio", string="Directorio padre"
     )  # Directorio al que pertenece
-
-    fileref = fields.Binary(
-        string="Archivo adjunto",
-        help="Adjunta un archivo en formato PDF, WORD, PPT o EXCEL",
-    )  # Archivo de formato pdf
-
-    tamaño_archivo = fields.Integer(
-        string="Tamaño del Archivo", compute="_calcular_tamaño_archivo"
-    )
-
-    @api.depends("fileref")
-    def _calcular_tamaño_archivo(self):
-        for record in self:
-            if record.fileref:
-                # Calcular el tamaño del archivo en bytes
-                record.tamaño_archivo = len(record.fileref)
-            else:
-                record.tamaño_archivo = 0
 
     departamento_padre = fields.Many2one(
         "hr.department",
@@ -861,7 +852,7 @@ class Solicitud(models.Model):
 
 class Cambios(models.Model):
     _name = "gestion.cambios"
-    _descrition = "gestion.cambios"
+    _description = "gestion.cambios"
 
     fecha_revision = fields.Datetime()
     descripcion = fields.Text()
@@ -881,3 +872,13 @@ class Tablero(models.Model):
 
     def actualizar_lista_maestra(self):
         pass
+
+
+class AccessLog(models.Model):
+    _name = "gestion.accesslog"
+    _description = "gestion.accesslog"
+
+
+class DownloadLog(models.Model):
+    _name = "gestion.downloadlog"
+    _description = "gestion.downloadlog"

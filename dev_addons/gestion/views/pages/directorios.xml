@@ -6,7 +6,8 @@
             <field name="arch" type="xml">
                 <tree >
                     <field name="name"/>
-                    <field name="documentos" />
+                    <field name="documentos"/>
+                    <field name="directorio_hijos" />
                     <field name="departamentos" widget="many2many_tags" options="{'color_field': 'color'}"/>
                     <field name="last_update"/>
                 </tree>
