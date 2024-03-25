@@ -98,6 +98,16 @@ class documento(models.Model):
     def descargar_archivo(self):
         base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
         download_url = base_url + "/download/binary/file/%s" % self.id
+
+        # Crear registro en gestion.downloadlog
+        download_log = self.env["gestion.downloadlog"].create(
+            {
+                "last_update": fields.Datetime.now(),
+                "downloaded_by": self.env.user.id,
+                "documento_asociado": self.name,
+            }
+        )
+
         return {
             "type": "ir.actions.act_url",
             "url": download_url,
@@ -237,6 +247,14 @@ class documento(models.Model):
 
     @api.depends("departamentos", "is_admin")
     def _compute_visible(self):
+        access_log = self.env["gestion.accesslog"].create(
+            {
+                "last_update": fields.Datetime.now(),
+                "accessed_by": self.env.user.id,
+                "documento_asociado": self.name,
+            }
+        )
+
         for documento in self:
             documento.is_visible = (
                 self.env.user.department_id.id in documento.departamentos.ids
@@ -876,6 +894,16 @@ class AccessLog(models.Model):
     _name = "gestion.accesslog"
     _description = "gestion.accesslog"
 
+    accessed_by = fields.Many2one(
+        "res.users", string="Visto por", readonly=True
+    )  # Indica quien esta descargando
+
+    documento_asociado = fields.Char("Documento asociado")
+
+    last_update = fields.Datetime(
+        default=lambda self: fields.Datetime.now(), string="Fecha de visita"
+    )  # Fecha de la descarga
+
 
 class DownloadLog(models.Model):
     _name = "gestion.downloadlog"
@@ -885,6 +913,8 @@ class DownloadLog(models.Model):
         "res.users", string="Descargado por", readonly=True
     )  # Indica quien esta descargando
 
+    documento_asociado = fields.Char("Documento asociado")
+
     last_update = fields.Datetime(
-        default=lambda self: fields.Datetime.now(), string="Fecha de creación"
+        default=lambda self: fields.Datetime.now(), string="Fecha de descarga"
     )  # Fecha de la descarga

@@ -49,6 +49,7 @@
                                 <field name="fecha_publicacion" readonly='1'/>
                             </group>
                             <field name="descripcion" widget="textarea"/>
+                            <!-- TODO& importante de hacer invisible el campo de fileref para los gerentes e inferiores -->
                             <field name="fileref" string='Archivo' filename="name"/>
                             <field name='is_visible' readonly="1" invisible='1'/>
                             <field name="is_admin" readonly="1" invisible='1'/>

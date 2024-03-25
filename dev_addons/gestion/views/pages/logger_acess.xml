@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record id="logger_access_view_tree" model="ir.ui.view">
+            <field name="name">logger_access.view.tree</field>
+            <field name="model">gestion.accesslog</field>
+            <field name="arch" type="xml">
+                <tree string="Logger de Acceso" export_xlsx='0'>
+                    <field name="last_update" />
+                    <field name="accessed_by" />
+                    <field name="documento_asociado" />
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

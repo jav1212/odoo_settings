@@ -28,6 +28,8 @@
         "views/pages/respuestas.xml",
         "views/pages/revisiones.xml",
         "views/pages/archivos.xml",
+        "views/pages/logger_download.xml",
+        "views/pages/logger_acess.xml",
         "views/templates.xml",
         "reports/report_solicitud_detail.xml",
         "reports/report_lista_maestra.xml",
