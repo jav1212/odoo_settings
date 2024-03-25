@@ -19472,3 +19472,95 @@ gestion.access_gestion_cambios,access_gestion_cambios,gestion.model_gestion_camb
 2024-03-25 17:35:49,651 1 INFO testing odoo.addons.base.models.ir_cron: Starting job `payment: post-process transactions`. 
 2024-03-25 17:35:49,665 1 INFO testing odoo.addons.base.models.ir_cron: Job `payment: post-process transactions` done. 
 2024-03-25 17:35:52,944 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:35:52] "POST /web/dataset/call_kw/gestion.downloadlog/web_search_read HTTP/1.1" 200 - 5 0.003 0.006
+2024-03-25 17:38:01,929 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:38:01] "POST /web/action/load HTTP/1.1" 200 - 10 0.006 0.011
+2024-03-25 17:38:01,953 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:38:01] "POST /web/dataset/call_kw/gestion.accesslog/get_views HTTP/1.1" 200 - 8 0.006 0.009
+2024-03-25 17:38:01,974 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:38:01] "POST /web/dataset/call_kw/gestion.accesslog/web_search_read HTTP/1.1" 200 - 6 0.003 0.005
+2024-03-25 17:38:05,728 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:38:05] "POST /web/dataset/call_kw/gestion.downloadlog/web_search_read HTTP/1.1" 200 - 5 0.003 0.007
+2024-03-25 17:45:00,176 1 INFO testing odoo.addons.base.models.ir_cron: Starting job `payment: post-process transactions`. 
+2024-03-25 17:45:00,181 1 INFO testing odoo.addons.base.models.ir_cron: Job `payment: post-process transactions` done. 
+2024-03-25 17:52:53,302 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:52:53] "POST /web/dataset/call_kw/gestion.directorio/web_search_read HTTP/1.1" 200 - 7 0.004 0.007
+2024-03-25 17:52:53,317 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:52:53] "POST /web/dataset/call_kw/hr.department/read HTTP/1.1" 200 - 2 0.001 0.004
+2024-03-25 17:52:57,496 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:52:57] "POST /web/action/load HTTP/1.1" 200 - 10 0.012 0.018
+2024-03-25 17:52:57,559 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:52:57] "POST /web/dataset/call_kw/gestion.solicitud/get_views HTTP/1.1" 200 - 39 0.020 0.032
+2024-03-25 17:52:57,577 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:52:57] "POST /web/dataset/call_kw/gestion.solicitud/web_search_read HTTP/1.1" 200 - 3 0.002 0.003
+2024-03-25 17:52:59,353 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:52:59] "POST /web/dataset/call_kw/gestion.solicitud/onchange HTTP/1.1" 200 - 6 0.006 0.007
+2024-03-25 17:53:02,370 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:53:02] "POST /web/dataset/call_kw/res.users/name_search HTTP/1.1" 200 - 12 0.010 0.009
+2024-03-25 17:53:03,339 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:53:03] "GET /web/image/hr.employee.public/2/avatar_128 HTTP/1.1" 304 - 14 0.009 0.013
+2024-03-25 17:53:04,302 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:53:04] "POST /web/dataset/call_kw/res.users/name_search HTTP/1.1" 200 - 4 0.007 0.015
+2024-03-25 17:53:05,645 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:53:05] "GET /web/image/hr.employee.public/6/avatar_128 HTTP/1.1" 304 - 6 0.015 0.005
+2024-03-25 17:53:06,964 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:53:06] "POST /web/dataset/call_kw/res.users/name_search HTTP/1.1" 200 - 4 0.003 0.007
+2024-03-25 17:53:11,957 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:53:11] "POST /web/dataset/call_kw/res.users/name_search HTTP/1.1" 200 - 4 0.003 0.007
+2024-03-25 17:53:12,961 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:53:12] "POST /web/dataset/call_kw/res.users/name_search HTTP/1.1" 200 - 4 0.002 0.005
+2024-03-25 17:53:15,675 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:53:15] "POST /web/dataset/call_kw/res.users/name_search HTTP/1.1" 200 - 4 0.003 0.008
+2024-03-25 17:53:18,742 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:53:18] "POST /web/dataset/call_kw/res.users/name_search HTTP/1.1" 200 - 4 0.004 0.008
+2024-03-25 17:53:20,361 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:53:20] "GET /web/image/hr.employee.public/7/avatar_128 HTTP/1.1" 200 - 5 0.004 0.033
+2024-03-25 17:54:42,521 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:54:42] "POST /web/dataset/call_kw/res.users/name_search HTTP/1.1" 200 - 4 0.004 0.012
+2024-03-25 17:54:47,383 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:54:47] "POST /web/dataset/call_kw/res.users/name_search HTTP/1.1" 200 - 4 0.004 0.015
+2024-03-25 17:54:53,940 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:54:53] "POST /web/dataset/call_kw/res.users/name_search HTTP/1.1" 200 - 5 0.004 0.015
+2024-03-25 17:54:54,776 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:54:54] "POST /web/dataset/call_kw/res.users/name_search HTTP/1.1" 200 - 4 0.007 0.017
+2024-03-25 17:54:57,036 1 INFO testing werkzeug: 172.18.0.1 - - [25/Mar/2024 17:54:57] "POST /web/dataset/call_kw/res.users/name_search HTTP/1.1" 200 - 4 0.005 0.014
+2024-03-25 17:55:10,630 1 INFO testing odoo.addons.base.models.ir_cron: Starting job `payment: post-process transactions`. 
+2024-03-25 17:55:10,635 1 INFO testing odoo.addons.base.models.ir_cron: Job `payment: post-process transactions` done. 
+2024-03-25 18:04:50,761 1 INFO testing odoo.addons.base.models.ir_cron: Starting job `Notification: Send scheduled message notifications`. 
+2024-03-25 18:04:50,782 1 INFO testing odoo.addons.base.models.ir_cron: Job `Notification: Send scheduled message notifications` done. 
+2024-03-25 18:04:50,804 1 INFO testing odoo.addons.base.models.ir_cron: Starting job `Mail: Email Queue Manager`. 
+2024-03-25 18:04:50,812 1 INFO testing odoo.addons.base.models.ir_cron: Job `Mail: Email Queue Manager` done. 
+2024-03-25 18:05:21,110 1 INFO testing odoo.addons.base.models.ir_cron: Starting job `SMS: SMS Queue Manager`. 
+2024-03-25 18:05:21,118 1 INFO testing odoo.addons.base.models.ir_cron: Job `SMS: SMS Queue Manager` done. 
+2024-03-25 18:05:21,138 1 INFO testing odoo.addons.base.models.ir_cron: Starting job `Snailmail: process letters queue`. 
+2024-03-25 18:05:21,146 1 INFO testing odoo.addons.base.models.ir_cron: Job `Snailmail: process letters queue` done. 
+2024-03-25 18:05:21,157 1 INFO testing odoo.addons.base.models.ir_cron: Starting job `Partner Autocomplete : Sync with remote DB`. 
+2024-03-25 18:05:21,161 1 INFO testing odoo.addons.base.models.ir_cron: Job `Partner Autocomplete : Sync with remote DB` done. 
+2024-03-25 18:05:21,171 1 INFO testing odoo.addons.base.models.ir_cron: Starting job `payment: post-process transactions`. 
+2024-03-25 18:05:21,179 1 INFO testing odoo.addons.base.models.ir_cron: Job `payment: post-process transactions` done. 
+2024-03-25 18:15:31,627 1 INFO testing odoo.addons.base.models.ir_cron: Starting job `payment: post-process transactions`. 
+2024-03-25 18:15:31,637 1 INFO testing odoo.addons.base.models.ir_cron: Job `payment: post-process transactions` done. 
+2024-03-25 18:16:18,958 1 INFO ? odoo.service.server: Initiating shutdown 
+2024-03-25 18:16:18,959 1 INFO ? odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2024-03-25 18:16:19,006 1 ERROR ? odoo.addons.bus.models.bus: Bus.loop error, sleep and retry 
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/odoo/addons/bus/models/bus.py", line 182, in run
+    self.loop()
+  File "/usr/lib/python3/dist-packages/odoo/addons/bus/models/bus.py", line 167, in loop
+    conn.poll()
+psycopg2.OperationalError: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+2024-03-25 18:16:19,016 1 INFO testing odoo.sql_db: Connection to the database failed 
+2024-03-25 18:16:19,018 1 WARNING testing odoo.addons.base.models.ir_cron: Exception in cron: 
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/odoo/addons/base/models/ir_cron.py", line 102, in _process_jobs
+    with db.cursor() as cron_cr:
+  File "/usr/lib/python3/dist-packages/odoo/sql_db.py", line 740, in cursor
+    return Cursor(self.__pool, self.__dbname, self.__dsn)
+  File "/usr/lib/python3/dist-packages/odoo/sql_db.py", line 267, in __init__
+    self._cnx = pool.borrow(dsn)
+  File "<decorator-gen-2>", line 2, in borrow
+  File "/usr/lib/python3/dist-packages/odoo/tools/func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+  File "/usr/lib/python3/dist-packages/odoo/sql_db.py", line 668, in borrow
+    result = psycopg2.connect(
+  File "/usr/lib/python3/dist-packages/psycopg2/__init__.py", line 127, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "db" (172.18.0.3), port 5432 failed: FATAL:  the database system is shutting down
+
+2024-03-25 18:16:19,023 1 INFO testing odoo.sql_db: Connection to the database failed 
+2024-03-25 18:16:19,028 1 WARNING testing odoo.addons.base.models.ir_cron: Exception in cron: 
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/odoo/addons/base/models/ir_cron.py", line 102, in _process_jobs
+    with db.cursor() as cron_cr:
+  File "/usr/lib/python3/dist-packages/odoo/sql_db.py", line 740, in cursor
+    return Cursor(self.__pool, self.__dbname, self.__dsn)
+  File "/usr/lib/python3/dist-packages/odoo/sql_db.py", line 267, in __init__
+    self._cnx = pool.borrow(dsn)
+  File "<decorator-gen-2>", line 2, in borrow
+  File "/usr/lib/python3/dist-packages/odoo/tools/func.py", line 87, in locked
+    return func(inst, *args, **kwargs)
+  File "/usr/lib/python3/dist-packages/odoo/sql_db.py", line 668, in borrow
+    result = psycopg2.connect(
+  File "/usr/lib/python3/dist-packages/psycopg2/__init__.py", line 127, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "db" (172.18.0.3), port 5432 failed: FATAL:  the database system is shutting down
+
+2024-03-25 18:16:19,055 1 INFO ? odoo.sql_db: ConnectionPool(used=0/count=0/max=64): Closed 2 connections  

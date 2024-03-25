@@ -59,6 +59,8 @@ class directorio(models.Model):
         compute="_compute_visible", default=True
     )  # Verifica si el documento es visible para el usuario actual
 
+    # & TODO: agregar validacion sobre si el usuario actual es jefe de departamento
+
     @api.depends("departamentos", "is_admin")
     def _compute_visible(self):
         for directorio in self:
@@ -225,15 +227,17 @@ class documento(models.Model):
     # PARA LA LISTA DE CAMBIOS
     numero_cambio = fields.Integer()  # Numero de cambios totales
 
-    is_admin = fields.Boolean(
-        compute="_compute_admin", default=True
-    )  # Verifica si el usuario tiene permisos administrativos
-
     # DETALLES DEL FLUJO DE BORRADO DE LA SOLICITUD
     doc_name_auxiliar = fields.Char()
     doc_code_auxiliar = fields.Char()
     doc_revision_auxiliar = fields.Char()
     doc_fecha_revision_auxiliar = fields.Datetime()
+
+    # & TODO: agregar validacion sobre si el usuario actual es jefe de departamento
+
+    is_admin = fields.Boolean(
+        compute="_compute_admin", default=True
+    )  # Verifica si el usuario tiene permisos administrativos
 
     def _compute_admin(self):
         for documento in self:
@@ -259,18 +263,6 @@ class documento(models.Model):
             documento.is_visible = (
                 self.env.user.department_id.id in documento.departamentos.ids
             ) or documento.is_admin
-
-
-# TODO: agregar documento para agregar en la solicitud nueva CHECKKK
-# TODO: agregar la condicion de nuevo cuando crea un nuevo documento por solicitud
-# TODO: agregar pestaña de cancelados al workflow de la solicitud CHECKKK
-# TODO: agregar validacion de que no esta procedente, revisado, aprobado y dar los comentarios de porque no CHECKKK
-# TODO: cambiar el flujo de la negacion de aprobacion de borrador a en elaboracion CHECKK NOT TESTED
-# TODO: agregar el codigo al nombre al inicio y agregar la revision al final
-# TODO: eliminar el numero de cambios en el formulario de publicacion CHECKKK
-# TODO: agregar el nombre al reporte de solicitud
-# TODO: cambiar las solicitud publicadas a la pantalla de cambios CHECKKK
-# TODO: revisar el nombre de la busqueda
 
 
 class Archivo(models.Model):
@@ -556,6 +548,41 @@ class Solicitud(models.Model):
                 else:
                     rec.is_assigned_coordinator = False
 
+    is_assigned_reviewer = fields.Boolean(compute="_compute_is_assigned_reviewer")
+
+    @api.depends("revisor")
+    def _compute_is_assigned_reviewer(self):
+        for rec in self:
+            if rec.revisor != False:
+                if rec.revisor.name == self.env.user.name:
+                    rec.is_assigned_reviewer = True
+                else:
+                    rec.is_assigned_reviewer = False
+
+    is_assigned_approver = fields.Boolean(compute="_compute_is_assigned_approver")
+
+    @api.depends("aprobador")
+    def _compute_is_assigned_reviewer(self):
+        for rec in self:
+            if rec.aprobador != False:
+                if rec.aprobador.name == self.env.user.name:
+                    rec.is_assigned_approver = True
+                else:
+                    rec.is_assigned_approver = False
+
+    is_assigned_reviewer_and_approver = fields.Boolean(
+        compute="_compute_is_assigned_reviewer_and_approver"
+    )
+
+    @api.depends("revisor_y_aprobador")
+    def _compute_is_assigned_reviewer(self):
+        for rec in self:
+            if rec.revisor_y_aprobador != False:
+                if rec.revisor_y_aprobador.name == self.env.user.name:
+                    rec.is_assigned_approver = True
+                else:
+                    rec.is_assigned_approver = False
+
     # ^ FUNCIONES LIGADAS A BOTONES EN LA VISTA DE SOLICITUD
 
     def send_email(self):
@@ -597,7 +624,11 @@ class Solicitud(models.Model):
             template.send_mail(rec.id, force_send=True)
 
     def no_procedente(self):
-        if self.is_assigned_coordinator:
+        if (
+            self.is_assigned_coordinator
+            or self.is_assigned_reviewer
+            or is_assigned_reviewer_and_approver
+        ):
             if self.descripcion_no_procede != False:
                 self.state = "cancelado"
                 template = self.env.ref("gestion.mail_no_procede_template")
@@ -615,7 +646,11 @@ class Solicitud(models.Model):
             )
 
     def procedente(self):
-        if self.is_assigned_coordinator:
+        if (
+            self.is_assigned_coordinator
+            or self.is_assigned_reviewer
+            or is_assigned_reviewer_and_approver
+        ):
             self.state = "elaboracion"
         else:
             raise ValidationError(
@@ -625,7 +660,11 @@ class Solicitud(models.Model):
             )
 
     def mandar_a_revision(self):
-        if self.is_assigned_coordinator:
+        if (
+            self.is_assigned_coordinator
+            or self.is_assigned_reviewer
+            or is_assigned_reviewer_and_approver
+        ):
             self.state = "revision"
             template = self.env.ref("gestion.mail_elaboracion_template")
             massive_attachment = []
@@ -654,7 +693,11 @@ class Solicitud(models.Model):
             )
 
     def no_revisado(self):
-        if self.is_creator:
+        if (
+            self.is_creator
+            or self.is_assigned_reviewer
+            or is_assigned_reviewer_and_approver
+        ):
             if self.descripcion_no_conforme_revision != False:
                 self.state = "elaboracion"
                 template = self.env.ref("gestion.mail_no_conforme_template")
@@ -690,7 +733,11 @@ class Solicitud(models.Model):
             )
 
     def revisado(self):
-        if self.is_creator == True:
+        if (
+            self.is_creator
+            or self.is_assigned_reviewer
+            or is_assigned_reviewer_and_approver
+        ):
             self.state = "revisado"
             self.fecha_revision = fields.Datetime.now()
             self.reviewed_uid = self.env.user
@@ -722,7 +769,11 @@ class Solicitud(models.Model):
             )
 
     def mandar_a_aprobacion(self):
-        if self.is_assigned_coordinator:
+        if (
+            self.is_assigned_coordinator
+            or self.is_assigned_reviewer
+            or is_assigned_reviewer_and_approver
+        ):
             self.state = "aprobacion"
         else:
             raise ValidationError(
